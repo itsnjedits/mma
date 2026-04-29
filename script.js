@@ -1,7 +1,16 @@
 /**
  * ============================================================
  *  MINISTRY OF MECHANICAL AFFAIRS — SPA Engine
- *  script.js  (v2 — upgraded)
+ *  script.js  (v3 — system audit & fix)
+ * ============================================================
+ *
+ *  FIXES IN THIS VERSION:
+ *  [1] resources.json fetch path: 'resources.json' (root-level)
+ *  [2] Image modal: named event handlers so they clean up properly
+ *  [3] openLink: visual loading indicator on the card while fetching
+ *  [4] openLink: robust error handling with user-visible toast
+ *  [5] All card click/download listeners scoped correctly
+ *  [6] No more stray window-level listener leaks
  * ============================================================
  */
 
@@ -76,18 +85,18 @@ const COUNCIL = [
 const state = {
   logoClickCount: 0,
   logoClickTimer: null,
-  resourceData: null,
-  resourceStack: [],
-  searchQuery: '',
-  sortMode: 'name-az',
+  resourceData:   null,
+  resourceStack:  [],
+  searchQuery:    '',
+  sortMode:       'name-az',
 };
 
 // ──────────────────────────────────────────────
 //  ROUTER
 // ──────────────────────────────────────────────
 const routes = {
-  '/': renderHome,
-  '/about': renderAbout,
+  '/':          renderHome,
+  '/about':     renderAbout,
   '/resources': renderResources,
 };
 
@@ -133,7 +142,7 @@ document.getElementById('logoBtn').addEventListener('click', () => {
 });
 
 // ──────────────────────────────────────────────
-//  GEAR SVG BUILDER
+//  GEAR SVG BUILDER  (background / footer use)
 // ──────────────────────────────────────────────
 function buildGearSVG({ cx, cy, r, teeth, stroke, opacity, cls, strokeW = 1.5 }) {
   const toothH = r * 0.22;
@@ -156,23 +165,21 @@ function buildGearSVG({ cx, cy, r, teeth, stroke, opacity, cls, strokeW = 1.5 })
 }
 
 // ──────────────────────────────────────────────
-//  PERPETUAL MOTION MACHINE SVG
+//  PERPETUAL MOTION MACHINE
 //  Mechanically coherent gear train:
-//  • Big drive gear (r=52, 16t) → Medium gear (r=33, 10t) → Small gear (r=20, 6t)
-//  • All speeds are proportional (tooth-count ratio)
-//  • Opposite directions for meshed gears
-//  • Flywheel on same axle as medium gear
-//  • Belt-driven accent pulley on far right
+//  G1 (r=52, 16t, CW, 14s) → G2 (r=33, 10t, CCW, 8.75s)
+//  G2 → G3 (r=20, 6t, CW, 5.25s)
+//  G2 shaft → belt → flywheel (CW, 8.75s)
+//  Pendulum on G1 pivot column
 // ──────────────────────────────────────────────
 function buildPMM() {
-  const gold  = '#C9A84C';
-  const goldD = '#9A7530';
-  const goldL = '#E8C96A';
-  const blue  = '#4A90E2';
-  const steel = '#2C2C2C';
+  const gold   = '#C9A84C';
+  const goldD  = '#9A7530';
+  const goldL  = '#E8C96A';
+  const blue   = '#4A90E2';
+  const steel  = '#2C2C2C';
   const steelL = '#4A4A4A';
 
-  // ── Gear drawing helper ──────────────────────
   function gearPath(cx, cy, r, teeth) {
     const toothH = r * 0.20;
     const inner  = r - toothH;
@@ -210,23 +217,9 @@ function buildPMM() {
       </g>`;
   }
 
-  // ── Gear parameters ──────────────────────────
-  // Drive gear  G1: cx=135, cy=155, r=52, 16 teeth → period T base
-  // Mesh gear   G2: cx=254, cy=155, r=33, 10 teeth → T * (16/10) = 1.6× faster, CCW
-  //   G1 outer + G2 outer = 52+33 = 85 → cx2 = 135+85 = 220  (using 254 for slight visual mesh overlap)
-  // Small gear  G3: cx=316, cy=108, r=20,  6 teeth → T * (16/6) ≈ 2.67× faster, CW
-  //   G2 outer + G3 outer = 33+20 = 53 → cx3 = 220+33=253, cy3 = cy2-33-20=155-53=102 (approx mesh at corner)
-
-  // Base period: 14s for G1
-  // G2 period:   14 * (10/16) = 8.75s
-  // G3 period:   8.75 * (6/10) = 5.25s
-
   const g1cx = 135, g1cy = 155, g1r = 52, g1t = 16;
   const g2cx = 254, g2cy = 155, g2r = 33, g2t = 10;
   const g3cx = 316, g3cy = 108, g3r = 20, g3t = 6;
-
-  // Flywheel on same shaft as G2 (behind it visually, offset down)
-  const fwcx = 254, fwcy = 155;
 
   return `
 <svg viewBox="0 0 520 270" xmlns="http://www.w3.org/2000/svg" style="overflow:visible;">
@@ -239,17 +232,16 @@ function buildPMM() {
       <feGaussianBlur stdDeviation="2" result="b"/>
       <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
-    <!-- Metallic gradient for flywheel rim -->
     <linearGradient id="fw-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="${goldL}" stop-opacity="0.9"/>
-      <stop offset="50%" stop-color="${gold}" stop-opacity="0.7"/>
+      <stop offset="0%"   stop-color="${goldL}" stop-opacity="0.9"/>
+      <stop offset="50%"  stop-color="${gold}"  stop-opacity="0.7"/>
       <stop offset="100%" stop-color="${goldD}" stop-opacity="0.8"/>
     </linearGradient>
   </defs>
 
   <!-- Base plate -->
   <rect x="20" y="228" width="480" height="5" rx="2" fill="${steelL}" opacity="0.55"/>
-  <rect x="40" y="233" width="440" height="2" rx="1" fill="${goldD}" opacity="0.25"/>
+  <rect x="40" y="233" width="440" height="2" rx="1" fill="${goldD}"  opacity="0.25"/>
 
   <!-- Support pillars -->
   <rect x="${g1cx - 3}" y="${g1cy + g1r}" width="6" height="${228 - g1cy - g1r}" fill="${steelL}" opacity="0.5"/>
@@ -261,44 +253,43 @@ function buildPMM() {
   <text x="${g2cx}" y="248" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="6.5" fill="${goldD}" opacity="0.45" letter-spacing="1">OUTPUT</text>
   <text x="408"     y="248" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="6.5" fill="${goldD}" opacity="0.35" letter-spacing="1">FLYWHEEL</text>
 
-  <!-- ── BELT: G2 axle → far-right pulley ── -->
-  <!-- Upper belt line -->
-  <line x1="${g2cx}" y1="${g2cy - 8}" x2="408" y2="172" stroke="${goldD}" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.3"
+  <!-- Belt: G2 axle → far-right flywheel -->
+  <line x1="${g2cx}" y1="${g2cy - 8}" x2="408" y2="172"
+    stroke="${goldD}" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.3"
     style="animation: beltFlow 3s linear infinite;"/>
-  <!-- Lower belt line -->
-  <line x1="${g2cx}" y1="${g2cy + 8}" x2="408" y2="190" stroke="${goldD}" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.25"
+  <line x1="${g2cx}" y1="${g2cy + 8}" x2="408" y2="190"
+    stroke="${goldD}" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.25"
     style="animation: beltFlow 3s linear infinite reverse;"/>
 
-  <!-- Far-right flywheel (belt-driven, same speed as G2, CW) -->
+  <!-- Far-right flywheel (belt-driven, CW, same speed as G2) -->
   <g class="pmm-gear-med" style="transform-origin:408px 181px;">
     <circle cx="408" cy="181" r="30" stroke="${gold}" stroke-width="2" fill="none" opacity="0.65" filter="url(#pmm-glow-gold)"/>
     <circle cx="408" cy="181" r="22" stroke="${goldD}" stroke-width="1" fill="none" opacity="0.35"/>
     ${Array.from({length:6},(_,i)=>{const a=(Math.PI/3)*i;return `<line x1="408" y1="181" x2="${408+26*Math.cos(a)}" y2="${181+26*Math.sin(a)}" stroke="${gold}" stroke-width="1.2" opacity="0.5"/>`;}).join('')}
     <circle cx="408" cy="181" r="7" fill="${steelL}" stroke="${gold}" stroke-width="1.2" opacity="0.9"/>
     <circle cx="408" cy="181" r="2.5" fill="${gold}" opacity="1"/>
-    <!-- Counterweight lobe -->
     <ellipse cx="408" cy="153" rx="7" ry="4.5" fill="${goldD}" opacity="0.6"/>
   </g>
 
-  <!-- ── MAIN DRIVE GEAR G1 (CW, 14s) ── -->
+  <!-- G1: main drive gear (CW, 14s) -->
   ${gear(g1cx, g1cy, g1r, g1t, 'pmm-gear-cw', gold, 5)}
 
-  <!-- ── MEDIUM GEAR G2 meshing G1 (CCW, 8.75s) ── -->
+  <!-- G2: medium meshing gear (CCW, 8.75s) -->
   ${gear(g2cx, g2cy, g2r, g2t, 'pmm-gear-ccw', goldL, 4)}
 
-  <!-- ── SMALL TOP GEAR G3 meshing G2 (CW, 5.25s) ── -->
+  <!-- G3: small top gear (CW, 5.25s) -->
   ${gear(g3cx, g3cy, g3r, g3t, 'pmm-gear-fast', blue, 3)}
 
-  <!-- ── PENDULUM on G1 pivot arm ── -->
+  <!-- Pendulum on G1 pivot column -->
   <g class="pmm-pendulum" style="transform-origin:${g1cx}px 48px;">
     <rect x="${g1cx - 6}" y="43" width="12" height="7" rx="2" fill="${steel}" stroke="${goldD}" stroke-width="1" opacity="0.8"/>
     <line x1="${g1cx}" y1="48" x2="${g1cx}" y2="110" stroke="${gold}" stroke-width="1.8" opacity="0.6"/>
-    <circle cx="${g1cx}" cy="79" r="3.5" fill="none" stroke="${goldD}" stroke-width="1.2" opacity="0.45"/>
+    <circle cx="${g1cx}" cy="79"  r="3.5" fill="none" stroke="${goldD}" stroke-width="1.2" opacity="0.45"/>
     <circle cx="${g1cx}" cy="114" r="9" fill="${steelL}" stroke="${gold}" stroke-width="1.8" filter="url(#pmm-glow-gold)" opacity="0.88"/>
     <circle cx="${g1cx}" cy="114" r="3.5" fill="${gold}" opacity="0.9"/>
   </g>
 
-  <!-- ── SPARK DOTS ── -->
+  <!-- Spark pulses at gear mesh points -->
   <circle cx="${g3cx}" cy="${g3cy}" r="3" fill="${blue}" class="pmm-spark"  filter="url(#pmm-glow-blue)" opacity="0"/>
   <circle cx="${g2cx}" cy="${g2cy}" r="3" fill="${gold}" class="pmm-spark2" filter="url(#pmm-glow-gold)" opacity="0"/>
 </svg>`;
@@ -309,11 +300,9 @@ function buildPMM() {
 // ──────────────────────────────────────────────
 function renderHome(container) {
   container.innerHTML = `
-    <!-- HERO -->
     <section class="hero">
       <div class="hero-bg"></div>
 
-      <!-- Background Gears -->
       <div class="hero-gears">
         <svg width="100%" height="100%" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" style="position:absolute;inset:0;">
           ${buildGearSVG({ cx:80,  cy:120, r:60,  teeth:12, stroke:'#C9A84C', opacity:0.12, cls:'gear-cw' })}
@@ -326,26 +315,18 @@ function renderHome(container) {
         </svg>
       </div>
 
-      <!-- Hero Content -->
       <div style="position:relative;z-index:2;max-width:800px;width:100%;">
         <div class="section-tag" style="justify-content:center;display:flex;margin-bottom:1rem;">
           ⚙ &nbsp; ESTABLISHED 2022 &nbsp; ⚙
         </div>
-
         <h1 class="hero-title">MINISTRY OF<br>MECHANICAL AFFAIRS</h1>
-
         <p class="hero-subtitle">Engineering Destiny · Discipline · Brotherhood</p>
-
         <div class="hero-divider"></div>
-
         <p style="color:#666;font-size:1rem;letter-spacing:0.05em;max-width:480px;margin:0 auto 2rem;line-height:1.7;">
           A secret order of mechanical engineers forged in precision, driven by curiosity,
           and united by the relentless pursuit of engineering excellence.
         </p>
-
-        <button class="cta-btn" onclick="navigate('/resources')">
-          Enter the Ministry
-        </button>
+        <button class="cta-btn" onclick="navigate('/resources')">Enter the Ministry</button>
       </div>
 
       <!-- ══ PERPETUAL MOTION MACHINE ══ -->
@@ -359,47 +340,29 @@ function renderHome(container) {
         </div>
       </div>
 
-      <!-- Scroll indicator -->
       <div style="position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0.5rem;opacity:0.4;">
         <span style="font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase;font-family:'Rajdhani',sans-serif;">SCROLL</span>
         <div style="width:1px;height:40px;background:linear-gradient(180deg,#C9A84C,transparent);animation:pulse 2s infinite;"></div>
       </div>
     </section>
 
-    <!-- STATS SECTION -->
+    <!-- STATS -->
     <section style="padding:5rem 2rem;max-width:1100px;margin:0 auto;">
       <div style="text-align:center;margin-bottom:3rem;">
         <div class="section-tag" style="display:block;text-align:center;">[ MINISTRY VITALS ]</div>
         <h2 class="section-title">The <span>Numbers</span> Speak</h2>
       </div>
-
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;">
-        <div class="stat-card">
-          <div class="stat-icon">⚙️</div>
-          <div class="stat-number">42+</div>
-          <div class="stat-label">Active Members</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon">📍</div>
-          <div class="stat-number">Jaipur</div>
-          <div class="stat-label">Rajasthan, India</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon">🏛️</div>
-          <div class="stat-number">2022</div>
-          <div class="stat-label">Founded Year</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon">🔩</div>
-          <div class="stat-number">∞</div>
-          <div class="stat-label">Commitment</div>
-        </div>
+        <div class="stat-card"><div class="stat-icon">⚙️</div><div class="stat-number">42+</div><div class="stat-label">Active Members</div></div>
+        <div class="stat-card"><div class="stat-icon">📍</div><div class="stat-number">Jaipur</div><div class="stat-label">Rajasthan, India</div></div>
+        <div class="stat-card"><div class="stat-icon">🏛️</div><div class="stat-number">2022</div><div class="stat-label">Founded Year</div></div>
+        <div class="stat-card"><div class="stat-icon">🔩</div><div class="stat-number">∞</div><div class="stat-label">Commitment</div></div>
       </div>
     </section>
 
     <div class="gold-divider" style="max-width:1100px;margin:0 auto;"></div>
 
-    <!-- MEMBERS SECTION -->
+    <!-- MEMBERS -->
     <section style="padding:4rem 2rem;max-width:1100px;margin:0 auto;">
       <div style="margin-bottom:3rem;">
         <div class="section-tag">[ BROTHERHOOD ROSTER ]</div>
@@ -410,8 +373,7 @@ function renderHome(container) {
           but for character, discipline, and the will to build.
         </p>
       </div>
-
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1.25rem;" id="membersGrid">
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1.25rem;">
         ${MEMBERS.map(m => `
           <div class="member-card" onclick="showMemberModal(${m.id})">
             <div class="member-avatar">${m.initials}</div>
@@ -445,9 +407,7 @@ function showMemberModal(id) {
       <div style="width:40px;height:1px;background:linear-gradient(90deg,transparent,#C9A84C,transparent);margin-bottom:1.5rem;"></div>
       <p style="color:#999;font-size:0.95rem;line-height:1.7;text-align:left;">${m.bio}</p>
       <div style="margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:0.5rem;justify-content:center;">
-        ${m.skills.map(s => `
-          <span style="background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.25);color:#C9A84C;padding:0.25rem 0.75rem;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;">${s}</span>
-        `).join('')}
+        ${m.skills.map(s => `<span style="background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.25);color:#C9A84C;padding:0.25rem 0.75rem;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;">${s}</span>`).join('')}
       </div>
     </div>
   `);
@@ -464,7 +424,6 @@ function renderAbout(container) {
         We Are Not Just A <span>Club</span>
       </h1>
       <div class="section-line"></div>
-
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;" class="about-grid">
         <div>
           <p style="color:#999;font-size:1.05rem;line-height:1.8;margin-bottom:1.5rem;">
@@ -500,7 +459,6 @@ function renderAbout(container) {
 
     <div class="gold-divider" style="max-width:1100px;margin:0 auto;"></div>
 
-    <!-- HIGH COUNCIL -->
     <section style="padding:4rem 2rem;max-width:1100px;margin:0 auto;">
       <div style="text-align:center;margin-bottom:3rem;">
         <div class="section-tag" style="display:block;text-align:center;">[ GOVERNING BODY ]</div>
@@ -521,7 +479,6 @@ function renderAbout(container) {
 
     <div class="gold-divider" style="max-width:1100px;margin:0 auto;"></div>
 
-    <!-- HOW TO JOIN -->
     <section style="padding:4rem 2rem;max-width:900px;margin:0 auto;">
       <div style="margin-bottom:3rem;">
         <div class="section-tag">[ ENLISTMENT PROTOCOL ]</div>
@@ -530,10 +487,10 @@ function renderAbout(container) {
       </div>
       <div style="display:flex;flex-direction:column;gap:0.5rem;">
         ${[
-          { n:'01', t:'Application', d:'Submit your application with a statement of intent and your engineering philosophy. Tell us what you\'re building and why it matters.' },
-          { n:'02', t:'Eligibility Review', d:'Academic record, extracurriculars, and project portfolio are evaluated by the High Council. Minimum CGPA of 7.5 is required.' },
-          { n:'03', t:'Physical Aptitude Test', d:'A hands-on fabrication challenge in the workshop. You will be tested on problem-solving under pressure and precision manufacturing skills.' },
-          { n:'04', t:'Mental Calibration Test', d:'An analytical examination covering fundamentals — thermodynamics, mechanics of solids, fluid systems, and design thinking under constraints.' },
+          { n:'01', t:'Application', d:'Submit your application with a statement of intent and your engineering philosophy.' },
+          { n:'02', t:'Eligibility Review', d:'Academic record, extracurriculars, and project portfolio are evaluated. Minimum CGPA of 7.5 required.' },
+          { n:'03', t:'Physical Aptitude Test', d:'A hands-on fabrication challenge in the workshop. Tested on problem-solving under pressure.' },
+          { n:'04', t:'Mental Calibration Test', d:'Analytical examination covering thermodynamics, mechanics, fluid systems, and design thinking.' },
         ].map(s => `
           <div class="step-item">
             <div class="step-num">${s.n}</div>
@@ -548,7 +505,6 @@ function renderAbout(container) {
 
     <div class="gold-divider" style="max-width:1100px;margin:0 auto;"></div>
 
-    <!-- CONTACT -->
     <section style="padding:4rem 2rem 6rem;max-width:900px;margin:0 auto;">
       <div style="margin-bottom:3rem;">
         <div class="section-tag">[ SECURE CHANNEL ]</div>
@@ -634,14 +590,20 @@ function renderResources(container) {
 
 // ──────────────────────────────────────────────
 //  LOAD RESOURCE JSON
+//  FIX [1]: fetch from 'resources.json' (root-level)
+//  Works on GitHub Pages and local server alike.
 // ──────────────────────────────────────────────
 async function loadResourceData() {
   showResourceSkeleton();
   try {
-    const resp = await fetch('./data/resources.json');
-    if (!resp.ok) throw new Error('Not found');
+    console.log('[MMA] Fetching resources.json …');
+    const resp = await fetch('resources.json');
+    if (!resp.ok) throw new Error(`HTTP ${resp.status} — ${resp.statusText}`);
     state.resourceData = await resp.json();
-  } catch (_) {
+    console.log(`[MMA] Loaded ${state.resourceData.length} top-level items`);
+  } catch (err) {
+    console.error('[MMA] Failed to load resources.json:', err);
+    console.warn('[MMA] Falling back to sample data');
     state.resourceData = getSampleResourceData();
   }
   state.resourceStack = [{ name: 'All Resources', items: state.resourceData }];
@@ -649,86 +611,59 @@ async function loadResourceData() {
   renderResourceGrid();
 }
 
+// ──────────────────────────────────────────────
+//  SAMPLE DATA  (uses txt-path system)
+// ──────────────────────────────────────────────
 function getSampleResourceData() {
   return [
     {
-      name: 'Mechanics',
-      type: 'folder',
+      name: 'Mechanics', type: 'folder',
       children: [
-        { name: 'Engineering Mechanics Notes', type: 'pdf', path: 'resources/Mechanics/engineering_mechanics_notes.pdf' },
-        { name: 'Free Body Diagram Guide',     type: 'pdf', path: 'resources/Mechanics/free_body_diagram_guide.pdf' },
-        { name: 'Statics and Dynamics Summary', type: 'pdf', path: 'resources/Mechanics/statics_dynamics_summary.pdf' },
-        {
-          name: 'Statics Explained',
-          type: 'link',
-          thumbnail: 'resources/Mechanics/statics_explained.jpg',
-          txt: 'resources/Mechanics/statics_explained.txt',
-        },
-        {
-          name: 'Newton Laws Lecture',
-          type: 'link',
-          thumbnail: 'resources/Mechanics/newton_laws.jpg',
-          txt: 'resources/Mechanics/newton_laws.txt',
-        },
+        { name: 'Engineering Mechanics Notes',  type: 'pdf',   path: 'resources/Mechanics/engineering_mechanics_notes.pdf' },
+        { name: 'Free Body Diagram Guide',       type: 'pdf',   path: 'resources/Mechanics/free_body_diagram_guide.pdf' },
+        { name: 'Statics and Dynamics Summary',  type: 'pdf',   path: 'resources/Mechanics/statics_dynamics_summary.pdf' },
+        { name: 'Statics Explained',   type: 'link', thumbnail: 'resources/Mechanics/statics_explained.jpg',  txt: 'resources/Mechanics/statics_explained.txt' },
+        { name: 'Newton Laws Lecture', type: 'link', thumbnail: 'resources/Mechanics/newton_laws.jpg',         txt: 'resources/Mechanics/newton_laws.txt' },
       ],
     },
     {
-      name: 'Thermodynamics',
-      type: 'folder',
+      name: 'Thermodynamics', type: 'folder',
       children: [
-        { name: 'First Law of Thermodynamics', type: 'pdf', path: 'resources/Thermodynamics/first_law.pdf' },
-        { name: 'Second Law and Entropy',       type: 'pdf', path: 'resources/Thermodynamics/second_law_entropy.pdf' },
-        { name: 'Carnot Cycle Notes',           type: 'pdf', path: 'resources/Thermodynamics/carnot_cycle.pdf' },
-        {
-          name: 'Heat Engines Deep Dive',
-          type: 'link',
-          thumbnail: 'resources/Thermodynamics/heat_engines.jpg',
-          txt: 'resources/Thermodynamics/heat_engines.txt',
-        },
-        { name: 'PV Diagram Reference', type: 'image', path: 'resources/Thermodynamics/pv_diagram.jpg' },
+        { name: 'First Law of Thermodynamics', type: 'pdf',   path: 'resources/Thermodynamics/first_law.pdf' },
+        { name: 'Second Law and Entropy',       type: 'pdf',   path: 'resources/Thermodynamics/second_law_entropy.pdf' },
+        { name: 'Carnot Cycle Notes',           type: 'pdf',   path: 'resources/Thermodynamics/carnot_cycle.pdf' },
+        { name: 'Heat Engines Deep Dive', type: 'link', thumbnail: 'resources/Thermodynamics/heat_engines.jpg', txt: 'resources/Thermodynamics/heat_engines.txt' },
+        { name: 'PV Diagram Reference',   type: 'image', path: 'resources/Thermodynamics/pv_diagram.jpg' },
       ],
     },
     {
-      name: 'Fluid Mechanics',
-      type: 'folder',
+      name: 'Fluid Mechanics', type: 'folder',
       children: [
-        { name: 'Bernoulli Theorem Notes',   type: 'pdf', path: 'resources/FluidMechanics/bernoulli_theorem.pdf' },
-        { name: 'Reynolds Number Explained', type: 'pdf', path: 'resources/FluidMechanics/reynolds_number.pdf' },
-        { name: 'Continuity Equation',       type: 'pdf', path: 'resources/FluidMechanics/continuity_equation.pdf' },
-        {
-          name: 'Fluid Flow Visualization',
-          type: 'link',
-          thumbnail: 'resources/FluidMechanics/fluid_flow.jpg',
-          txt: 'resources/FluidMechanics/fluid_flow.txt',
-        },
+        { name: 'Bernoulli Theorem Notes',    type: 'pdf',   path: 'resources/FluidMechanics/bernoulli_theorem.pdf' },
+        { name: 'Reynolds Number Explained',  type: 'pdf',   path: 'resources/FluidMechanics/reynolds_number.pdf' },
+        { name: 'Continuity Equation',        type: 'pdf',   path: 'resources/FluidMechanics/continuity_equation.pdf' },
+        { name: 'Fluid Flow Visualization', type: 'link', thumbnail: 'resources/FluidMechanics/fluid_flow.jpg', txt: 'resources/FluidMechanics/fluid_flow.txt' },
         { name: 'Pipe Flow Regimes', type: 'image', path: 'resources/FluidMechanics/pipe_flow.jpg' },
       ],
     },
     {
-      name: 'Machine Design',
-      type: 'folder',
+      name: 'Machine Design', type: 'folder',
       children: [
-        { name: 'Gear Design Fundamentals',    type: 'pdf', path: 'resources/MachineDesign/gear_design.pdf' },
-        { name: 'Shaft and Bearing Analysis',  type: 'pdf', path: 'resources/MachineDesign/shaft_bearing.pdf' },
-        {
-          name: 'Design of Machine Elements',
-          type: 'link',
-          thumbnail: 'resources/MachineDesign/machine_elements.jpg',
-          txt: 'resources/MachineDesign/machine_elements.txt',
-        },
+        { name: 'Gear Design Fundamentals',   type: 'pdf',  path: 'resources/MachineDesign/gear_design.pdf' },
+        { name: 'Shaft and Bearing Analysis', type: 'pdf',  path: 'resources/MachineDesign/shaft_bearing.pdf' },
+        { name: 'Design of Machine Elements', type: 'link', thumbnail: 'resources/MachineDesign/machine_elements.jpg', txt: 'resources/MachineDesign/machine_elements.txt' },
       ],
     },
     {
-      name: 'Manufacturing',
-      type: 'folder',
+      name: 'Manufacturing', type: 'folder',
       children: [
         { name: 'Casting and Forging Notes', type: 'pdf', path: 'resources/Manufacturing/casting_forging.pdf' },
         { name: 'CNC Machining Guide',       type: 'pdf', path: 'resources/Manufacturing/cnc_machining.pdf' },
         { name: 'Welding Techniques',        type: 'pdf', path: 'resources/Manufacturing/welding_techniques.pdf' },
       ],
     },
-    { name: 'Ministry Handbook',       type: 'pdf',   path: 'resources/ministry_handbook.pdf' },
-    { name: 'Workshop Safety Protocol', type: 'pdf',  path: 'resources/workshop_safety.pdf' },
+    { name: 'Ministry Handbook',        type: 'pdf',   path: 'resources/ministry_handbook.pdf' },
+    { name: 'Workshop Safety Protocol', type: 'pdf',   path: 'resources/workshop_safety.pdf' },
     { name: 'MMA Logo High Resolution', type: 'image', path: 'resources/mma_logo.png' },
   ];
 }
@@ -782,15 +717,15 @@ function renderResourceGrid() {
   const bc   = document.getElementById('breadcrumb');
   if (!grid) return;
 
+  // Breadcrumb
   if (bc) {
     bc.innerHTML = state.resourceStack.map((level, i) => {
       const isLast = i === state.resourceStack.length - 1;
       return `
         ${i > 0 ? '<span class="breadcrumb-sep">›</span>' : ''}
-        <span class="breadcrumb-item ${isLast ? 'text-gold' : ''}" style="${isLast ? 'color:#C9A84C;' : ''}" data-level="${i}">${level.name}</span>
+        <span class="breadcrumb-item" style="${isLast ? 'color:#C9A84C;' : ''}" data-level="${i}">${level.name}</span>
       `;
     }).join('');
-
     bc.querySelectorAll('.breadcrumb-item').forEach(el => {
       el.addEventListener('click', () => {
         const lvl = parseInt(el.dataset.level);
@@ -806,7 +741,6 @@ function renderResourceGrid() {
   if (state.searchQuery.trim()) {
     items = recursiveSearch(items, state.searchQuery.toLowerCase());
   }
-
   items = sortItems([...items], state.sortMode);
 
   if (items.length === 0) {
@@ -815,102 +749,160 @@ function renderResourceGrid() {
         <div class="empty-state-icon">⚙️</div>
         <div class="empty-state-text">No resources found here yet.</div>
         <div style="margin-top:0.5rem;font-size:0.8rem;color:#333;">The Ministry's archives are being compiled.</div>
-      </div>
-    `;
+      </div>`;
     return;
   }
 
   grid.innerHTML = `
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1.25rem;">
       ${items.map(item => renderResourceCard(item)).join('')}
-    </div>
-  `;
+    </div>`;
 
-  // Bind card clicks
+  // Card click: delegate via data-card attribute
   grid.querySelectorAll('[data-card]').forEach(el => {
-    el.addEventListener('click', () => {
-      handleCardClick(el.dataset.card, items);
-    });
+    el.addEventListener('click', () => handleCardClick(el.dataset.card, items));
   });
 
-  // Bind download buttons (stop propagation)
+  // Download button: stop propagation so it doesn't also trigger the card click
   grid.querySelectorAll('[data-download]').forEach(el => {
     el.addEventListener('click', e => {
       e.stopPropagation();
-      const path = el.dataset.download;
-      const a = document.createElement('a');
-      a.href = path; a.download = ''; a.click();
+      triggerDownload(el.dataset.download);
     });
   });
 
-  // Lazy load images
+  // Lazy-load images
   const imgs = grid.querySelectorAll('img[data-src]');
-  const observer = new IntersectionObserver((entries) => {
+  const io = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const img = entry.target;
         img.src = img.dataset.src;
         img.removeAttribute('data-src');
-        observer.unobserve(img);
+        io.unobserve(img);
       }
     });
   });
-  imgs.forEach(img => observer.observe(img));
+  imgs.forEach(img => io.observe(img));
 }
 
+// ──────────────────────────────────────────────
+//  CARD CLICK HANDLER
+// ──────────────────────────────────────────────
 function handleCardClick(name, items) {
   const item = items.find(i => i.name === name);
   if (!item) return;
-  if (item.type === 'folder') {
-    state.resourceStack.push({ name: item.name, items: item.children || [] });
-    renderResourceGrid();
-  } else if (item.type === 'pdf') {
-    window.open(item.path, '_blank');
-  } else if (item.type === 'link') {
-    openLink(item.txt);
-  } else if (item.type === 'image') {
-    showImageModal(item);
+  switch (item.type) {
+    case 'folder':
+      state.resourceStack.push({ name: item.name, items: item.children || [] });
+      renderResourceGrid();
+      break;
+    case 'pdf':
+      window.open(item.path, '_blank', 'noopener,noreferrer');
+      break;
+    case 'link':
+      openLink(item.txt, name);
+      break;
+    case 'image':
+      showImageModal(item);
+      break;
   }
 }
 
 // ──────────────────────────────────────────────
-//  LINK OPENER — fetches URL from .txt at runtime
+//  LINK OPENER
+//  FIX [3]: show a visual indicator on the card;
+//  display a toast on error so the user knows
 // ──────────────────────────────────────────────
-async function openLink(txtPath) {
-  if (!txtPath) return;
+async function openLink(txtPath, cardName) {
+  if (!txtPath) { showToast('No link file configured for this resource.', 'error'); return; }
+
+  // Show loading state on the card if still visible
+  const cardEl = document.querySelector(`[data-card="${CSS.escape(cardName)}"]`);
+  const playBtn = cardEl ? cardEl.querySelector('.link-play-btn') : null;
+  if (playBtn) {
+    playBtn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0D0D0D" stroke-width="2.5" style="animation:rotateCW 0.8s linear infinite;transform-origin:center"><circle cx="12" cy="12" r="9" stroke-dasharray="30 10"/></svg>`;
+  }
+
   try {
+    console.log('[MMA] Fetching link from:', txtPath);
     const res = await fetch(txtPath);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const link = (await res.text()).trim();
-    if (link) {
-      window.open(link, '_blank', 'noopener,noreferrer');
-    } else {
-      console.warn('Link file is empty:', txtPath);
-    }
+    if (!link) throw new Error('Link file is empty');
+    console.log('[MMA] Opening:', link);
+    window.open(link, '_blank', 'noopener,noreferrer');
   } catch (err) {
-    console.error('Failed to open link:', err);
+    console.error('[MMA] openLink failed:', err);
+    showToast('Could not open link — file may be missing or network error.', 'error');
+  } finally {
+    // Restore play button
+    if (playBtn) {
+      playBtn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="#0D0D0D"><polygon points="5 3 19 12 5 21 5 3"/></svg>`;
+    }
   }
+}
+
+// ──────────────────────────────────────────────
+//  TOAST NOTIFICATION
+// ──────────────────────────────────────────────
+function showToast(message, type = 'info') {
+  const existing = document.getElementById('mmaToast');
+  if (existing) existing.remove();
+
+  const colors = {
+    info:    { bg: 'rgba(74,144,226,0.15)', border: 'rgba(74,144,226,0.4)',   text: '#7BB8F0' },
+    error:   { bg: 'rgba(220,50,50,0.15)',  border: 'rgba(220,50,50,0.4)',    text: '#F08080' },
+    success: { bg: 'rgba(50,180,80,0.15)',  border: 'rgba(50,180,80,0.4)',    text: '#80D080' },
+  };
+  const c = colors[type] || colors.info;
+
+  const toast = document.createElement('div');
+  toast.id = 'mmaToast';
+  toast.style.cssText = `
+    position:fixed; bottom:2rem; left:50%; transform:translateX(-50%);
+    background:${c.bg}; border:1px solid ${c.border}; color:${c.text};
+    padding:0.75rem 1.5rem; font-family:'Rajdhani',sans-serif; font-size:0.9rem;
+    font-weight:600; letter-spacing:0.08em; z-index:5000;
+    backdrop-filter:blur(8px); max-width:90vw; text-align:center;
+    animation:pageFadeIn 0.3s ease;
+  `;
+  toast.textContent = message;
+  document.body.appendChild(toast);
+  setTimeout(() => { if (toast.parentNode) toast.remove(); }, 4000);
+}
+
+// ──────────────────────────────────────────────
+//  DOWNLOAD HELPER
+// ──────────────────────────────────────────────
+function triggerDownload(path) {
+  if (!path) return;
+  const a = document.createElement('a');
+  a.href = path;
+  a.download = path.split('/').pop() || 'download';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
 }
 
 // ──────────────────────────────────────────────
 //  RESOURCE CARD RENDERER
 // ──────────────────────────────────────────────
 function renderResourceCard(item) {
-  const cardClass = 'resource-card';
+  const base = 'resource-card';
   switch (item.type) {
 
     case 'folder':
       return `
-        <div class="${cardClass}" data-card="${escHtml(item.name)}" style="border-color:rgba(201,168,76,0.2);">
+        <div class="${base}" data-card="${escHtml(item.name)}" style="border-color:rgba(201,168,76,0.2);">
           <div class="resource-card-icon">📁</div>
           <div class="resource-card-name">${escHtml(item.name)}</div>
           <div class="resource-card-type">Folder · ${(item.children||[]).length} items</div>
-        </div>
-      `;
+        </div>`;
 
     case 'pdf':
       return `
-        <div class="${cardClass}" data-card="${escHtml(item.name)}">
+        <div class="${base}" data-card="${escHtml(item.name)}">
           <div class="resource-card-icon">📄</div>
           <div class="resource-card-name">${escHtml(item.name)}</div>
           <div class="resource-card-type">PDF Document</div>
@@ -918,18 +910,16 @@ function renderResourceCard(item) {
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             Download
           </div>
-        </div>
-      `;
+        </div>`;
 
     case 'link':
       return `
-        <div class="${cardClass}" data-card="${escHtml(item.name)}" style="padding:0;overflow:hidden;">
+        <div class="${base}" data-card="${escHtml(item.name)}" style="padding:0;overflow:hidden;">
           <div style="position:relative;">
             ${item.thumbnail
               ? `<img data-src="${escHtml(item.thumbnail)}" src="" alt="${escHtml(item.name)}" class="resource-card-thumb" style="display:block;min-height:100px;background:#1A1A1A;" onerror="this.style.display='none'" />`
               : `<div style="height:100px;background:rgba(74,144,226,0.08);display:flex;align-items:center;justify-content:center;font-size:2.5rem;">🎬</div>`
             }
-            <!-- Play icon overlay -->
             <div class="link-play-overlay">
               <div class="link-play-btn">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="#0D0D0D"><polygon points="5 3 19 12 5 21 5 3"/></svg>
@@ -940,15 +930,13 @@ function renderResourceCard(item) {
             <div class="resource-card-name">${escHtml(item.name)}</div>
             <div class="resource-card-type" style="margin-top:0.25rem;">Video / Link</div>
           </div>
-        </div>
-      `;
+        </div>`;
 
     case 'image':
       return `
-        <div class="${cardClass}" data-card="${escHtml(item.name)}" style="padding:0;overflow:hidden;">
+        <div class="${base}" data-card="${escHtml(item.name)}" style="padding:0;overflow:hidden;">
           <div style="position:relative;">
             <img data-src="${escHtml(item.path||'')}" src="" alt="${escHtml(item.name)}" class="resource-card-thumb" style="display:block;min-height:100px;background:#1A1A1A;" onerror="this.style.display='none'" />
-            <!-- Download icon on card -->
             <div class="img-card-dl" data-download="${escHtml(item.path||'')}">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             </div>
@@ -957,17 +945,15 @@ function renderResourceCard(item) {
             <div class="resource-card-name">${escHtml(item.name)}</div>
             <div class="resource-card-type" style="margin-top:0.25rem;">Image</div>
           </div>
-        </div>
-      `;
+        </div>`;
 
     default:
       return `
-        <div class="${cardClass}" data-card="${escHtml(item.name)}">
+        <div class="${base}" data-card="${escHtml(item.name)}">
           <div class="resource-card-icon">📎</div>
           <div class="resource-card-name">${escHtml(item.name)}</div>
           <div class="resource-card-type">File</div>
-        </div>
-      `;
+        </div>`;
   }
 }
 
@@ -980,8 +966,7 @@ function showResourceSkeleton() {
   grid.innerHTML = `
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1.25rem;">
       ${Array(8).fill('<div class="skeleton skeleton-card"></div>').join('')}
-    </div>
-  `;
+    </div>`;
 }
 
 // ──────────────────────────────────────────────
@@ -1004,17 +989,17 @@ function recursiveSearch(items, query) {
 //  SORT
 // ──────────────────────────────────────────────
 function sortItems(items, mode) {
-  const typeOrder = { folder: 0, pdf: 1, link: 2, image: 3 };
+  const order = { folder: 0, pdf: 1, link: 2, image: 3 };
   return items.sort((a, b) => {
     if (mode === 'name-az') return a.name.localeCompare(b.name);
     if (mode === 'name-za') return b.name.localeCompare(a.name);
-    if (mode === 'type')    return (typeOrder[a.type]||9) - (typeOrder[b.type]||9);
+    if (mode === 'type')    return (order[a.type]||9) - (order[b.type]||9);
     return 0;
   });
 }
 
 // ──────────────────────────────────────────────
-//  MODAL SYSTEM (member / easter egg / general)
+//  MODAL — member / easter egg / general
 // ──────────────────────────────────────────────
 function showModal(html, extraStyle = '') {
   const mc = document.getElementById('modalContainer');
@@ -1024,37 +1009,37 @@ function showModal(html, extraStyle = '') {
         <button class="modal-close" id="modalClose">✕</button>
         ${html}
       </div>
-    </div>
-  `;
+    </div>`;
   document.getElementById('modalClose').addEventListener('click', closeModal);
   document.getElementById('modalOverlay').addEventListener('click', e => {
     if (e.target.id === 'modalOverlay') closeModal();
   });
-  document.addEventListener('keydown', handleModalKey);
+  document.addEventListener('keydown', _modalKeyHandler);
 }
 
 function closeModal() {
   document.getElementById('modalContainer').innerHTML = '';
-  document.removeEventListener('keydown', handleModalKey);
+  document.removeEventListener('keydown', _modalKeyHandler);
 }
 
-function handleModalKey(e) {
+function _modalKeyHandler(e) {
   if (e.key === 'Escape') closeModal();
 }
 
 // ──────────────────────────────────────────────
-//  IMAGE MODAL — zoom, pan, download
+//  IMAGE MODAL — zoom / pan / download
+//  FIX [2]: all event listeners are named and
+//           properly removed on close (no leaks)
 // ──────────────────────────────────────────────
 function showImageModal(item) {
-  const imgSrc  = escHtml(item.path || '');
-  const imgName = escHtml(item.name);
-  const mc = document.getElementById('imageModalContainer');
+  const imgSrc  = item.path || '';
+  const imgName = item.name || 'Image';
 
+  const mc = document.getElementById('imageModalContainer');
   mc.innerHTML = `
     <div class="img-modal-overlay" id="imgModalOverlay">
-      <!-- Toolbar -->
       <div class="img-modal-toolbar">
-        <div class="img-modal-title">${imgName}</div>
+        <div class="img-modal-title">${escHtml(imgName)}</div>
         <div class="img-modal-actions">
           <button class="img-modal-btn" id="imgZoomIn">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
@@ -1076,141 +1061,113 @@ function showImageModal(item) {
         </div>
       </div>
 
-      <!-- Viewport -->
       <div class="img-modal-viewport" id="imgViewport">
         <div class="img-modal-inner" id="imgInner">
-          <img src="${imgSrc}" alt="${imgName}" class="img-modal-img" id="imgEl"
-            ondblclick="window._imgDblClick && window._imgDblClick()" />
+          <img src="${escHtml(imgSrc)}" alt="${escHtml(imgName)}" class="img-modal-img" id="imgEl" />
         </div>
       </div>
 
-      <div class="img-modal-zoom-hint" id="imgZoomHint">Scroll to zoom · Drag to pan · Double-click to fit</div>
-    </div>
-  `;
+      <div class="img-modal-zoom-hint" id="imgZoomHint">
+        Scroll to zoom · Drag to pan · Double-click to fit
+      </div>
+    </div>`;
 
-  // ── State ──
-  let scale = 1;
-  let panX = 0, panY = 0;
-  let isDragging = false;
-  let lastX = 0, lastY = 0;
-  const MIN_SCALE = 0.5;
-  const MAX_SCALE = 8;
+  // ── State ──────────────────────────────────────
+  let scale = 1, panX = 0, panY = 0;
+  let isDragging = false, lastX = 0, lastY = 0;
+  const MIN_SCALE = 0.5, MAX_SCALE = 8;
 
   const overlay  = document.getElementById('imgModalOverlay');
   const viewport = document.getElementById('imgViewport');
   const inner    = document.getElementById('imgInner');
 
   function applyTransform(smooth = false) {
-    inner.style.transition = smooth ? 'transform 0.2s ease' : 'none';
-    inner.style.transform = `translate(${panX}px, ${panY}px) scale(${scale})`;
+    inner.style.transition = smooth ? 'transform 0.22s ease' : 'none';
+    inner.style.transform  = `translate(${panX}px, ${panY}px) scale(${scale})`;
   }
 
-  function clampPan() {
-    // Allow free panning — no hard clamp so user can explore large images
-  }
-
-  function setScale(newScale, originX = 0, originY = 0) {
-    const oldScale = scale;
+  function setScale(newScale, ox = 0, oy = 0) {
+    const prev = scale;
     scale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, newScale));
-    const ratio = scale / oldScale;
-    panX = originX + (panX - originX) * ratio;
-    panY = originY + (panY - originY) * ratio;
-    clampPan();
+    const ratio = scale / prev;
+    panX = ox + (panX - ox) * ratio;
+    panY = oy + (panY - oy) * ratio;
     applyTransform();
   }
 
-  // ── Buttons ──
-  document.getElementById('imgZoomIn').addEventListener('click', () => {
-    setScale(scale * 1.35, 0, 0);
-  });
-  document.getElementById('imgZoomOut').addEventListener('click', () => {
-    setScale(scale / 1.35, 0, 0);
-  });
-  document.getElementById('imgZoomReset').addEventListener('click', () => {
-    scale = 1; panX = 0; panY = 0;
+  // ── Toolbar buttons ────────────────────────────
+  document.getElementById('imgZoomIn').onclick    = () => setScale(scale * 1.35);
+  document.getElementById('imgZoomOut').onclick   = () => setScale(scale / 1.35);
+  document.getElementById('imgZoomReset').onclick = () => { scale=1; panX=0; panY=0; applyTransform(true); };
+  document.getElementById('imgDownload').onclick  = () => triggerDownload(imgSrc);
+  document.getElementById('imgModalClose').onclick = closeImageModal;
+
+  overlay.addEventListener('click', _imgOverlayClick);
+  function _imgOverlayClick(e) { if (e.target === overlay) closeImageModal(); }
+
+  // ── Double-click to fit / zoom ─────────────────
+  document.getElementById('imgEl').addEventListener('dblclick', () => {
+    if (scale !== 1) { scale=1; panX=0; panY=0; }
+    else { scale = 2.5; }
     applyTransform(true);
   });
-  document.getElementById('imgDownload').addEventListener('click', () => {
-    const a = document.createElement('a');
-    a.href = item.path || '';
-    a.download = item.name || 'image';
-    a.click();
-  });
-  document.getElementById('imgModalClose').addEventListener('click', closeImageModal);
 
-  // ── Close on overlay backdrop ──
-  overlay.addEventListener('click', e => {
-    if (e.target === overlay) closeImageModal();
-  });
-
-  // ── Escape key ──
-  function onKey(e) { if (e.key === 'Escape') closeImageModal(); }
-  document.addEventListener('keydown', onKey);
-  overlay._removeKey = () => document.removeEventListener('keydown', onKey);
-
-  // ── Double-click to fit / zoom ──
-  window._imgDblClick = () => {
-    if (scale !== 1) {
-      scale = 1; panX = 0; panY = 0;
-    } else {
-      scale = 2.5;
-    }
-    applyTransform(true);
-  };
-
-  // ── Scroll to zoom ──
-  viewport.addEventListener('wheel', e => {
+  // ── Scroll to zoom ─────────────────────────────
+  viewport.addEventListener('wheel', _onWheel, { passive: false });
+  function _onWheel(e) {
     e.preventDefault();
     const rect = viewport.getBoundingClientRect();
-    const mx = e.clientX - rect.left - rect.width / 2;
-    const my = e.clientY - rect.top - rect.height / 2;
-    const delta = e.deltaY < 0 ? 1.12 : 1 / 1.12;
-    setScale(scale * delta, mx, my);
-  }, { passive: false });
+    const ox = e.clientX - rect.left - rect.width  / 2;
+    const oy = e.clientY - rect.top  - rect.height / 2;
+    setScale(scale * (e.deltaY < 0 ? 1.12 : 1/1.12), ox, oy);
+  }
 
-  // ── Mouse drag to pan ──
-  viewport.addEventListener('mousedown', e => {
+  // ── Mouse drag ─────────────────────────────────
+  viewport.addEventListener('mousedown', _onMouseDown);
+  function _onMouseDown(e) {
     if (e.button !== 0) return;
     isDragging = true;
-    lastX = e.clientX;
-    lastY = e.clientY;
+    lastX = e.clientX; lastY = e.clientY;
     viewport.classList.add('grabbing');
     e.preventDefault();
-  });
+  }
 
-  window.addEventListener('mousemove', e => {
+  // Use named functions on window so we can remove them cleanly
+  window.addEventListener('mousemove', _onMouseMove);
+  window.addEventListener('mouseup',   _onMouseUp);
+
+  function _onMouseMove(e) {
     if (!isDragging) return;
     panX += e.clientX - lastX;
     panY += e.clientY - lastY;
-    lastX = e.clientX;
-    lastY = e.clientY;
+    lastX = e.clientX; lastY = e.clientY;
     applyTransform();
-  });
-
-  window.addEventListener('mouseup', () => {
+  }
+  function _onMouseUp() {
     if (!isDragging) return;
     isDragging = false;
     viewport.classList.remove('grabbing');
-  });
+  }
 
-  // ── Touch support ──
-  let lastTouchDist = 0;
-  let lastTouchX = 0, lastTouchY = 0;
+  // ── Touch ──────────────────────────────────────
+  let lastTouchDist = 0, lastTouchX = 0, lastTouchY = 0;
 
-  viewport.addEventListener('touchstart', e => {
+  viewport.addEventListener('touchstart', _onTouchStart, { passive: false });
+  viewport.addEventListener('touchmove',  _onTouchMove,  { passive: false });
+
+  function _onTouchStart(e) {
     if (e.touches.length === 1) {
       lastTouchX = e.touches[0].clientX;
       lastTouchY = e.touches[0].clientY;
     } else if (e.touches.length === 2) {
       lastTouchDist = Math.hypot(
         e.touches[0].clientX - e.touches[1].clientX,
-        e.touches[0].clientY - e.touches[1].clientY,
-      );
+        e.touches[0].clientY - e.touches[1].clientY);
     }
     e.preventDefault();
-  }, { passive: false });
+  }
 
-  viewport.addEventListener('touchmove', e => {
+  function _onTouchMove(e) {
     if (e.touches.length === 1) {
       panX += e.touches[0].clientX - lastTouchX;
       panY += e.touches[0].clientY - lastTouchY;
@@ -1218,32 +1175,43 @@ function showImageModal(item) {
       lastTouchY = e.touches[0].clientY;
       applyTransform();
     } else if (e.touches.length === 2) {
-      const dist = Math.hypot(
+      const d = Math.hypot(
         e.touches[0].clientX - e.touches[1].clientX,
-        e.touches[0].clientY - e.touches[1].clientY,
-      );
-      setScale(scale * (dist / lastTouchDist), 0, 0);
-      lastTouchDist = dist;
+        e.touches[0].clientY - e.touches[1].clientY);
+      setScale(scale * (d / lastTouchDist));
+      lastTouchDist = d;
     }
     e.preventDefault();
-  }, { passive: false });
+  }
 
-  // Hide hint after 3s
+  // ── Escape key ─────────────────────────────────
+  document.addEventListener('keydown', _onImgKey);
+  function _onImgKey(e) { if (e.key === 'Escape') closeImageModal(); }
+
+  // Hide hint after 3 s
   setTimeout(() => {
     const hint = document.getElementById('imgZoomHint');
     if (hint) hint.style.opacity = '0';
   }, 3000);
+
+  // Store cleanup refs on overlay so closeImageModal can reach them
+  overlay._cleanup = () => {
+    overlay.removeEventListener('click', _imgOverlayClick);
+    viewport.removeEventListener('wheel',      _onWheel);
+    viewport.removeEventListener('mousedown',  _onMouseDown);
+    viewport.removeEventListener('touchstart', _onTouchStart);
+    viewport.removeEventListener('touchmove',  _onTouchMove);
+    window.removeEventListener('mousemove', _onMouseMove);
+    window.removeEventListener('mouseup',   _onMouseUp);
+    document.removeEventListener('keydown', _onImgKey);
+  };
 }
 
+// FIX [2]: properly call cleanup before clearing HTML
 function closeImageModal() {
-  const mc = document.getElementById('imageModalContainer');
   const overlay = document.getElementById('imgModalOverlay');
-  if (overlay && overlay._removeKey) overlay._removeKey();
-  mc.innerHTML = '';
-  window._imgDblClick = null;
-  // Clean up stray listeners
-  window.removeEventListener('mousemove', () => {});
-  window.removeEventListener('mouseup', () => {});
+  if (overlay && typeof overlay._cleanup === 'function') overlay._cleanup();
+  document.getElementById('imageModalContainer').innerHTML = '';
 }
 
 // ──────────────────────────────────────────────
@@ -1255,15 +1223,12 @@ function showEasterEgg() {
       <div style="font-size:3rem;margin-bottom:1rem;animation:rotateCW 3s linear infinite;display:inline-block;">⚙️</div>
       <div class="glitch-text">CLEARANCE: INNER CIRCLE</div>
       <div style="margin:1.5rem 0;font-size:0.8rem;color:#0f0;opacity:0.7;line-height:1.8;">
-        WELCOME TO THE INNER CIRCLE ⚙️<br>
-        <br>
+        WELCOME TO THE INNER CIRCLE ⚙️<br><br>
         You have accessed classified Ministry archives.<br>
         Your loyalty has been noted.<br>
-        Your dedication — exemplary.<br>
-        <br>
+        Your dedication — exemplary.<br><br>
         "The machine does not rest.<br>
-        Neither do we."<br>
-        <br>
+        Neither do we."<br><br>
         — High Council, MMA
       </div>
       <div style="font-size:0.65rem;color:#0a0;opacity:0.5;letter-spacing:0.2em;">ACCESS LEVEL: OMEGA-7 GRANTED</div>
@@ -1308,8 +1273,7 @@ function renderFooter() {
       <div style="font-size:0.7rem;color:#333;letter-spacing:0.1em;">
         © 2024 Ministry of Mechanical Affairs · All Rights Reserved
       </div>
-    </footer>
-  `;
+    </footer>`;
 }
 
 // ──────────────────────────────────────────────
@@ -1334,8 +1298,8 @@ function escHtml(str) {
     .replace(/'/g,'&#039;');
 }
 
-// Expose globals
-window.navigate = navigate;
+// Expose globals used by inline onclick in home template
+window.navigate       = navigate;
 window.showMemberModal = showMemberModal;
 
 // ──────────────────────────────────────────────
