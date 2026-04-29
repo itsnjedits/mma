@@ -905,14 +905,19 @@ function handleCardClick(item) {
       break;
 
     case 'link':
-      // ✅ Use item.link directly — NO runtime fetch of .txt file
-      if (item.link && item.link.trim()) {
-        window.open(item.link.trim(), '_blank', 'noopener,noreferrer');
-      } else {
-        showToast('No link configured for this resource.', 'error');
-      }
-      break;
-
+  if (item.file) {
+    fetch(item.file)
+      .then(res => res.text())
+      .then(url => {
+        window.open(url.trim(), '_blank', 'noopener,noreferrer');
+      })
+      .catch(() => {
+        showToast('Failed to load link file.', 'error');
+      });
+  } else {
+    showToast('No link configured.', 'error');
+  }
+  break;
     case 'image':
       showImageModal(item);
       break;
