@@ -892,32 +892,54 @@ function renderResourceCard(item, idx) {
 // ──────────────────────────────────────────────
 //  [FIX-2] CARD CLICK HANDLER — reads item.link directly
 // ──────────────────────────────────────────────
+// ──────────────────────────────────────────────
+//  [FIX] CARD CLICK HANDLER
+//  - Pehle item.link check karta hai (agar generate_json.py ne bake kiya ho)
+//  - Nahi mila toh item.txt se fetch karke URL nikalta hai
+// ──────────────────────────────────────────────
 function handleCardClick(item) {
   switch (item.type) {
     case 'folder':
       state.resourceStack.push({ name: item.name, items: item.children || [] });
       renderResourceGrid();
       break;
-
+ 
     case 'pdf':
-      // Open PDF in new tab — path must match exactly what's in the repo
+      // PDF directly new tab mein open
       window.open(item.path, '_blank', 'noopener,noreferrer');
       break;
-
+ 
     case 'link':
-  if (item.file) {
-    fetch(item.file)
-      .then(res => res.text())
-      .then(url => {
-        window.open(url.trim(), '_blank', 'noopener,noreferrer');
-      })
-      .catch(() => {
-        showToast('Failed to load link file.', 'error');
-      });
-  } else {
-    showToast('No link configured.', 'error');
-  }
-  break;
+      // ── Priority 1: item.link already baked hai ──────────────
+      if (item.link && item.link.trim()) {
+        window.open(item.link.trim(), '_blank', 'noopener,noreferrer');
+ 
+      // ── Priority 2: .txt file se URL fetch karo ──────────────
+      } else if (item.txt && item.txt.trim()) {
+        fetch(item.txt.trim())
+          .then(function(resp) {
+            if (!resp.ok) throw new Error('HTTP ' + resp.status);
+            return resp.text();
+          })
+          .then(function(text) {
+            var url = text.trim();
+            if (url) {
+              window.open(url, '_blank', 'noopener,noreferrer');
+            } else {
+              showToast('Link file khali hai (.txt empty hai).', 'error');
+            }
+          })
+          .catch(function(err) {
+            console.error('[MMA] .txt fetch failed:', err);
+            showToast('Link load nahi hua — .txt file check karo: ' + item.txt, 'error');
+          });
+ 
+      // ── Kuch bhi nahi mila ───────────────────────────────────
+      } else {
+        showToast('Is resource ke liye koi link set nahi hai.', 'error');
+      }
+      break;
+ 
     case 'image':
       showImageModal(item);
       break;
