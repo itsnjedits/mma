@@ -623,8 +623,7 @@ async function loadResourceData() {
   showResourceSkeleton();
 
   const candidates = [
-    './data/resources.json',
-    './resources.json',
+    './mma/resources.json',
   ];
 
   let loaded = false;
