@@ -8,9 +8,14 @@
         "type": "folder",
         "children": [
           {
-            "name": "726134781 Manufacturing Technology Vol 2 By P N Rao",
+            "name": "726134781 Manufacturing Technology Vol 2 By P N Rao Compressed Part 1",
             "type": "pdf",
-            "path": "resources/3rd sem/books/726134781-Manufacturing-Technology-Vol-2-by-P-N-Rao.pdf"
+            "path": "resources/3rd sem/books/726134781-Manufacturing-Technology-Vol-2-by-P-N-Rao_compressed part 1.pdf"
+          },
+          {
+            "name": "726134781 Manufacturing Technology Vol 2 By P N Rao Compressed Part 2",
+            "type": "pdf",
+            "path": "resources/3rd sem/books/726134781-Manufacturing-Technology-Vol-2-by-P-N-Rao_compressed part 2.pdf"
           },
           {
             "name": "A Textbook Of Manufacturing Technology Secondnbsped 9788131802441",
@@ -18,9 +23,19 @@
             "path": "resources/3rd sem/books/a_textbook_of_manufacturing_technology_secondnbsped_9788131802441.pdf"
           },
           {
-            "name": "B C Punmia",
+            "name": "B C Punmia Part 1",
             "type": "pdf",
-            "path": "resources/3rd sem/books/b c punmia.pdf"
+            "path": "resources/3rd sem/books/b c punmia part 1.pdf"
+          },
+          {
+            "name": "B C Punmia Part 2",
+            "type": "pdf",
+            "path": "resources/3rd sem/books/b c punmia part 2.pdf"
+          },
+          {
+            "name": "B C Punmia Part 3",
+            "type": "pdf",
+            "path": "resources/3rd sem/books/b c punmia part 3.pdf"
           },
           {
             "name": "Engineering Materials (1)",
@@ -41,6 +56,11 @@
             "name": "Thermo",
             "type": "pdf",
             "path": "resources/3rd sem/books/Thermo.pdf"
+          },
+          {
+            "name": "Thermo Temp",
+            "type": "pdf",
+            "path": "resources/3rd sem/books/Thermo_temp.pdf"
           }
         ]
       },
@@ -927,9 +947,14 @@
             "path": "resources/4th sem/machine design/243532178-machine-design-by-v-b-bhandari_compress.pdf"
           },
           {
-            "name": "4Th Edition Design Data Handbook For Mechanical Engineers In Si And Metric Units By K Mahadevan K Balaveera Reddy",
+            "name": "4Th Edition Design Data Handbook For Mechanical Engineers In Si And Metric Units By K Mahadevan K Balaveera Reddy Compressed Part 1",
             "type": "pdf",
-            "path": "resources/4th sem/machine design/4th_Edition_Design_Data_Handbook_for_Mechanical_Engineers_in_SI_and_Metric_Units_by_K_Mahadevan_K_Balaveera_Reddy.pdf"
+            "path": "resources/4th sem/machine design/4th_Edition_Design_Data_Handbook_for_Mechanical_Engineers_in_SI_and_Metric_Units_by_K_Mahadevan_K_Balaveera_Reddy_compressed part 1.pdf"
+          },
+          {
+            "name": "4Th Edition Design Data Handbook For Mechanical Engineers In Si And Metric Units By K Mahadevan K Balaveera Reddy Compressed Part 2",
+            "type": "pdf",
+            "path": "resources/4th sem/machine design/4th_Edition_Design_Data_Handbook_for_Mechanical_Engineers_in_SI_and_Metric_Units_by_K_Mahadevan_K_Balaveera_Reddy_compressed part 2.pdf"
           },
           {
             "name": "Design Of Machine Elements",
