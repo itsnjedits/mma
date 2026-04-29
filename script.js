@@ -597,7 +597,7 @@ async function loadResourceData() {
   showResourceSkeleton();
   try {
     console.log('[MMA] Fetching resources.json …');
-    const resp = await fetch('resources.json');
+    const resp = await fetch('mma/resources.json');
     if (!resp.ok) throw new Error(`HTTP ${resp.status} — ${resp.statusText}`);
     state.resourceData = await resp.json();
     console.log(`[MMA] Loaded ${state.resourceData.length} top-level items`);
