@@ -1,0 +1,157 @@
+[
+  {
+    "name": "Mechanics",
+    "type": "folder",
+    "children": [
+      {
+        "name": "Engineering Mechanics Notes",
+        "type": "pdf",
+        "path": "resources/Mechanics/engineering_mechanics_notes.pdf"
+      },
+      {
+        "name": "Free Body Diagram Guide",
+        "type": "pdf",
+        "path": "resources/Mechanics/free_body_diagram_guide.pdf"
+      },
+      {
+        "name": "Statics and Dynamics Summary",
+        "type": "pdf",
+        "path": "resources/Mechanics/statics_dynamics_summary.pdf"
+      },
+      {
+        "name": "Statics Explained",
+        "type": "link",
+        "thumbnail": "resources/Mechanics/statics_explained.jpg",
+        "txt": "resources/Mechanics/statics_explained.txt"
+      },
+      {
+        "name": "Newton Laws Lecture",
+        "type": "link",
+        "thumbnail": "resources/Mechanics/newton_laws.jpg",
+        "txt": "resources/Mechanics/newton_laws.txt"
+      }
+    ]
+  },
+  {
+    "name": "Thermodynamics",
+    "type": "folder",
+    "children": [
+      {
+        "name": "First Law of Thermodynamics",
+        "type": "pdf",
+        "path": "resources/Thermodynamics/first_law.pdf"
+      },
+      {
+        "name": "Second Law and Entropy",
+        "type": "pdf",
+        "path": "resources/Thermodynamics/second_law_entropy.pdf"
+      },
+      {
+        "name": "Carnot Cycle Notes",
+        "type": "pdf",
+        "path": "resources/Thermodynamics/carnot_cycle.pdf"
+      },
+      {
+        "name": "Heat Engines Deep Dive",
+        "type": "link",
+        "thumbnail": "resources/Thermodynamics/heat_engines.jpg",
+        "txt": "resources/Thermodynamics/heat_engines.txt"
+      },
+      {
+        "name": "PV Diagram Reference",
+        "type": "image",
+        "path": "resources/Thermodynamics/pv_diagram.jpg"
+      }
+    ]
+  },
+  {
+    "name": "Fluid Mechanics",
+    "type": "folder",
+    "children": [
+      {
+        "name": "Bernoulli Theorem Notes",
+        "type": "pdf",
+        "path": "resources/FluidMechanics/bernoulli_theorem.pdf"
+      },
+      {
+        "name": "Reynolds Number Explained",
+        "type": "pdf",
+        "path": "resources/FluidMechanics/reynolds_number.pdf"
+      },
+      {
+        "name": "Continuity Equation",
+        "type": "pdf",
+        "path": "resources/FluidMechanics/continuity_equation.pdf"
+      },
+      {
+        "name": "Fluid Flow Visualization",
+        "type": "link",
+        "thumbnail": "resources/FluidMechanics/fluid_flow.jpg",
+        "txt": "resources/FluidMechanics/fluid_flow.txt"
+      },
+      {
+        "name": "Pipe Flow Regimes",
+        "type": "image",
+        "path": "resources/FluidMechanics/pipe_flow.jpg"
+      }
+    ]
+  },
+  {
+    "name": "Machine Design",
+    "type": "folder",
+    "children": [
+      {
+        "name": "Gear Design Fundamentals",
+        "type": "pdf",
+        "path": "resources/MachineDesign/gear_design.pdf"
+      },
+      {
+        "name": "Shaft and Bearing Analysis",
+        "type": "pdf",
+        "path": "resources/MachineDesign/shaft_bearing.pdf"
+      },
+      {
+        "name": "Design of Machine Elements",
+        "type": "link",
+        "thumbnail": "resources/MachineDesign/machine_elements.jpg",
+        "txt": "resources/MachineDesign/machine_elements.txt"
+      }
+    ]
+  },
+  {
+    "name": "Manufacturing",
+    "type": "folder",
+    "children": [
+      {
+        "name": "Casting and Forging Notes",
+        "type": "pdf",
+        "path": "resources/Manufacturing/casting_forging.pdf"
+      },
+      {
+        "name": "CNC Machining Guide",
+        "type": "pdf",
+        "path": "resources/Manufacturing/cnc_machining.pdf"
+      },
+      {
+        "name": "Welding Techniques",
+        "type": "pdf",
+        "path": "resources/Manufacturing/welding_techniques.pdf"
+      }
+    ]
+  },
+  {
+    "name": "Ministry Handbook",
+    "type": "pdf",
+    "path": "resources/ministry_handbook.pdf"
+  },
+  {
+    "name": "Workshop Safety Protocol",
+    "type": "pdf",
+    "path": "resources/workshop_safety.pdf"
+  },
+  {
+    "name": "MMA Logo High Resolution",
+    "type": "image",
+    "path": "resources/mma_logo.png"
+  }
+]

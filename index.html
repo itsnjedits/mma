@@ -4,677 +4,735 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ministry of Mechanical Affairs</title>
-
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Google Fonts: Cinzel (display) + Share Tech Mono (mono) + Barlow (body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Share+Tech+Mono&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet" />
-
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            gold:    { DEFAULT: '#C9A84C', light: '#E2C06A', dark: '#8B6914', glow: '#F5D470' },
-            coal:    { DEFAULT: '#0A0A0A', mid: '#111111', surface: '#161616', card: '#1A1A1A', border: '#242424' },
-            blue:    { glow: '#1E6FFF', dim: '#0D3380' },
+            gold: { DEFAULT: '#C9A84C', light: '#E8C96A', dark: '#9A7530' },
+            charcoal: { DEFAULT: '#1A1A1A', deep: '#0D0D0D', mid: '#222222' },
+            steel: { DEFAULT: '#2C2C2C', light: '#3A3A3A' },
+            glow: '#4A90E2',
           },
           fontFamily: {
             display: ['Cinzel', 'serif'],
-            mono:    ['Share Tech Mono', 'monospace'],
-            body:    ['Barlow', 'sans-serif'],
+            body: ['Rajdhani', 'sans-serif'],
+            mono: ['Share Tech Mono', 'monospace'],
           },
-          keyframes: {
-            rotateGear:   { '0%': { transform: 'rotate(0deg)' },   '100%': { transform: 'rotate(360deg)' } },
-            rotateGearR:  { '0%': { transform: 'rotate(0deg)' },   '100%': { transform: 'rotate(-360deg)' } },
-            flicker:      { '0%,100%': { opacity: '1' }, '50%': { opacity: '.6' } },
-            glitch:       { '0%,100%': { clipPath: 'inset(0 0 0 0)', transform: 'translate(0)' }, '20%': { clipPath: 'inset(20% 0 50% 0)', transform: 'translate(-4px, 2px)' }, '40%': { clipPath: 'inset(50% 0 20% 0)', transform: 'translate(4px, -2px)' }, '60%': { clipPath: 'inset(30% 0 40% 0)', transform: 'translate(-2px, 4px)' }, '80%': { clipPath: 'inset(10% 0 60% 0)', transform: 'translate(2px, -4px)' } },
-            scanLine:     { '0%': { top: '-10%' }, '100%': { top: '110%' } },
-            pulseGold:    { '0%,100%': { boxShadow: '0 0 6px #C9A84C44' }, '50%': { boxShadow: '0 0 22px #C9A84C99, 0 0 40px #C9A84C33' } },
-            fadeUp:       { '0%': { opacity: '0', transform: 'translateY(30px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
-            shimmer:      { '0%': { backgroundPosition: '-600px 0' }, '100%': { backgroundPosition: '600px 0' } },
-            ripple:       { '0%': { transform: 'scale(0)', opacity: '0.6' }, '100%': { transform: 'scale(4)', opacity: '0' } },
-          },
-          animation: {
-            gear:       'rotateGear  12s linear infinite',
-            gearR:      'rotateGearR 8s  linear infinite',
-            gearSlow:   'rotateGear  20s linear infinite',
-            flicker:    'flicker 4s ease-in-out infinite',
-            glitch:     'glitch 0.4s steps(1) forwards',
-            scan:       'scanLine 3s linear infinite',
-            pulseGold:  'pulseGold 2.5s ease-in-out infinite',
-            fadeUp:     'fadeUp 0.8s ease forwards',
-            shimmer:    'shimmer 1.6s linear infinite',
-          },
-        }
-      }
-    }
+        },
+      },
+    };
   </script>
-
   <style>
-    /* ── Base ── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    /* ===== CSS VARIABLES & BASE ===== */
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #E8C96A;
+      --gold-dark: #9A7530;
+      --bg-deep: #0D0D0D;
+      --bg-char: #1A1A1A;
+      --bg-steel: #2C2C2C;
+      --glow-blue: #4A90E2;
+      --glow-gold: rgba(201,168,76,0.3);
+      --transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+
     body {
-      background-color: #0A0A0A;
-      color: #D4C5A0;
-      font-family: 'Barlow', sans-serif;
+      background-color: var(--bg-deep);
+      color: #D4D4D4;
+      font-family: 'Rajdhani', sans-serif;
+      min-height: 100vh;
       overflow-x: hidden;
     }
 
-    /* ── Custom scrollbar ── */
+    /* ===== SCROLLBAR ===== */
     ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #111; }
-    ::-webkit-scrollbar-thumb { background: #C9A84C55; border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: #C9A84C; }
+    ::-webkit-scrollbar-track { background: var(--bg-deep); }
+    ::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 3px; }
 
-    /* ── Noise texture overlay ── */
+    /* ===== NOISE TEXTURE OVERLAY ===== */
     body::before {
       content: '';
-      position: fixed; inset: 0;
+      position: fixed;
+      inset: 0;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
       pointer-events: none;
       z-index: 9999;
       opacity: 0.4;
     }
 
-    /* ── Typography helpers ── */
-    .font-display  { font-family: 'Cinzel', serif; }
-    .font-mono-mma { font-family: 'Share Tech Mono', monospace; }
-
-    /* ── Gold text gradient ── */
-    .text-gold-grad {
-      background: linear-gradient(135deg, #C9A84C 0%, #F5D470 40%, #C9A84C 70%, #8B6914 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    /* ===== NAVBAR ===== */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: linear-gradient(180deg, rgba(13,13,13,0.98) 0%, rgba(13,13,13,0.85) 100%);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+      padding: 0 2rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
-    /* ── Glow utilities ── */
-    .glow-gold { text-shadow: 0 0 18px #C9A84C88, 0 0 40px #C9A84C44; }
-    .glow-blue { box-shadow: 0 0 20px #1E6FFF33, 0 0 40px #1E6FFF11; }
-    .border-gold-glow { border-color: #C9A84C66; box-shadow: 0 0 8px #C9A84C22, inset 0 0 8px #C9A84C08; }
+    .nav-logo {
+      font-family: 'Cinzel', serif;
+      font-weight: 900;
+      font-size: 1.1rem;
+      color: var(--gold);
+      cursor: pointer;
+      letter-spacing: 0.15em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-shadow: 0 0 20px rgba(201,168,76,0.4);
+      user-select: none;
+      transition: var(--transition);
+    }
+    .nav-logo:hover { text-shadow: 0 0 30px rgba(201,168,76,0.7); }
 
-    /* ── Card base ── */
-    .card-mma {
-      background: linear-gradient(135deg, #1A1A1A 0%, #141414 100%);
-      border: 1px solid #2A2A2A;
-      transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+
+    .nav-link {
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #888;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+      padding: 0.25rem 0;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0;
+      width: 0; height: 1px;
+      background: var(--gold);
+      transition: var(--transition);
+    }
+    .nav-link:hover, .nav-link.active { color: var(--gold); }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--gold);
+      transition: var(--transition);
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    #app { min-height: 100vh; padding-top: 64px; }
+
+    /* ===== PAGE TRANSITIONS ===== */
+    .page { animation: pageFadeIn 0.4s ease; }
+    @keyframes pageFadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== GEAR ANIMATIONS ===== */
+    .gear { transform-origin: center; }
+    .gear-cw  { animation: rotateCW  12s linear infinite; }
+    .gear-ccw { animation: rotateCCW 10s linear infinite; }
+    .gear-slow { animation: rotateCW 20s linear infinite; }
+    @keyframes rotateCW  { to { transform: rotate(360deg); } }
+    @keyframes rotateCCW { to { transform: rotate(-360deg); } }
+
+    /* ===== PERPETUAL MOTION MACHINE ===== */
+    .pmm-wrapper {
+      width: 100%;
+      max-width: 520px;
+      margin: 2.5rem auto 0;
+      position: relative;
+      z-index: 2;
+    }
+    .pmm-wrapper svg { width: 100%; height: auto; display: block; }
+
+    /* pendulum arm */
+    @keyframes swing {
+      0%   { transform: rotate(-28deg); }
+      50%  { transform: rotate( 28deg); }
+      100% { transform: rotate(-28deg); }
+    }
+    /* flywheel spokes */
+    @keyframes flywheel {
+      to { transform: rotate(360deg); }
+    }
+    /* piston up/down */
+    @keyframes pistonY {
+      0%,100% { transform: translateY(0px); }
+      50%      { transform: translateY(18px); }
+    }
+    /* connecting rod tilt */
+    @keyframes rodTilt {
+      0%,100% { transform: rotate(-12deg); }
+      50%      { transform: rotate( 12deg); }
+    }
+    /* belt loop */
+    @keyframes beltFlow {
+      to { stroke-dashoffset: -200; }
+    }
+    /* spark pulse */
+    @keyframes sparkPulse {
+      0%,100% { opacity:0; r:2; }
+      50%      { opacity:1; r:4; }
+    }
+
+    .pmm-gear-cw   { transform-origin: center; animation: rotateCW  14s   linear infinite; }
+    .pmm-gear-ccw  { transform-origin: center; animation: rotateCCW 8.75s linear infinite; }
+    .pmm-gear-fast { transform-origin: center; animation: rotateCW  5.25s linear infinite; }
+    .pmm-gear-med  { transform-origin: center; animation: rotateCW  8.75s linear infinite; }
+    .pmm-flywheel  { transform-origin: 260px 130px; animation: flywheel 3s linear infinite; }
+    .pmm-pendulum  { transform-origin: 260px 60px;  animation: swing 2s ease-in-out infinite; }
+    .pmm-piston    { animation: pistonY 1s ease-in-out infinite; }
+    .pmm-rod       { transform-origin: 340px 155px; animation: rodTilt 1s ease-in-out infinite; }
+    .pmm-belt      { animation: beltFlow 2s linear infinite; }
+    .pmm-spark     { animation: sparkPulse 0.8s ease-in-out infinite; }
+    .pmm-spark2    { animation: sparkPulse 0.8s ease-in-out infinite 0.4s; }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
       position: relative;
       overflow: hidden;
+      padding: 2rem;
     }
-    .card-mma::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, #C9A84C08 0%, transparent 60%);
-      opacity: 0;
-      transition: opacity 0.35s;
-    }
-    .card-mma:hover { border-color: #C9A84C66; transform: translateY(-4px); box-shadow: 0 12px 40px #00000088, 0 0 20px #C9A84C22; }
-    .card-mma:hover::before { opacity: 1; }
 
-    /* ── CTA Button ── */
-    .btn-cta {
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,168,76,0.06) 0%, transparent 70%),
+                  radial-gradient(ellipse 60% 40% at 30% 70%, rgba(74,144,226,0.04) 0%, transparent 60%);
+    }
+
+    .hero-gears {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .hero-title {
+      font-family: 'Cinzel', serif;
+      font-weight: 900;
+      font-size: clamp(2rem, 6vw, 4.5rem);
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      line-height: 1.1;
+      text-shadow: 0 0 60px rgba(201,168,76,0.3), 0 2px 4px rgba(0,0,0,0.8);
       position: relative;
-      background: linear-gradient(135deg, #C9A84C, #8B6914);
-      color: #0A0A0A;
+    }
+
+    .hero-subtitle {
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 300;
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      color: #888;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      margin-top: 1rem;
+      position: relative;
+    }
+
+    .hero-divider {
+      width: 120px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 2rem auto;
+      position: relative;
+    }
+
+    .cta-btn {
       font-family: 'Cinzel', serif;
       font-weight: 700;
-      letter-spacing: 0.12em;
-      overflow: hidden;
-      transition: all 0.3s;
+      font-size: 0.85rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--bg-deep);
+      background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
+      padding: 1rem 2.5rem;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+      transition: var(--transition);
+      box-shadow: 0 0 30px rgba(201,168,76,0.3);
     }
-    .btn-cta::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, #F5D470, #C9A84C);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .btn-cta:hover { transform: scale(1.04); box-shadow: 0 0 30px #C9A84C66; }
-    .btn-cta:hover::after { opacity: 1; }
-    .btn-cta span { position: relative; z-index: 1; }
+    .cta-btn:hover { box-shadow: 0 0 50px rgba(201,168,76,0.6); transform: translateY(-2px); }
 
-    /* ── Ripple ── */
-    .ripple-circle {
+    /* ===== STAT CARDS ===== */
+    .stat-card {
+      background: linear-gradient(135deg, rgba(44,44,44,0.8), rgba(26,26,26,0.9));
+      border: 1px solid rgba(201,168,76,0.2);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+      clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+    }
+    .stat-card::before {
+      content: '';
       position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      transform: scaleX(0);
+      transition: var(--transition);
+    }
+    .stat-card:hover { border-color: rgba(201,168,76,0.5); transform: translateY(-4px); box-shadow: 0 8px 40px rgba(201,168,76,0.1); }
+    .stat-card:hover::before { transform: scaleX(1); }
+
+    .stat-number {
+      font-family: 'Cinzel', serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--gold);
+      text-shadow: 0 0 20px rgba(201,168,76,0.4);
+    }
+    .stat-label {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #666;
+      margin-top: 0.5rem;
+    }
+    .stat-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+
+    /* ===== MEMBER CARDS ===== */
+    .member-card {
+      background: linear-gradient(135deg, rgba(44,44,44,0.7), rgba(26,26,26,0.8));
+      border: 1px solid rgba(201,168,76,0.15);
+      padding: 1.5rem;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .member-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(201,168,76,0.08), transparent 70%);
+      opacity: 0;
+      transition: var(--transition);
+    }
+    .member-card:hover { border-color: var(--gold); transform: translateY(-6px); box-shadow: 0 12px 40px rgba(201,168,76,0.15); }
+    .member-card:hover::after { opacity: 1; }
+
+    .member-avatar {
+      width: 80px; height: 80px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.25);
-      animation: ripple 0.7s linear forwards;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1rem;
+      font-family: 'Cinzel', serif;
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--bg-deep);
+      border: 2px solid var(--gold);
+      box-shadow: 0 0 20px rgba(201,168,76,0.3);
+    }
+    .member-name { font-family: 'Cinzel', serif; font-weight: 700; font-size: 1rem; color: var(--gold); margin-bottom: 0.25rem; }
+    .member-role { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: #666; }
+
+    /* ===== MODAL ===== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      animation: fadeIn 0.2s ease;
+    }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    .modal-box {
+      background: linear-gradient(135deg, #1E1E1E, #141414);
+      border: 1px solid rgba(201,168,76,0.4);
+      max-width: 520px;
+      width: 100%;
+      padding: 2.5rem;
+      position: relative;
+      clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 24px 100%, 0 calc(100% - 24px));
+      box-shadow: 0 0 60px rgba(201,168,76,0.15), inset 0 0 60px rgba(0,0,0,0.3);
+      animation: modalIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    @keyframes modalIn {
+      from { transform: scale(0.85) translateY(20px); opacity: 0; }
+      to   { transform: scale(1) translateY(0); opacity: 1; }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      background: none; border: none;
+      color: #666; font-size: 1.2rem;
+      cursor: pointer;
+      transition: var(--transition);
+      width: 32px; height: 32px;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 10;
+    }
+    .modal-close:hover { color: var(--gold); transform: rotate(90deg); }
+
+    /* ===== IMAGE MODAL (full-featured) ===== */
+    .img-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.95);
+      backdrop-filter: blur(12px);
+      z-index: 3000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.2s ease;
+      overflow: hidden;
+    }
+
+    .img-modal-toolbar {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, transparent 100%);
+      z-index: 10;
+    }
+
+    .img-modal-title {
+      font-family: 'Cinzel', serif;
+      color: var(--gold);
+      font-size: 0.95rem;
+      letter-spacing: 0.1em;
+      text-shadow: 0 0 10px rgba(201,168,76,0.4);
+      max-width: 60%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .img-modal-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .img-modal-btn {
+      background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.3);
+      color: #C9A84C;
+      padding: 0.4rem 0.85rem;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .img-modal-btn:hover {
+      background: rgba(201,168,76,0.22);
+      border-color: var(--gold);
+      box-shadow: 0 0 12px rgba(201,168,76,0.2);
+    }
+
+    .img-modal-close-btn {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #aaa;
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: var(--transition);
+      border-radius: 2px;
+    }
+    .img-modal-close-btn:hover { color: #fff; border-color: #fff; transform: rotate(90deg); }
+
+    .img-modal-viewport {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      cursor: grab;
+      user-select: none;
+      touch-action: none;
+    }
+    .img-modal-viewport.grabbing { cursor: grabbing; }
+
+    .img-modal-inner {
+      transition: transform 0.1s ease;
+      will-change: transform;
+    }
+
+    .img-modal-img {
+      max-width: 90vw;
+      max-height: 85vh;
+      object-fit: contain;
+      display: block;
+      border: 1px solid rgba(201,168,76,0.15);
+      box-shadow: 0 0 60px rgba(0,0,0,0.6);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .img-modal-zoom-hint {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: #333;
+      text-transform: uppercase;
       pointer-events: none;
     }
 
-    /* ── Scan-line overlay on hero ── */
-    .scan-wrap { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 2; }
-    .scan-line  { position: absolute; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, #C9A84C18, transparent); animation: scan 3s linear infinite; }
+    /* ===== LINK CARD PLAY OVERLAY ===== */
+    .link-play-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      aspect-ratio: 16/9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.35);
+      transition: var(--transition);
+    }
+    .resource-card:hover .link-play-overlay { background: rgba(0,0,0,0.55); }
 
-    /* ── Gear SVG container ── */
-    .gear-container { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-
-    /* ── Step connector line ── */
-    .step-line { position: absolute; top: 22px; left: calc(50% + 22px); right: calc(-50% + 22px); height: 1px; background: linear-gradient(90deg, #C9A84C66, #C9A84C11); }
-
-    /* ── Nav link underline ── */
-    .nav-link { position: relative; }
-    .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background: #C9A84C; transition: width 0.3s; }
-    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
-
-    /* ── Easter egg modal ── */
-    #easter-modal { display: none; position: fixed; inset: 0; z-index: 99999; background: #000000DD; align-items: center; justify-content: center; }
-    #easter-modal.show { display: flex; }
-    .glitch-text { animation: glitch 0.4s steps(1) 3; }
-
-    /* ── Shimmer skeleton ── */
-    .skeleton {
-      background: linear-gradient(90deg, #1A1A1A 25%, #252525 50%, #1A1A1A 75%);
-      background-size: 600px 100%;
-      animation: shimmer 1.6s linear infinite;
+    .link-play-btn {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: rgba(201,168,76,0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      box-shadow: 0 0 20px rgba(201,168,76,0.4);
+    }
+    .resource-card:hover .link-play-btn {
+      transform: scale(1.12);
+      background: var(--gold);
+      box-shadow: 0 0 30px rgba(201,168,76,0.7);
     }
 
-    /* ── Section fade-in on scroll ── */
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+    /* ===== IMAGE CARD DOWNLOAD ICON ===== */
+    .img-card-dl {
+      position: absolute;
+      bottom: 0.5rem; right: 0.5rem;
+      background: rgba(0,0,0,0.6);
+      border: 1px solid rgba(201,168,76,0.3);
+      color: var(--gold-dark);
+      width: 28px; height: 28px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: var(--transition);
+      opacity: 0;
+    }
+    .resource-card:hover .img-card-dl { opacity: 1; color: var(--gold); border-color: var(--gold); }
 
-    /* ── Stagger delays ── */
-    .delay-1 { transition-delay: 0.1s; }
-    .delay-2 { transition-delay: 0.2s; }
-    .delay-3 { transition-delay: 0.3s; }
-    .delay-4 { transition-delay: 0.4s; }
+    /* ===== ABOUT SECTION ===== */
+    .council-card {
+      background: linear-gradient(135deg, rgba(44,44,44,0.8), rgba(26,26,26,0.9));
+      border: 1px solid rgba(201,168,76,0.2);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .council-card:hover { transform: translateY(-8px); border-color: var(--gold); box-shadow: 0 16px 48px rgba(201,168,76,0.2), 0 0 0 1px rgba(201,168,76,0.1); }
 
-    /* ── Particle dots bg ── */
-    .particle { position: absolute; border-radius: 50%; background: #C9A84C; pointer-events: none; animation: flicker var(--dur, 3s) ease-in-out infinite; }
+    .step-item { display: flex; gap: 1.5rem; align-items: flex-start; padding: 1.5rem; border-left: 1px solid rgba(201,168,76,0.2); position: relative; }
+    .step-item::before { content: ''; position: absolute; left: -1px; top: 0; width: 1px; height: 0; background: var(--gold); transition: height 0.5s ease; }
+    .step-item:hover::before { height: 100%; }
+    .step-num { font-family: 'Cinzel', serif; font-size: 2rem; font-weight: 900; color: rgba(201,168,76,0.3); line-height: 1; min-width: 2rem; }
+
+    /* ===== RESOURCES SECTION ===== */
+    .resources-layout { display: grid; grid-template-columns: 240px 1fr; gap: 0; min-height: calc(100vh - 64px); }
+
+    .sidebar {
+      background: rgba(13,13,13,0.9);
+      border-right: 1px solid rgba(201,168,76,0.15);
+      padding: 1.5rem 0;
+      position: sticky;
+      top: 64px;
+      height: calc(100vh - 64px);
+      overflow-y: auto;
+    }
+    .sidebar-title { font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: #444; padding: 0 1.25rem; margin-bottom: 1rem; }
+    .sidebar-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1.25rem; cursor: pointer; transition: var(--transition); font-size: 0.9rem; font-weight: 500; color: #888; position: relative; }
+    .sidebar-item::before { content: ''; position: absolute; left: 0; top: 0; width: 2px; height: 100%; background: var(--gold); transform: scaleY(0); transition: var(--transition); }
+    .sidebar-item:hover, .sidebar-item.active { color: var(--gold); background: rgba(201,168,76,0.05); }
+    .sidebar-item:hover::before, .sidebar-item.active::before { transform: scaleY(1); }
+
+    .resource-main { padding: 2rem; overflow-y: auto; }
+
+    /* ===== RESOURCE CARDS ===== */
+    .resource-card {
+      background: linear-gradient(135deg, rgba(44,44,44,0.7), rgba(26,26,26,0.8));
+      border: 1px solid rgba(201,168,76,0.12);
+      padding: 1.25rem;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .resource-card:hover { border-color: rgba(201,168,76,0.45); transform: translateY(-3px); box-shadow: 0 8px 32px rgba(201,168,76,0.12); }
+
+    .resource-card-icon { font-size: 2rem; line-height: 1; }
+    .resource-card-name { font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: 0.95rem; color: #CCC; line-height: 1.3; }
+    .resource-card-type { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: #555; }
+
+    .resource-card-thumb { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 2px; opacity: 0.8; transition: var(--transition); }
+    .resource-card:hover .resource-card-thumb { opacity: 1; }
+
+    /* ===== SKELETON LOADER ===== */
+    .skeleton { background: linear-gradient(90deg, #222 25%, #2a2a2a 50%, #222 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 2px; }
+    @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+    .skeleton-card { height: 160px; border: 1px solid rgba(255,255,255,0.04); }
+
+    /* ===== BREADCRUMB ===== */
+    .breadcrumb { display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; color: #555; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .breadcrumb-item { cursor: pointer; transition: var(--transition); }
+    .breadcrumb-item:hover { color: var(--gold); }
+    .breadcrumb-sep { color: #333; }
+
+    /* ===== SEARCH & SORT ===== */
+    .search-input { background: rgba(26,26,26,0.9); border: 1px solid rgba(201,168,76,0.2); color: #CCC; padding: 0.75rem 1rem; font-family: 'Rajdhani', sans-serif; font-size: 0.95rem; outline: none; transition: var(--transition); width: 100%; }
+    .search-input:focus { border-color: rgba(201,168,76,0.5); box-shadow: 0 0 20px rgba(201,168,76,0.08); }
+    .search-input::placeholder { color: #444; }
+
+    .sort-select { background: rgba(26,26,26,0.9); border: 1px solid rgba(201,168,76,0.2); color: #888; padding: 0.75rem 1rem; font-family: 'Rajdhani', sans-serif; font-size: 0.9rem; outline: none; cursor: pointer; transition: var(--transition); }
+    .sort-select:focus { border-color: rgba(201,168,76,0.5); }
+    .sort-select option { background: #1A1A1A; }
+
+    /* ===== SECTION TITLES ===== */
+    .section-tag { font-family: 'Share Tech Mono', monospace; font-size: 0.7rem; letter-spacing: 0.3em; color: var(--gold-dark); text-transform: uppercase; margin-bottom: 0.5rem; }
+    .section-title { font-family: 'Cinzel', serif; font-weight: 900; font-size: clamp(1.8rem, 4vw, 3rem); color: #EEE; line-height: 1.1; }
+    .section-title span { color: var(--gold); }
+    .section-line { width: 60px; height: 2px; background: linear-gradient(90deg, var(--gold), transparent); margin: 1.5rem 0; }
+
+    /* ===== FOOTER ===== */
+    footer { background: var(--bg-deep); border-top: 1px solid rgba(201,168,76,0.15); padding: 2rem; text-align: center; }
+
+    /* ===== EASTER EGG GLITCH ===== */
+    .glitch-modal { font-family: 'Share Tech Mono', monospace; color: #0f0; text-align: center; }
+    .glitch-text { font-size: 1.5rem; text-shadow: 0 0 10px #0f0, 0 0 20px #0f0; animation: glitch 0.5s infinite; }
+    @keyframes glitch {
+      0%   { text-shadow: 0 0 10px #0f0, 2px 0 #f00, -2px 0 #00f; }
+      25%  { text-shadow: 0 0 10px #0f0, -2px 0 #f00, 2px 0 #00f; }
+      50%  { text-shadow: 0 0 10px #0f0, 2px 0 #00f, -2px 0 #f00; }
+      75%  { text-shadow: 0 0 10px #0f0, -2px 0 #00f, 2px 0 #f00; }
+      100% { text-shadow: 0 0 10px #0f0, 2px 0 #f00, -2px 0 #00f; }
+    }
+
+    /* ===== CONTACT BUTTONS ===== */
+    .contact-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; border: 1px solid rgba(201,168,76,0.3); color: #888; font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; transition: var(--transition); text-decoration: none; background: transparent; }
+    .contact-btn:hover { color: var(--gold); border-color: var(--gold); box-shadow: 0 0 20px rgba(201,168,76,0.15); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 64px; left: 0; right: 0; background: rgba(13,13,13,0.98); padding: 1.5rem; gap: 1.5rem; border-bottom: 1px solid rgba(201,168,76,0.2); }
+      .nav-hamburger { display: flex; }
+      .resources-layout { grid-template-columns: 1fr; }
+      .sidebar { position: relative; top: 0; height: auto; border-right: none; border-bottom: 1px solid rgba(201,168,76,0.15); }
+    }
+
+    /* ===== GOLD DIVIDER ===== */
+    .gold-divider { height: 1px; background: linear-gradient(90deg, transparent 0%, rgba(201,168,76,0.4) 30%, rgba(201,168,76,0.6) 50%, rgba(201,168,76,0.4) 70%, transparent 100%); margin: 4rem 0; }
+
+    /* ===== DOWNLOAD BTN ===== */
+    .download-btn { display: inline-flex; align-items: center; gap: 0.25rem; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-dark); background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.2); padding: 0.25rem 0.6rem; cursor: pointer; transition: var(--transition); margin-top: auto; }
+    .download-btn:hover { color: var(--gold); border-color: var(--gold); }
+
+    /* ===== EMPTY STATE ===== */
+    .empty-state { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4rem 2rem; color: #444; text-align: center; }
+    .empty-state-icon { font-size: 3rem; margin-bottom: 1rem; opacity: 0.4; }
+    .empty-state-text { font-family: 'Cinzel', serif; font-size: 1rem; color: #444; }
+
+    /* ===== PULSE DOT ===== */
+    .pulse-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); display: inline-block; animation: pulse 2s ease infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.6); } }
   </style>
 </head>
-
 <body>
 
-<!-- ════════════════════════════════════
-     NAVIGATION
-════════════════════════════════════ -->
-<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
-     style="background: transparent;">
-  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-
-    <!-- Logo -->
-    <div id="logo-click" class="flex items-center gap-3 cursor-pointer select-none" title="Click me 5 times...">
-      <!-- Gear icon -->
-      <svg id="nav-gear" class="w-8 h-8" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="20" cy="20" r="6" stroke="#C9A84C" stroke-width="1.5"/>
-        <path d="M20 2v5M20 33v5M2 20h5M33 20h5
-                 M7.1 7.1l3.5 3.5M29.4 29.4l3.5 3.5
-                 M7.1 32.9l3.5-3.5M29.4 10.6l3.5-3.5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/>
-        <circle cx="20" cy="20" r="10" stroke="#C9A84C44" stroke-width="1" stroke-dasharray="3 2"/>
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <div class="nav-logo" id="logoBtn">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <circle cx="14" cy="14" r="13" stroke="#C9A84C" stroke-width="1.5"/>
+        <circle cx="14" cy="14" r="5" fill="#C9A84C" opacity="0.3"/>
+        <circle cx="14" cy="14" r="2" fill="#C9A84C"/>
+        <line x1="14" y1="1" x2="14" y2="6" stroke="#C9A84C" stroke-width="1.5"/>
+        <line x1="14" y1="22" x2="14" y2="27" stroke="#C9A84C" stroke-width="1.5"/>
+        <line x1="1" y1="14" x2="6" y2="14" stroke="#C9A84C" stroke-width="1.5"/>
+        <line x1="22" y1="14" x2="27" y2="14" stroke="#C9A84C" stroke-width="1.5"/>
       </svg>
-      <div>
-        <div class="font-display text-sm font-bold tracking-widest text-gold-grad">M.M.A</div>
-        <div class="font-mono-mma text-xs" style="color:#C9A84C66; letter-spacing:0.1em;">MINISTRY OF MECHANICAL</div>
-      </div>
+      MMA
     </div>
-
-    <!-- Desktop nav -->
-    <div class="hidden md:flex items-center gap-8">
-      <a href="index.html"    class="nav-link active  font-mono-mma text-xs tracking-widest"  style="color:#C9A84C;">HOME</a>
-      <a href="about.html"    class="nav-link font-mono-mma text-xs tracking-widest"           style="color:#9A8A6A;">ABOUT</a>
-      <a href="resources.html" class="nav-link font-mono-mma text-xs tracking-widest"          style="color:#9A8A6A;">RESOURCES</a>
-      <a href="resources.html" class="btn-cta px-5 py-2 text-xs rounded-sm tracking-widest">
-        <span>ENTER ⚙</span>
-      </a>
+    <div class="nav-links" id="navLinks">
+      <span class="nav-link" data-route="/">Home</span>
+      <span class="nav-link" data-route="/about">About</span>
+      <span class="nav-link" data-route="/resources">Resources</span>
     </div>
-
-    <!-- Mobile burger -->
-    <button id="menu-btn" class="md:hidden flex flex-col gap-1.5 p-2">
-      <span class="block w-6 h-px bg-gold-DEFAULT" style="background:#C9A84C;"></span>
-      <span class="block w-4 h-px bg-gold-DEFAULT" style="background:#C9A84C;"></span>
-      <span class="block w-6 h-px bg-gold-DEFAULT" style="background:#C9A84C;"></span>
-    </button>
-  </div>
-
-  <!-- Mobile menu -->
-  <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 flex flex-col gap-4"
-       style="background:#111111EE; border-top: 1px solid #2A2A2A;">
-    <a href="index.html"     class="font-mono-mma text-xs tracking-widest py-2" style="color:#C9A84C;">HOME</a>
-    <a href="about.html"     class="font-mono-mma text-xs tracking-widest py-2" style="color:#9A8A6A;">ABOUT</a>
-    <a href="resources.html" class="font-mono-mma text-xs tracking-widest py-2" style="color:#9A8A6A;">RESOURCES</a>
-  </div>
-</nav>
-
-<!-- ════════════════════════════════════
-     HERO SECTION
-════════════════════════════════════ -->
-<section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden"
-         style="background: radial-gradient(ellipse 80% 60% at 50% 40%, #1A1200 0%, #0A0A0A 60%);">
-
-  <!-- Gear animations background -->
-  <div class="gear-container opacity-20">
-    <!-- Large gear top-right -->
-    <svg class="absolute -top-16 -right-16 w-80 h-80 animate-gear" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="50" cy="50" r="18" stroke="#C9A84C" stroke-width="1"/>
-      <circle cx="50" cy="50" r="26" stroke="#C9A84C44" stroke-width="0.5" stroke-dasharray="4 3"/>
-      <path d="M50 10v8M50 82v8M10 50h8M82 50h8
-               M21.7 21.7l5.6 5.6M72.7 72.7l5.6 5.6
-               M21.7 78.3l5.6-5.6M72.7 27.3l5.6-5.6
-               M14.6 35l7.3 2.7M78.1 62.3l7.3 2.7
-               M35 14.6l2.7 7.3M62.3 78.1l2.7 7.3
-               M14.6 65l7.3-2.7M78.1 37.7l7.3-2.7
-               M65 85.4l-2.7-7.3M37.7 21.9l-2.7-7.3"
-            stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/>
-    </svg>
-
-    <!-- Medium gear bottom-left -->
-    <svg class="absolute -bottom-8 -left-8 w-56 h-56 animate-gearR" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="50" cy="50" r="20" stroke="#C9A84C" stroke-width="1.2"/>
-      <circle cx="50" cy="50" r="10" stroke="#C9A84C66" stroke-width="0.8"/>
-      <path d="M50 12v9M50 79v9M12 50h9M79 50h9
-               M23.4 23.4l6.4 6.4M70.2 70.2l6.4 6.4
-               M23.4 76.6l6.4-6.4M70.2 29.8l6.4-6.4"
-            stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/>
-    </svg>
-
-    <!-- Small gear mid -->
-    <svg class="absolute top-1/3 right-1/4 w-20 h-20 animate-gearSlow" viewBox="0 0 100 100" fill="none">
-      <circle cx="50" cy="50" r="22" stroke="#C9A84C" stroke-width="1.5"/>
-      <circle cx="50" cy="50" r="12" fill="#C9A84C11"/>
-      <path d="M50 8v12M50 80v12M8 50h12M80 50h12" stroke="#C9A84C" stroke-width="2" stroke-linecap="round"/>
-    </svg>
-  </div>
-
-  <!-- Scan line -->
-  <div class="scan-wrap"><div class="scan-line"></div></div>
-
-  <!-- Particle dots -->
-  <div id="particles" class="absolute inset-0 overflow-hidden pointer-events-none"></div>
-
-  <!-- Hero Content -->
-  <div class="relative z-10 text-center px-6 max-w-5xl mx-auto">
-
-    <!-- Eyebrow label -->
-    <div class="font-mono-mma text-xs tracking-[0.3em] mb-6 animate-fadeUp" style="color:#C9A84C88; animation-delay:0.2s; opacity:0;">
-      ◈ EST. 2023 · RAJASTHAN TECHNICAL UNIVERSITY ◈
+    <div class="nav-hamburger" id="hamburger">
+      <span></span><span></span><span></span>
     </div>
+  </nav>
 
-    <!-- Main heading -->
-    <h1 class="font-display font-black leading-none mb-6 animate-fadeUp" style="font-size: clamp(2.2rem, 7vw, 6rem); animation-delay:0.4s; opacity:0;">
-      <span class="text-gold-grad glow-gold">MINISTRY OF</span><br/>
-      <span class="text-gold-grad glow-gold">MECHANICAL</span><br/>
-      <span style="color:#D4C5A0; -webkit-text-stroke: 1px #C9A84C44;">AFFAIRS</span>
-    </h1>
+  <!-- APP CONTAINER -->
+  <div id="app"></div>
 
-    <!-- Subtext -->
-    <p class="font-body text-base md:text-lg tracking-wide max-w-2xl mx-auto mb-4 animate-fadeUp"
-       style="color:#8A7A5A; animation-delay:0.6s; opacity:0; line-height:1.8;">
-      Where steel meets purpose. Where equations forge identity.<br/>
-      This is not a club — it is a <em style="color:#C9A84C;">calling.</em>
-    </p>
+  <!-- MODAL CONTAINER -->
+  <div id="modalContainer"></div>
 
-    <!-- Decorative separator -->
-    <div class="flex items-center justify-center gap-4 mb-10 animate-fadeUp" style="animation-delay:0.7s; opacity:0;">
-      <div class="h-px w-16" style="background: linear-gradient(90deg, transparent, #C9A84C88);"></div>
-      <span class="font-mono-mma text-xs" style="color:#C9A84C66;">⚙ ⚙ ⚙</span>
-      <div class="h-px w-16" style="background: linear-gradient(90deg, #C9A84C88, transparent);"></div>
-    </div>
+  <!-- IMAGE MODAL CONTAINER (separate, higher z-index) -->
+  <div id="imageModalContainer"></div>
 
-    <!-- CTA -->
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fadeUp" style="animation-delay:0.9s; opacity:0;">
-      <a href="resources.html" id="cta-btn" class="btn-cta px-10 py-4 text-sm rounded-sm tracking-[0.2em]">
-        <span>ENTER THE MINISTRY</span>
-      </a>
-      <a href="about.html" class="font-mono-mma text-xs tracking-widest px-8 py-4 border rounded-sm transition-all duration-300"
-         style="color:#C9A84C88; border-color:#C9A84C33;"
-         onmouseover="this.style.color='#C9A84C';this.style.borderColor='#C9A84C66';"
-         onmouseout="this.style.color='#C9A84C88';this.style.borderColor='#C9A84C33';">
-        LEARN MORE →
-      </a>
-    </div>
-
-    <!-- Scroll indicator -->
-    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-fadeUp"
-         style="animation-delay:1.3s; opacity:0;">
-      <span class="font-mono-mma text-xs" style="color:#C9A84C44; letter-spacing:0.2em;">SCROLL</span>
-      <div class="w-px h-10 relative overflow-hidden" style="background:#C9A84C22;">
-        <div class="absolute top-0 left-0 right-0 h-4"
-             style="background: linear-gradient(180deg, #C9A84C, transparent); animation: scanLine 2s linear infinite;"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════════════════════════════
-     STATS / FEATURES SECTION
-════════════════════════════════════ -->
-<section id="stats" class="py-24 relative" style="background:#0D0D0D;">
-  <!-- Top border accent -->
-  <div class="absolute top-0 left-0 right-0 h-px" style="background: linear-gradient(90deg, transparent, #C9A84C44, transparent);"></div>
-
-  <div class="max-w-7xl mx-auto px-6">
-
-    <!-- Section label -->
-    <div class="text-center mb-16 reveal">
-      <div class="font-mono-mma text-xs tracking-[0.3em] mb-3" style="color:#C9A84C66;">◈ SYSTEM STATUS ◈</div>
-      <h2 class="font-display text-3xl md:text-4xl font-bold text-gold-grad">THE PARAMETERS</h2>
-    </div>
-
-    <!-- Stats grid -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20">
-
-      <!-- Members -->
-      <div class="card-mma rounded-sm p-6 text-center reveal delay-1 animate-pulseGold">
-        <div class="mb-4 flex justify-center">
-          <svg class="w-10 h-10" viewBox="0 0 40 40" fill="none">
-            <circle cx="15" cy="12" r="5" stroke="#C9A84C" stroke-width="1.5"/>
-            <circle cx="25" cy="12" r="5" stroke="#C9A84C66" stroke-width="1.5"/>
-            <path d="M5 32c0-6 4-10 10-10s10 4 10 10" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/>
-            <path d="M23 22c3-1 7 2 7 10" stroke="#C9A84C66" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div class="font-display text-4xl font-black text-gold-grad mb-2" id="count-members">0</div>
-        <div class="font-mono-mma text-xs tracking-widest" style="color:#6A5A3A;">MEMBERS</div>
-      </div>
-
-      <!-- Location -->
-      <div class="card-mma rounded-sm p-6 text-center reveal delay-2">
-        <div class="mb-4 flex justify-center">
-          <svg class="w-10 h-10" viewBox="0 0 40 40" fill="none">
-            <path d="M20 5C13.9 5 9 9.9 9 16c0 9 11 20 11 20s11-11 11-20c0-6.1-4.9-11-11-11z"
-                  stroke="#C9A84C" stroke-width="1.5"/>
-            <circle cx="20" cy="16" r="4" stroke="#C9A84C" stroke-width="1.5"/>
-          </svg>
-        </div>
-        <div class="font-display text-xl font-bold text-gold-grad mb-2">JAIPUR</div>
-        <div class="font-mono-mma text-xs tracking-widest" style="color:#6A5A3A;">LOCATION · RTU</div>
-      </div>
-
-      <!-- Founded -->
-      <div class="card-mma rounded-sm p-6 text-center reveal delay-3">
-        <div class="mb-4 flex justify-center">
-          <svg class="w-10 h-10" viewBox="0 0 40 40" fill="none">
-            <rect x="6" y="10" width="28" height="24" rx="1" stroke="#C9A84C" stroke-width="1.5"/>
-            <path d="M14 6v8M26 6v8M6 20h28" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/>
-            <rect x="14" y="25" width="5" height="5" rx="0.5" fill="#C9A84C44"/>
-          </svg>
-        </div>
-        <div class="font-display text-4xl font-black text-gold-grad mb-2">2023</div>
-        <div class="font-mono-mma text-xs tracking-widest" style="color:#6A5A3A;">FOUNDED</div>
-      </div>
-
-      <!-- Commitment -->
-      <div class="card-mma rounded-sm p-6 text-center reveal delay-4">
-        <div class="mb-4 flex justify-center">
-          <svg class="w-10 h-10" viewBox="0 0 40 40" fill="none">
-            <path d="M20 5l3.3 6.7 7.4 1.1-5.4 5.2 1.3 7.4L20 22l-6.6 3.4 1.3-7.4-5.4-5.2 7.4-1.1z"
-                  stroke="#C9A84C" stroke-width="1.5" stroke-linejoin="round"/>
-            <path d="M14 30l6 6 6-6" stroke="#C9A84C66" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div class="font-display text-2xl font-black text-gold-grad mb-2">TOTAL</div>
-        <div class="font-mono-mma text-xs tracking-widest" style="color:#6A5A3A;">COMMITMENT</div>
-      </div>
-    </div>
-
-    <!-- Features cards -->
-    <div class="text-center mb-12 reveal">
-      <div class="font-mono-mma text-xs tracking-[0.3em] mb-3" style="color:#C9A84C66;">◈ PILLARS ◈</div>
-      <h2 class="font-display text-3xl md:text-4xl font-bold" style="color:#D4C5A0;">WHAT WE STAND FOR</h2>
-    </div>
-
-    <div class="grid md:grid-cols-3 gap-6">
-
-      <!-- Pillar 1 -->
-      <div class="card-mma rounded-sm p-8 reveal delay-1">
-        <div class="w-12 h-12 rounded-sm mb-6 flex items-center justify-center"
-             style="background: linear-gradient(135deg, #C9A84C22, #C9A84C08); border: 1px solid #C9A84C44;">
-          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none">
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <h3 class="font-display text-lg font-bold mb-3" style="color:#C9A84C;">ACADEMIC MASTERY</h3>
-        <p class="font-body text-sm leading-relaxed" style="color:#6A5A3A;">
-          We don't just study mechanical engineering — we breathe it. Notes, papers, solved problems, 
-          and late-night derivations. Every resource shared is a gear in our collective machine.
-        </p>
-        <div class="mt-6 font-mono-mma text-xs" style="color:#C9A84C44;">SYS.KNOWLEDGE ──────</div>
-      </div>
-
-      <!-- Pillar 2 -->
-      <div class="card-mma rounded-sm p-8 reveal delay-2">
-        <div class="w-12 h-12 rounded-sm mb-6 flex items-center justify-center"
-             style="background: linear-gradient(135deg, #C9A84C22, #C9A84C08); border: 1px solid #C9A84C44;">
-          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="3" stroke="#C9A84C" stroke-width="1.5"/>
-            <path d="M12 1v4M12 19v4M1 12h4M19 12h4M4.2 4.2l2.8 2.8M16.9 16.9l2.8 2.8M4.2 19.8l2.8-2.8M16.9 7.1l2.8-2.8"
-                  stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <h3 class="font-display text-lg font-bold mb-3" style="color:#C9A84C;">BROTHERHOOD PROTOCOL</h3>
-        <p class="font-body text-sm leading-relaxed" style="color:#6A5A3A;">
-          Built on trust forged in labs and lecture halls. We push each other through thermodynamics, 
-          fluid mechanics, and every cruel examination the curriculum has to offer.
-        </p>
-        <div class="mt-6 font-mono-mma text-xs" style="color:#C9A84C44;">SYS.BOND ───────────</div>
-      </div>
-
-      <!-- Pillar 3 -->
-      <div class="card-mma rounded-sm p-8 reveal delay-3">
-        <div class="w-12 h-12 rounded-sm mb-6 flex items-center justify-center"
-             style="background: linear-gradient(135deg, #C9A84C22, #C9A84C08); border: 1px solid #C9A84C44;">
-          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none">
-            <polygon points="12,2 15.1,8.3 22,9.3 17,14.1 18.2,21 12,17.8 5.8,21 7,14.1 2,9.3 8.9,8.3"
-                     stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <h3 class="font-display text-lg font-bold mb-3" style="color:#C9A84C;">ENGINEERING LEGACY</h3>
-        <p class="font-body text-sm leading-relaxed" style="color:#6A5A3A;">
-          Every senior who passed through these halls left something behind. Their notes, their 
-          solutions, their shortcuts — now your foundation. Pay it forward. That's the ministry way.
-        </p>
-        <div class="mt-6 font-mono-mma text-xs" style="color:#C9A84C44;">SYS.LEGACY ─────────</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════════════════════════════
-     RESOURCES PREVIEW SECTION
-════════════════════════════════════ -->
-<section class="py-24 relative" style="background:#0A0A0A;">
-  <div class="absolute top-0 left-0 right-0 h-px" style="background: linear-gradient(90deg, transparent, #C9A84C44, transparent);"></div>
-
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="grid md:grid-cols-2 gap-16 items-center">
-
-      <!-- Left: text -->
-      <div class="reveal">
-        <div class="font-mono-mma text-xs tracking-[0.3em] mb-4" style="color:#C9A84C66;">◈ RESOURCE SYSTEM ◈</div>
-        <h2 class="font-display text-3xl md:text-5xl font-black leading-tight mb-6">
-          <span class="text-gold-grad">THE KNOWLEDGE</span><br/>
-          <span style="color:#D4C5A0;">VAULT</span>
-        </h2>
-        <p class="font-body text-sm leading-relaxed mb-8" style="color:#6A5A3A;">
-          Years of notes, lectures, practicals, and solved papers — organized in a living, 
-          breathing file system. Every folder is a chapter. Every PDF is a weapon.
-        </p>
-
-        <div class="space-y-4 mb-10">
-          <div class="flex items-center gap-3">
-            <div class="w-2 h-2 rounded-full" style="background:#C9A84C;"></div>
-            <span class="font-mono-mma text-xs" style="color:#8A7A5A;">Semester-wise organized folders</span>
-          </div>
-          <div class="flex items-center gap-3">
-            <div class="w-2 h-2 rounded-full" style="background:#C9A84C;"></div>
-            <span class="font-mono-mma text-xs" style="color:#8A7A5A;">Real-time search across all resources</span>
-          </div>
-          <div class="flex items-center gap-3">
-            <div class="w-2 h-2 rounded-full" style="background:#C9A84C;"></div>
-            <span class="font-mono-mma text-xs" style="color:#8A7A5A;">YouTube lectures + Drive documents</span>
-          </div>
-          <div class="flex items-center gap-3">
-            <div class="w-2 h-2 rounded-full" style="background:#C9A84C;"></div>
-            <span class="font-mono-mma text-xs" style="color:#8A7A5A;">One-click PDF downloads</span>
-          </div>
-        </div>
-
-        <a href="resources.html" class="btn-cta inline-block px-8 py-4 text-xs rounded-sm tracking-[0.2em]">
-          <span>ACCESS VAULT →</span>
-        </a>
-      </div>
-
-      <!-- Right: mock file explorer -->
-      <div class="reveal delay-2">
-        <div class="rounded-sm overflow-hidden" style="border: 1px solid #2A2A2A; box-shadow: 0 20px 60px #00000099;">
-          <!-- Title bar -->
-          <div class="flex items-center gap-2 px-4 py-3" style="background:#161616; border-bottom:1px solid #2A2A2A;">
-            <div class="w-3 h-3 rounded-full" style="background:#FF5F57;"></div>
-            <div class="w-3 h-3 rounded-full" style="background:#FFBD2E;"></div>
-            <div class="w-3 h-3 rounded-full" style="background:#28CA41;"></div>
-            <span class="font-mono-mma text-xs ml-4" style="color:#4A3A2A;">MMA://resources</span>
-          </div>
-          <!-- Explorer body -->
-          <div style="background:#111111; min-height: 280px;" class="p-4 space-y-2">
-            <div class="flex items-center gap-3 px-3 py-2 rounded-sm cursor-pointer transition-colors duration-200"
-                 style="background:#1A1A1A; border:1px solid #2A2A2A;"
-                 onmouseover="this.style.borderColor='#C9A84C44'" onmouseout="this.style.borderColor='#2A2A2A'">
-              <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 20 20" fill="#C9A84C88"><path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"/></svg>
-              <span class="font-mono-mma text-xs" style="color:#C9A84C88;">Semester I</span>
-              <span class="ml-auto font-mono-mma text-xs" style="color:#4A3A2A;">12 files</span>
-            </div>
-            <div class="flex items-center gap-3 px-3 py-2 rounded-sm cursor-pointer transition-colors duration-200"
-                 style="background:#1A1A1A; border:1px solid #2A2A2A;"
-                 onmouseover="this.style.borderColor='#C9A84C44'" onmouseout="this.style.borderColor='#2A2A2A'">
-              <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 20 20" fill="#C9A84C88"><path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"/></svg>
-              <span class="font-mono-mma text-xs" style="color:#C9A84C88;">Semester II</span>
-              <span class="ml-auto font-mono-mma text-xs" style="color:#4A3A2A;">18 files</span>
-            </div>
-            <div class="flex items-center gap-3 px-3 py-2 rounded-sm cursor-pointer transition-colors duration-200"
-                 style="background:#1D1608; border:1px solid #C9A84C44;"
-                 onmouseover="this.style.borderColor='#C9A84C88'" onmouseout="this.style.borderColor='#C9A84C44'">
-              <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 20 20" fill="#C9A84C"><path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"/></svg>
-              <span class="font-mono-mma text-xs" style="color:#C9A84C;">Fluid Mechanics</span>
-              <span class="ml-auto font-mono-mma text-xs" style="color:#C9A84C66;">OPEN</span>
-            </div>
-            <!-- PDF item -->
-            <div class="flex items-center gap-3 px-3 py-2 ml-6 rounded-sm cursor-pointer"
-                 style="border:1px solid #2A2A2A;">
-              <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 20 20" fill="none">
-                <rect x="4" y="2" width="12" height="16" rx="1" stroke="#E05555" stroke-width="1.5"/>
-                <path d="M7 7h6M7 10h6M7 13h4" stroke="#E05555" stroke-width="1" stroke-linecap="round"/>
-              </svg>
-              <span class="font-mono-mma text-xs" style="color:#9A7A7A;">Bernoulli Theorem Notes.pdf</span>
-            </div>
-            <div class="flex items-center gap-3 px-3 py-2 ml-6 rounded-sm cursor-pointer"
-                 style="border:1px solid #2A2A2A;">
-              <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 20 20" fill="none">
-                <polygon points="4,2 14,2 16,5 16,18 4,18" stroke="#E05555" stroke-width="1.5"/>
-              </svg>
-              <span class="font-mono-mma text-xs" style="color:#9A7A7A;">Navier Stokes Derivation.pdf</span>
-            </div>
-
-            <!-- Shimmer skeleton -->
-            <div class="flex items-center gap-3 px-3 py-2 ml-6 rounded-sm skeleton opacity-40" style="height:32px;"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════════════════════════════
-     CALL TO JOIN SECTION
-════════════════════════════════════ -->
-<section class="py-24 relative overflow-hidden" style="background:#0D0D0D;">
-  <div class="absolute top-0 left-0 right-0 h-px" style="background: linear-gradient(90deg, transparent, #C9A84C44, transparent);"></div>
-  <div class="absolute inset-0 opacity-5 pointer-events-none"
-       style="background: radial-gradient(circle at 50% 50%, #C9A84C 0%, transparent 70%);"></div>
-
-  <div class="max-w-3xl mx-auto px-6 text-center reveal">
-    <div class="font-mono-mma text-xs tracking-[0.3em] mb-4" style="color:#C9A84C66;">◈ INITIATION ◈</div>
-    <h2 class="font-display text-3xl md:text-5xl font-black leading-tight mb-6">
-      <span class="text-gold-grad">ARE YOU</span><br/>
-      <span style="color:#D4C5A0;">WORTHY?</span>
-    </h2>
-    <p class="font-body text-sm leading-relaxed mb-10" style="color:#6A5A3A;">
-      The Ministry does not recruit. It selects. If you've found this page, perhaps the gears 
-      were already turning in your favour. Read what it takes on the About page — then decide.
-    </p>
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-      <a href="about.html" class="btn-cta px-10 py-4 text-sm rounded-sm tracking-[0.2em]">
-        <span>SEE REQUIREMENTS</span>
-      </a>
-      <a href="about.html#contact"
-         class="font-mono-mma text-xs tracking-widest px-8 py-4 border rounded-sm transition-all duration-300"
-         style="color:#C9A84C88; border-color:#C9A84C33;"
-         onmouseover="this.style.color='#C9A84C';this.style.borderColor='#C9A84C66';"
-         onmouseout="this.style.color='#C9A84C88';this.style.borderColor='#C9A84C33';">
-        CONTACT US
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════════════════════════════
-     FOOTER
-════════════════════════════════════ -->
-<footer class="py-12 relative" style="background:#080808; border-top:1px solid #1A1A1A;">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-      <!-- Logo -->
-      <div>
-        <div class="font-display text-lg font-black text-gold-grad">MINISTRY OF MECHANICAL AFFAIRS</div>
-        <div class="font-mono-mma text-xs mt-1" style="color:#3A2A1A;">RAJASTHAN TECHNICAL UNIVERSITY · JAIPUR</div>
-      </div>
-      <!-- Links -->
-      <div class="flex gap-8">
-        <a href="index.html"     class="font-mono-mma text-xs tracking-widest hover:text-gold-DEFAULT transition-colors" style="color:#4A3A2A;" onmouseover="this.style.color='#C9A84C'" onmouseout="this.style.color='#4A3A2A'">HOME</a>
-        <a href="about.html"     class="font-mono-mma text-xs tracking-widest hover:text-gold-DEFAULT transition-colors" style="color:#4A3A2A;" onmouseover="this.style.color='#C9A84C'" onmouseout="this.style.color='#4A3A2A'">ABOUT</a>
-        <a href="resources.html" class="font-mono-mma text-xs tracking-widest hover:text-gold-DEFAULT transition-colors" style="color:#4A3A2A;" onmouseover="this.style.color='#C9A84C'" onmouseout="this.style.color='#4A3A2A'">RESOURCES</a>
-      </div>
-    </div>
-    <div class="mt-8 pt-6 text-center" style="border-top:1px solid #1A1A1A;">
-      <span class="font-mono-mma text-xs" style="color:#2A1A0A;">
-        © 2023 MINISTRY OF MECHANICAL AFFAIRS · ALL SYSTEMS OPERATIONAL ⚙
-      </span>
-    </div>
-  </div>
-</footer>
-
-<!-- ════════════════════════════════════
-     EASTER EGG MODAL
-════════════════════════════════════ -->
-<div id="easter-modal">
-  <div class="relative max-w-md mx-6 text-center px-10 py-14 rounded-sm"
-       style="background:#0D0D0D; border:1px solid #C9A84C66; box-shadow: 0 0 60px #C9A84C22, 0 0 120px #C9A84C0A;">
-    <!-- Close -->
-    <button id="easter-close" class="absolute top-4 right-4 font-mono-mma text-xs" style="color:#C9A84C44;">✕ CLOSE</button>
-
-    <!-- Glitch gears -->
-    <div class="flex justify-center mb-6 gap-2">
-      <svg class="w-10 h-10 animate-gear" viewBox="0 0 40 40" fill="none">
-        <circle cx="20" cy="20" r="8" stroke="#C9A84C" stroke-width="1.5"/>
-        <path d="M20 4v5M20 31v5M4 20h5M31 20h5M8.2 8.2l3.5 3.5M28.3 28.3l3.5 3.5M8.2 31.8l3.5-3.5M28.3 11.7l3.5-3.5"
-              stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/>
-      </svg>
-      <svg class="w-7 h-7 animate-gearR" viewBox="0 0 40 40" fill="none" style="margin-top:12px;">
-        <circle cx="20" cy="20" r="7" stroke="#C9A84C88" stroke-width="1.5"/>
-        <path d="M20 6v4M20 30v4M6 20h4M30 20h4" stroke="#C9A84C88" stroke-width="1.5" stroke-linecap="round"/>
-      </svg>
-    </div>
-
-    <div class="font-mono-mma text-xs tracking-widest mb-3" style="color:#C9A84C66;">:: CLASSIFIED ::</div>
-    <h3 id="easter-text" class="font-display text-2xl font-black text-gold-grad mb-4">
-      WELCOME TO THE<br/>INNER CIRCLE ⚙️
-    </h3>
-    <p class="font-body text-sm mb-6" style="color:#6A5A3A; line-height:1.8;">
-      You found it. Not everyone does.<br/>
-      The gears were always watching.<br/>
-      <span style="color:#C9A84C88;">— The High Council</span>
-    </p>
-    <div class="font-mono-mma text-xs" style="color:#C9A84C33;">ACCESS LEVEL: OMEGA CLEARANCE</div>
-  </div>
-</div>
-
-<!-- Script -->
-<script src="script.js"></script>
-
+  <script src="script.js"></script>
 </body>
 </html>
