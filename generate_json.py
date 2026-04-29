@@ -9,7 +9,7 @@ USAGE:
     python generate_json.py
 
 OUTPUT:
-    data/resources.json
+    resources.json
 
 RULES:
   - Folders         → type: "folder",  children: [...]
@@ -42,7 +42,7 @@ import re
 
 # ── Config ──────────────────────────────────────────────────
 RESOURCES_DIR = os.path.join(os.path.dirname(__file__), 'resources')
-OUTPUT_FILE   = os.path.join(os.path.dirname(__file__), 'data', 'resources.json')
+OUTPUT_FILE   = os.path.join(os.path.dirname(__file__), 'resources.json')
 
 IMAGE_EXTS = {'.jpg', '.jpeg', '.png', '.webp', '.gif'}
 PDF_EXTS   = {'.pdf'}
