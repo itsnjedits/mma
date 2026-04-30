@@ -837,6 +837,18 @@ function renderResourceCard(item, idx) {
           </div>
         </div>`;
 
+    // ── PPT / PPTX ─────────────────────────────────────────
+    case 'ppt':
+      return `
+        <div class="resource-card" data-idx="${idx}" style="cursor:pointer;">
+          <div class="resource-card-icon">📊</div>
+          <div class="resource-card-name">${escHtml(item.name)}</div>
+          <div class="resource-card-type" style="color:#C9844C;">PPTX Presentation</div>
+          <div class="download-btn" data-role="download" data-path="${escHtml(item.path||'')}" data-name="${escHtml(item.name)}" style="border-color:rgba(201,132,76,0.35);color:#C9844C;">
+            ↓ Download
+          </div>
+        </div>`;
+
     // ── LINK (YouTube / Drive) ─────────────────────────────
     // [FIX-2] item.link is already the URL — no runtime fetch of .txt needed
     case 'link':
@@ -906,6 +918,10 @@ function handleCardClick(item) {
  
     case 'pdf':
       // PDF directly new tab mein open
+      window.open(item.path, '_blank', 'noopener,noreferrer');
+      break;
+ 
+    case 'ppt':
       window.open(item.path, '_blank', 'noopener,noreferrer');
       break;
  
@@ -992,7 +1008,7 @@ function recursiveSearch(items, query) {
 //  SORT
 // ──────────────────────────────────────────────
 function sortItems(items, mode) {
-  const typeOrder = { folder: 0, pdf: 1, link: 2, image: 3 };
+  const typeOrder = { folder: 0, pdf: 1, ppt: 2, link: 3, image: 4 };
   return [...items].sort((a, b) => {
     if (mode === 'name-az') return a.name.localeCompare(b.name);
     if (mode === 'name-za') return b.name.localeCompare(a.name);

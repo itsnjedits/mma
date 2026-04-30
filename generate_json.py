@@ -46,6 +46,7 @@ OUTPUT_FILE   = os.path.join(os.path.dirname(__file__), 'resources.json')
 
 IMAGE_EXTS = {'.jpg', '.jpeg', '.png', '.webp', '.gif'}
 PDF_EXTS   = {'.pdf'}
+PPTX_EXTS  = {'.pptx'}
 
 
 def prettify_name(raw_name: str) -> str:
@@ -151,6 +152,16 @@ def scan_directory(directory: str) -> list:
                 items.append({
                     'name': prettify_name(display_stem),
                     'type': 'pdf',
+                    'path': relative_path(exts[ext]),
+                })
+                break
+
+        # ── PPTX ─────────────────────────────────────────────
+        for ext in PPTX_EXTS:
+            if ext in exts:
+                items.append({
+                    'name': prettify_name(display_stem),
+                    'type': 'ppt',
                     'path': relative_path(exts[ext]),
                 })
                 break
