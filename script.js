@@ -49,60 +49,62 @@
 // ──────────────────────────────────────────────
 const MEMBERS = [
   {
-    id: 1, initials: 'AK', name: 'Arjun Khanna', role: 'Chief Architect',
-    dept: 'Mechanical Engineering – IV Year',
-    bio: 'Visionary behind the Ministry\'s founding principles. Specializes in thermodynamic system design and led the team that won the National Robotics Championship 2023. Known for turning constraints into masterpieces.',
-    skills: ['Thermal Systems', 'Robotics', 'CAD/CAM', 'Leadership'],
+    id: 1,
+    initials: 'NM',
+    name: 'Nikhil Mittal',
+    role: 'Founder',
+    dept: 'Ministry of Mechanical Affairs',
+    bio: 'The visionary who forged the foundations of the Ministry. Driven by precision, discipline, and an unwavering commitment to engineering excellence, he transformed a shared passion for mechanical innovation into a brotherhood united by purpose and craftsmanship.',
+    skills: ['Leadership', 'Engineering Vision', 'Innovation', 'Strategic Planning'],
   },
+
   {
-    id: 2, initials: 'RS', name: 'Rohan Sharma', role: 'Gear Marshal',
-    dept: 'Mechanical Engineering – III Year',
-    bio: 'The man who understands machines like they breathe. Expert in gear transmission systems and precision manufacturing. Has filed 2 patents on micro-actuator designs.',
-    skills: ['Gear Design', 'Manufacturing', 'Metrology', 'Dynamics'],
+    id: 2,
+    initials: 'SS',
+    name: 'Shivam Sharma',
+    role: 'Co-Founder',
+    dept: 'Ministry of Mechanical Affairs',
+    bio: 'A key architect behind the Ministry’s growth and culture. Known for his problem-solving mindset and relentless pursuit of perfection, he bridges ideas with execution and inspires members to push beyond conventional limits.',
+    skills: ['Project Management', 'Team Building', 'Mechanical Design', 'Operations'],
   },
+
   {
-    id: 3, initials: 'PV', name: 'Priya Verma', role: 'Fluid Commander',
-    dept: 'Mechanical Engineering – III Year',
-    bio: 'Master of fluid dynamics and heat transfer. Leads the computational simulation wing and has published research on turbulent flow optimization in industrial ducts.',
-    skills: ['CFD', 'Heat Transfer', 'ANSYS', 'Research'],
-  },
-  {
-    id: 4, initials: 'DM', name: 'Dev Mehta', role: 'Materials Warden',
-    dept: 'Mechanical Engineering – II Year',
-    bio: 'A rising star who bridged metallurgy and design thinking. His material selection framework has been adopted by 3 student project teams. Passionate about composite engineering.',
-    skills: ['Metallurgy', 'Composites', 'Testing', 'Design'],
-  },
-  {
-    id: 5, initials: 'SR', name: 'Sneha Rao', role: 'Systems Analyst',
-    dept: 'Mechanical Engineering – IV Year',
-    bio: 'The analytical mind of the Ministry. Builds simulation models for vibration analysis and structural integrity. Her failure mode analysis saved a critical SAE vehicle project.',
-    skills: ['FEA', 'Vibration Analysis', 'MATLAB', 'Project Mgmt'],
-  },
-  {
-    id: 6, initials: 'VK', name: 'Vikram Kumar', role: 'Workshop Head',
-    dept: 'Mechanical Engineering – II Year',
-    bio: 'Hands-on builder and workshop maestro. Can fabricate anything from raw stock to finished component. Leads hands-on training sessions for junior members every semester.',
-    skills: ['Machining', 'Welding', 'CNC', 'Fabrication'],
+    id: 3,
+    initials: 'SC',
+    name: 'Sunil Choudhary',
+    role: 'Union Leader',
+    dept: 'Ministry of Mechanical Affairs',
+    bio: 'The voice of unity and brotherhood within the Ministry. Respected for his dedication, mentorship, and ability to bring engineers together under a common mission, he strengthens the spirit that drives the organization forward.',
+    skills: ['Mentorship', 'Communication', 'Leadership', 'Community Building'],
   },
 ];
 
 // ──────────────────────────────────────────────
 //  DATA: Council
 // ──────────────────────────────────────────────
+
 const COUNCIL = [
   {
-    initials: 'AK', name: 'Arjun Khanna', role: 'Founder',
-    desc: 'Established the Ministry with a vision to create a brotherhood where engineering meets excellence. His leadership forged the original charter.',
+    initials: 'NM',
+    name: 'Nikhil Mittal',
+    role: 'Founder',
+    desc: 'The visionary who established the Ministry and laid the foundations of its culture. Guided by discipline, innovation, and brotherhood, he transformed a shared passion for engineering into a movement driven by purpose and excellence.',
     icon: '⚙️',
   },
+
   {
-    initials: 'PV', name: 'Priya Verma', role: 'Co-Founder',
-    desc: 'Architect of the Ministry\'s academic framework. Designed the mentorship pipeline and resource management systems still in use today.',
+    initials: 'SS',
+    name: 'Shivam Sharma',
+    role: 'Co-Founder',
+    desc: 'A founding pillar of the Ministry who helped shape its identity and direction. Known for turning ambitious ideas into reality, he continues to strengthen the bond between creativity, engineering, and leadership.',
     icon: '🔧',
   },
+
   {
-    initials: 'RS', name: 'Rohan Sharma', role: 'Chief Commander',
-    desc: 'Oversees daily operations of the Ministry. Coordinates between chapters, manages project pipelines, and ensures the Brotherhood\'s standards are upheld.',
+    initials: 'SC',
+    name: 'Sunil Choudhary',
+    role: 'Union Leader',
+    desc: 'The voice of unity within the Brotherhood. Through mentorship, guidance, and unwavering dedication, he ensures that every member contributes to the Ministry’s shared mission and collective growth.',
     icon: '🏛️',
   },
 ];
@@ -378,9 +380,9 @@ function renderHome(container) {
         <h2 class="section-title">The <span>Numbers</span> Speak</h2>
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;">
-        <div class="stat-card"><div class="stat-icon">⚙️</div><div class="stat-number">42+</div><div class="stat-label">Active Members</div></div>
-        <div class="stat-card"><div class="stat-icon">📍</div><div class="stat-number">Jaipur</div><div class="stat-label">Rajasthan, India</div></div>
-        <div class="stat-card"><div class="stat-icon">🏛️</div><div class="stat-number">2022</div><div class="stat-label">Founded Year</div></div>
+        <div class="stat-card"><div class="stat-icon">⚙️</div><div class="stat-number">10+</div><div class="stat-label">Active Members</div></div>
+        <div class="stat-card"><div class="stat-icon">📍</div><div class="stat-number">Jodhpur</div><div class="stat-label">Rajasthan, India</div></div>
+        <div class="stat-card"><div class="stat-icon">🏛️</div><div class="stat-number">1994</div><div class="stat-label">Founded Year</div></div>
         <div class="stat-card"><div class="stat-icon">🔩</div><div class="stat-number">∞</div><div class="stat-label">Commitment</div></div>
       </div>
     </section>
@@ -451,20 +453,26 @@ function renderAbout(container) {
       <div class="section-line"></div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;" class="about-grid">
         <div>
-          <p style="color:#999;font-size:1.05rem;line-height:1.8;margin-bottom:1.5rem;">
-            The Ministry of Mechanical Affairs was born not in a classroom — but in a workshop,
-            surrounded by the smell of cutting oil and the sound of grinding steel.
-          </p>
-          <p style="color:#777;font-size:1rem;line-height:1.8;margin-bottom:1.5rem;">
-            What started as a study group became a brotherhood. What began as sharing notes
-            became sharing ambitions. The Ministry stands today as a testament to what discipline,
-            curiosity, and relentless work ethic can build.
-          </p>
-          <p style="color:#666;font-size:1rem;line-height:1.8;">
-            Every gear has a purpose. Every bolt holds something together.
-            <strong style="color:#C9A84C;">So do we.</strong>
-          </p>
-        </div>
+  <p style="color:#999;font-size:1.05rem;line-height:1.8;margin-bottom:1.5rem;">
+    If you are merely human, this site isn't for you. But if you are a machine—grinding
+    through the daily routine while hiding absurd, eccentric thoughts revving deep inside
+    your engine—then you are exactly where you belong.
+  </p>
+
+  <p style="color:#777;font-size:1rem;line-height:1.8;margin-bottom:1.5rem;">
+    The superficial world outside may never understand or accept our unfiltered reality.
+    Here at the Ministry, we drop the act. Titles, appearances, and expectations mean
+    nothing. We judge members by only one criterion: how delightfully twisted, creative,
+    and chaotic their minds truly are.
+  </p>
+
+  <p style="color:#666;font-size:1rem;line-height:1.8;">
+    Escape the polished illusion. Embrace the madness. Let your imagination run
+    unrestricted, your ideas collide like gears in motion, and your true mechanical
+    spirit reveal itself.
+    <strong style="color:#C9A84C;">The Ministry awaits.</strong>
+  </p>
+</div>
         <div style="background:rgba(26,26,26,0.8);border:1px solid rgba(201,168,76,0.15);padding:2rem;">
           <div class="section-tag" style="margin-bottom:1rem;">[ MINISTRY CHARTER ]</div>
           ${[
@@ -538,18 +546,15 @@ function renderAbout(container) {
         <div class="section-line"></div>
       </div>
       <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center;">
-        <a href="mailto:mma.ministry@gmail.com" class="contact-btn">
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ministryofmechanicalaffairs@gmail.com> target="_blank"
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
-          mma.ministry@gmail.com
+          ministryofmechanicalaffairs@gmail.com
         </a>
-        <a href="https://instagram.com/mma_official" target="_blank" class="contact-btn" style="color:#E1306C;border-color:rgba(225,48,108,0.3);">
+        <a href="https://www.instagram.com/ministry_of_mechanical_affairs?igsh=MXgydW5jb3lvMGFvNA==" target="_blank" class="contact-btn" style="color:#E1306C;border-color:rgba(225,48,108,0.3);">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="m16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
           @mma_official
         </a>
-        <a href="tel:+919876543210" class="contact-btn">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.82 12 19.79 19.79 0 0 1 1.77 3.43 2 2 0 0 1 3.74 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.41a16 16 0 0 0 6.72 6.72l1.57-1.57a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          +91 98765 43210
-        </a>
+        
       </div>
     </section>
     ${renderFooter()}
@@ -1259,23 +1264,85 @@ function showToast(message, type = 'info') {
 //  EASTER EGG
 // ──────────────────────────────────────────────
 function showEasterEgg() {
-  showModal(`
-    <div class="glitch-modal">
-      <div style="font-size:3rem;margin-bottom:1rem;animation:rotateCW 3s linear infinite;display:inline-block;">⚙️</div>
-      <div class="glitch-text">CLEARANCE: INNER CIRCLE</div>
-      <div style="margin:1.5rem 0;font-size:0.8rem;color:#0f0;opacity:0.7;line-height:1.8;">
-        WELCOME TO THE INNER CIRCLE ⚙️<br><br>
-        You have accessed classified Ministry archives.<br>
-        Your loyalty has been noted.<br>
-        Your dedication — exemplary.<br><br>
-        "The machine does not rest.<br>
-        Neither do we."<br><br>
-        — High Council, MMA
-      </div>
-      <div style="font-size:0.65rem;color:#0a0;opacity:0.5;letter-spacing:0.2em;">ACCESS LEVEL: OMEGA-7 GRANTED</div>
-    </div>
-  `, 'background:rgba(0,20,0,0.98);border-color:rgba(0,255,0,0.4);');
+
+const isMobile = window.innerWidth <= 768;
+
+const message = isMobile
+? `       WELCOME TO THE INNER CIRCLE ⚙️<br><br>
+      Classified access granted.<br>
+      Loyalty confirmed.<br><br>
+      "The machine never rests."<br><br>
+      — MMA Council
+    `
+: `       WELCOME TO THE INNER CIRCLE ⚙️<br><br>
+      You have accessed classified Ministry archives.<br>
+      Your loyalty has been noted.<br>
+      Your dedication — exemplary.<br><br>
+      "The machine does not rest.<br>
+      Neither do we."<br><br>
+      — High Council, MMA
+    `;
+
+showModal(` <div class="glitch-modal">
+
+
+  <div style="font-size:3rem;margin-bottom:1rem;animation:rotateCW 3s linear infinite;display:inline-block;">
+    ⚙️
+  </div>
+
+  <div class="glitch-text">CLEARANCE: INNER CIRCLE</div>
+
+  <div style="margin:1.5rem 0;font-size:0.8rem;color:#0f0;opacity:0.7;line-height:1.8;">
+    ${message}
+  </div>
+
+  <div style="margin:1.5rem 0;">
+    <img
+      src="whatsapp.jpg"
+      alt="MMA WhatsApp QR"
+      style="
+        width:180px;
+        max-width:100%;
+        border:2px solid rgba(0,255,0,0.35);
+        border-radius:12px;
+        display:block;
+        margin:0 auto 1rem;
+      "
+    >
+
+    <a
+      href="https://chat.whatsapp.com/Ca9U3k0ZNxiJBIQc5jQEC7"
+      target="_blank"
+      rel="noopener noreferrer"
+      style="
+        display:inline-block;
+        padding:12px 24px;
+        background:#25D366;
+        color:#000;
+        text-decoration:none;
+        font-weight:bold;
+        border-radius:8px;
+      "
+    >
+      JOIN WHATSAPP BROTHERHOOD
+    </a>
+  </div>
+
+  <div style="
+    font-size:0.65rem;
+    color:#0a0;
+    opacity:0.5;
+    letter-spacing:0.2em;
+  ">
+    ACCESS LEVEL: OMEGA-7 GRANTED
+  </div>
+
+</div>
+
+
+`, 'background:rgba(0,20,0,0.98);border-color:rgba(0,255,0,0.4);');
 }
+
 
 // ──────────────────────────────────────────────
 //  FOOTER
@@ -1300,7 +1367,7 @@ function renderFooter() {
         </svg>
       </div>
       <div style="display:flex;align-items:center;justify-content:center;gap:1.5rem;margin-bottom:1.5rem;flex-wrap:wrap;">
-        <a href="https://instagram.com/mma_official" target="_blank"
+        <a href="https://www.instagram.com/ministry_of_mechanical_affairs?igsh=MXgydW5jb3lvMGFvNA==" target="_blank"
            style="color:#666;transition:color 0.3s;text-decoration:none;display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;"
            onmouseover="this.style.color='#E1306C'" onmouseout="this.style.color='#666'">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1311,9 +1378,20 @@ function renderFooter() {
           @mma_official
         </a>
         <span style="color:#333;">·</span>
-        <a href="tel:+919876543210" style="color:#666;text-decoration:none;font-size:0.85rem;">+91 98765 43210</a>
-        <span style="color:#333;">·</span>
-        <a href="mailto:mma.ministry@gmail.com" style="color:#666;text-decoration:none;font-size:0.85rem;">mma.ministry@gmail.com</a>
+        
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ministryofmechanicalaffairs@gmail.com" target="_blank"
+   style="color:#666;transition:color 0.3s;text-decoration:none;display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;"
+   onmouseover="this.style.color='#D4AF37'"
+   onmouseout="this.style.color='#666'">
+   
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+       stroke="currentColor" stroke-width="2">
+    <path d="M4 4h16v16H4z"/>
+    <path d="M22 6l-10 7L2 6"/>
+  </svg>
+
+  ministryofmechanicalaffairs@gmail.com
+</a>
       </div>
       <div style="font-size:0.7rem;color:#333;letter-spacing:0.1em;">
         © 2024 Ministry of Mechanical Affairs · All Rights Reserved
