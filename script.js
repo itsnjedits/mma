@@ -1,43 +1,59 @@
 /**
  * ============================================================
  *  MINISTRY OF MECHANICAL AFFAIRS — SPA Engine
- *  script.js  (v4 — fetch & link bug fixes)
+ *  script.js  (v5 — full path audit & URL encoding)
  * ============================================================
  *
  *  ROOT-CAUSE FIXES IN THIS VERSION:
  *
- *  [FIX-1] resources.json fetch path
- *    - Was:  fetch('mma/resources.json')   ← always 404 on GH Pages
- *    - Now:  fetch('./data/resources.json') with fallback to
- *            fetch('./resources.json')
- *    - Why:  GitHub Pages serves from repo root. Paths must be
- *            relative to index.html, not a sub-folder.
+ *  [FIX-1] resources.json fetch path (CRITICAL)
+ *    - Was:  fetch('./mma/resources.json')
+ *            → resolves to /mma/mma/resources.json on GH Pages → 404!
+ *    - Now:  fetch('./resources.json') + fallback ./data/resources.json
+ *            → resolves to /mma/resources.json ✓
  *
- *  [FIX-2] Link cards — NEVER fetch .txt at runtime
- *    - Was:  openLink(item.txt, ...)  ← fetches a .txt file
- *            over the network that GitHub Pages 404s because
- *            those files aren't committed / aren't in JSON.
- *    - Now:  item.link must already contain the URL (embedded
- *            by generate_json.py at build time).
- *            handleCardClick reads item.link directly and
- *            calls window.open() — zero extra network requests.
- *    - Why:  generate_json.py reads the .txt and writes the
- *            link URL into resources.json. At runtime we just
- *            use that pre-baked value.
+ *  [FIX-2] resources.json paths have wrong mma/ prefix (CRITICAL)
+ *    - All path/thumbnail/txt fields in resources.json had mma/ prepended:
+ *         "mma/resources/3rd sem/file.pdf"
+ *      From page at /mma/ this resolves to /mma/mma/resources/... → 404!
+ *    - Fixed: paths now start with resources/ (no mma/ prefix):
+ *         "resources/3rd sem/file.pdf" → /mma/resources/3rd sem/file.pdf ✓
+ *    - generate_json.py updated to always use SCRIPT_DIR as the root,
+ *      ensuring paths are always relative to index.html.
  *
- *  [FIX-3] PDF / image paths with spaces & mixed case
- *    - The script itself opens item.path directly — there is
- *      nothing to fix in JS. If a file 404s it means the file
- *      is NOT committed to the repository at that exact path.
- *    - The updated generate_json.py (see that file) now warns
- *      about problematic filenames.
+ *  [FIX-3] URL encoding for paths with spaces / special chars
+ *    - All window.open(), fetch(), img.src, and download calls now wrap
+ *      paths with encodeURI() so spaces → %20, & → %26, etc.
+ *    - escHtml() still applied in HTML attributes for XSS safety.
  *
- *  [FIX-4] Image 404s on lazy-load
- *    - Added onerror handler: if thumbnail 404s, replace with
- *      a placeholder so the card still looks correct.
+ *  [FIX-4] PPT/PPTX cards use triggerDownload (not window.open)
+ *    - PPTX files cannot render in the browser — window.open() either
+ *      failed silently or opened a corrupt view.
+ *    - Now forces a proper file download via <a download>.
+ *    - Same pattern applied to DOCX (new type).
  *
- *  [FIX-5] Sidebar shows ALL folder levels (was only top-level)
- *    - Now shows every folder in the resource tree recursively.
+ *  [FIX-5] Link cards — two-tier URL strategy
+ *    - Tier 1: item.link (URL baked at build-time by generate_json.py v4)
+ *              → zero extra network requests, fastest.
+ *    - Tier 2: fetch(encodeURI(item.txt)) → read URL from .txt at runtime
+ *              → fallback for items not yet regenerated.
+ *    - All failures logged with: original path, resolved URL, error reason.
+ *
+ *  [FIX-6] DOCX support added
+ *    - generate_json.py now emits type:"docx" for .docx files.
+ *    - renderResourceCard() renders a Word Document card with download btn.
+ *    - handleCardClick() triggers download (never window.open).
+ *
+ *  [FIX-7] HTML syntax error in renderAbout()
+ *    - Email anchor tag had missing closing quote and no closing > on tag.
+ *    - Was:  <a href="https://...gmail.com> target="_blank"
+ *    - Now:  <a href="https://...gmail.com" target="_blank" class="...">
+ *
+ *  [FIX-8] Defensive console logging for all 404-prone paths
+ *    - Every resource open/download/fetch now logs:
+ *        name, originalPath, resolvedUrl
+ *    - Every failure logs httpStatus + error message.
+ *    - Thumbnail/image onerror logs the failing URL.
  *
  * ============================================================
  */
@@ -546,7 +562,7 @@ function renderAbout(container) {
         <div class="section-line"></div>
       </div>
       <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center;">
-        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ministryofmechanicalaffairs@gmail.com> target="_blank"
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ministryofmechanicalaffairs@gmail.com" target="_blank" class="contact-btn" style="color:#D4AF37;border-color:rgba(212,175,55,0.3);">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
           ministryofmechanicalaffairs@gmail.com
         </a>
@@ -628,7 +644,8 @@ async function loadResourceData() {
   showResourceSkeleton();
 
   const candidates = [
-    './mma/resources.json',
+    './resources.json',       // correct: relative to index.html at /mma/
+    './data/resources.json',  // fallback: alternate layout
   ];
 
   let loaded = false;
@@ -855,15 +872,15 @@ function renderResourceCard(item, idx) {
         </div>`;
 
     // ── LINK (YouTube / Drive) ─────────────────────────────
-    // [FIX-2] item.link is already the URL — no runtime fetch of .txt needed
+    // item.link is a baked URL (from generate_json.py), or falls back to fetching .txt at runtime
     case 'link':
       return `
         <div class="resource-card" data-idx="${idx}" style="cursor:pointer;padding:0;overflow:hidden;">
           <div style="position:relative;">
             ${item.thumbnail
-              ? `<img data-src="${escHtml(item.thumbnail)}" src="${thumbPlaceholder}"
+              ? `<img data-src="${escHtml(encodeURI(item.thumbnail))}" src="${thumbPlaceholder}"
                       alt="${escHtml(item.name)}" class="resource-card-thumb"
-                      onerror="this.src='${thumbPlaceholder}'" />`
+                      onerror="console.error('[MMA] Thumbnail 404:',this.dataset.src);this.src='${thumbPlaceholder}'" />`
               : `<div style="height:100px;background:rgba(74,144,226,0.08);display:flex;align-items:center;justify-content:center;font-size:2.5rem;">🎬</div>`
             }
             <!-- Play overlay -->
@@ -886,12 +903,24 @@ function renderResourceCard(item, idx) {
     case 'image':
       return `
         <div class="resource-card" data-idx="${idx}" style="cursor:pointer;padding:0;overflow:hidden;">
-          <img data-src="${escHtml(item.path||'')}" src="${thumbPlaceholder}"
+          <img data-src="${escHtml(encodeURI(item.path||''))}" src="${thumbPlaceholder}"
                alt="${escHtml(item.name)}" class="resource-card-thumb"
-               onerror="this.src='${thumbPlaceholder}'" />
+               onerror="console.error('[MMA] Image 404:',this.dataset.src);this.src='${thumbPlaceholder}'" />
           <div style="padding:0.9rem;">
             <div class="resource-card-name">${escHtml(item.name)}</div>
             <div class="resource-card-type">🖼 Image</div>
+          </div>
+        </div>`;
+
+    // ── DOCX ───────────────────────────────────────────────
+    case 'docx':
+      return `
+        <div class="resource-card" data-idx="${idx}" style="cursor:pointer;">
+          <div class="resource-card-icon">📝</div>
+          <div class="resource-card-name">${escHtml(item.name)}</div>
+          <div class="resource-card-type" style="color:#4A90E2;">Word Document</div>
+          <div class="download-btn" data-role="download" data-path="${escHtml(item.path||'')}" data-name="${escHtml(item.name)}" style="border-color:rgba(74,144,226,0.35);color:#4A90E2;">
+            ↓ Download
           </div>
         </div>`;
 
@@ -921,49 +950,75 @@ function handleCardClick(item) {
       renderResourceGrid();
       break;
  
-    case 'pdf':
-      // PDF directly new tab mein open
-      window.open(item.path, '_blank', 'noopener,noreferrer');
+    case 'pdf': {
+      const resolvedUrl = encodeURI(item.path);
+      console.log('[MMA] Opening PDF:', { name: item.name, originalPath: item.path, resolvedUrl });
+      window.open(resolvedUrl, '_blank', 'noopener,noreferrer');
       break;
+    }
  
-    case 'ppt':
-      window.open(item.path, '_blank', 'noopener,noreferrer');
+    case 'ppt': {
+      // PPTX cannot render in-browser — always trigger a download
+      const resolvedUrl = encodeURI(item.path);
+      console.log('[MMA] Downloading PPTX:', { name: item.name, originalPath: item.path, resolvedUrl });
+      triggerDownload(item.path, item.name);
       break;
+    }
  
     case 'link':
-      // ── Priority 1: item.link already baked hai ──────────────
+      // ── Priority 1: item.link already baked in JSON ─────────────
       if (item.link && item.link.trim()) {
-        window.open(item.link.trim(), '_blank', 'noopener,noreferrer');
- 
-      // ── Priority 2: .txt file se URL fetch karo ──────────────
+        const url = item.link.trim();
+        console.log('[MMA] Opening link:', { name: item.name, url });
+        window.open(url, '_blank', 'noopener,noreferrer');
+
+      // ── Priority 2: fetch URL from .txt file at runtime ──────────
       } else if (item.txt && item.txt.trim()) {
-        fetch(item.txt.trim())
+        const txtPath    = item.txt.trim();
+        const resolvedUrl = encodeURI(txtPath);
+        console.log('[MMA] Fetching .txt for link:', { name: item.name, originalPath: txtPath, resolvedUrl });
+
+        fetch(resolvedUrl)
           .then(function(resp) {
-            if (!resp.ok) throw new Error('HTTP ' + resp.status);
+            if (!resp.ok) {
+              console.error('[MMA] .txt fetch failed:', { name: item.name, originalPath: txtPath, resolvedUrl, httpStatus: resp.status });
+              throw new Error('HTTP ' + resp.status);
+            }
             return resp.text();
           })
           .then(function(text) {
-            var url = text.trim();
+            const url = text.trim();
             if (url) {
+              console.log('[MMA] .txt resolved URL:', url);
               window.open(url, '_blank', 'noopener,noreferrer');
             } else {
-              showToast('Link file khali hai (.txt empty hai).', 'error');
+              console.error('[MMA] .txt is empty:', { originalPath: txtPath, resolvedUrl });
+              showToast('Link file is empty — check the .txt file: ' + txtPath, 'error');
             }
           })
           .catch(function(err) {
-            console.error('[MMA] .txt fetch failed:', err);
-            showToast('Link load nahi hua — .txt file check karo: ' + item.txt, 'error');
+            console.error('[MMA] .txt fetch error:', { name: item.name, originalPath: txtPath, resolvedUrl, error: err.message });
+            showToast('Could not load link — .txt fetch failed: ' + txtPath, 'error');
           });
- 
-      // ── Kuch bhi nahi mila ───────────────────────────────────
+
+      // ── No link source found ─────────────────────────────────────
       } else {
-        showToast('Is resource ke liye koi link set nahi hai.', 'error');
+        console.warn('[MMA] Link item has no url or txt path:', item);
+        showToast('No link configured for this resource.', 'error');
       }
       break;
  
     case 'image':
       showImageModal(item);
       break;
+
+    case 'docx': {
+      // DOCX cannot render in-browser — always trigger a download
+      const resolvedUrl = encodeURI(item.path);
+      console.log('[MMA] Downloading DOCX:', { name: item.name, originalPath: item.path, resolvedUrl });
+      triggerDownload(item.path, item.name);
+      break;
+    }
   }
 }
 
@@ -972,8 +1027,10 @@ function handleCardClick(item) {
 // ──────────────────────────────────────────────
 function triggerDownload(path, name) {
   if (!path) return;
+  const encodedPath = encodeURI(path);
+  console.log('[MMA] Triggering download:', { name, originalPath: path, encodedPath });
   const a = document.createElement('a');
-  a.href = path;
+  a.href = encodedPath;
   a.download = name || path.split('/').pop();
   a.rel = 'noopener';
   document.body.appendChild(a);
@@ -1013,7 +1070,7 @@ function recursiveSearch(items, query) {
 //  SORT
 // ──────────────────────────────────────────────
 function sortItems(items, mode) {
-  const typeOrder = { folder: 0, pdf: 1, ppt: 2, link: 3, image: 4 };
+  const typeOrder = { folder: 0, pdf: 1, ppt: 2, docx: 3, link: 4, image: 5 };
   return [...items].sort((a, b) => {
     if (mode === 'name-az') return a.name.localeCompare(b.name);
     if (mode === 'name-za') return b.name.localeCompare(a.name);
@@ -1059,7 +1116,7 @@ function showImageModal(item) {
       <!-- Viewport -->
       <div id="ivViewport" style="width:100vw;height:100vh;overflow:hidden;display:flex;
                                    align-items:center;justify-content:center;cursor:grab;">
-        <img id="ivImg" src="${escHtml(item.path||'')}" alt="${escHtml(item.name)}"
+        <img id="ivImg" src="${escHtml(encodeURI(item.path||''))}" alt="${escHtml(item.name)}"
              draggable="false" style="
                max-width:88vw;max-height:84vh;object-fit:contain;display:block;
                transform-origin:center center;
@@ -1067,7 +1124,7 @@ function showImageModal(item) {
                box-shadow:0 0 60px rgba(0,0,0,0.9);
                pointer-events:none;will-change:transform;
                transition:transform 0.1s ease;"
-             onerror="this.alt='Image not found';this.style.padding='2rem';this.style.color='#666';" />
+             onerror="console.error('[MMA] Image modal 404:','${escHtml(encodeURI(item.path||''))}');this.alt='Image not found';this.style.padding='2rem';this.style.color='#666';" />
       </div>
 
       <!-- Hints -->
