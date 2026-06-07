@@ -60,6 +60,96 @@
 
 'use strict';
 
+// ══════════════════════════════════════════════════════════════
+//  [FORENSIC FIX] BASE PATH & URL RESOLUTION
+//
+//  ROOT CAUSE SUMMARY:
+//
+//  BUG-1 (CRITICAL): loadResourceData() was fetching './mma/resources.json'
+//    → On GitHub Pages at /mma/ this resolves to /mma/mma/resources.json → 404
+//    → Both candidates failed → site fell back to getSampleResourceData()
+//    → Sample data has wrong paths (Mechanics/, Thermodynamics/) → 404 everywhere
+//
+//  BUG-2 (CRITICAL): navigate() used history.pushState({}, '', '/resources')
+//    → This changes document.URL from /mma/ to /resources (root-relative)
+//    → All subsequent relative URLs (window.open, fetch, img.src) resolve from:
+//        https://itsnjedits.github.io/resources/...   ← WRONG
+//      instead of:
+//        https://itsnjedits.github.io/mma/resources/... ← CORRECT
+//    → Explains the exact error: "loading from /resources/ instead of /mma/resources/"
+//
+//  FIX:
+//    1. Capture DOC_BASE_URI BEFORE any pushState corrupts it
+//    2. All resource paths use resolveResourcePath() against DOC_BASE_URI
+//    3. navigate() now pushes /mma/ + route (preserving base)
+//    4. loadResourceData() uses absolute URLs built from DOC_BASE_URI
+// ══════════════════════════════════════════════════════════════
+
+/**
+ * Captured once at page-load before ANY pushState changes document.URL.
+ * Always equals the GitHub Pages base: 'https://itsnjedits.github.io/mma/'
+ * (or 'http://localhost:PORT/' in local dev).
+ */
+const DOC_BASE_URI = document.baseURI;
+
+/**
+ * The pathname directory of the deployment base.
+ * GitHub Pages:  '/mma/'
+ * Local dev:     '/'
+ */
+const BASE_PATH = (() => {
+  try {
+    return new URL(DOC_BASE_URI).pathname; // e.g. '/mma/'
+  } catch {
+    return '/';
+  }
+})();
+
+/**
+ * Convert a raw relative path from resources.json
+ * (e.g. 'resources/3rd sem/KOM/file.pdf')
+ * into a full absolute URL that will work on GitHub Pages.
+ *
+ * Each path segment is individually percent-encoded so spaces,
+ * parentheses, commas, etc. all survive the URL round-trip.
+ * Always resolved against DOC_BASE_URI, never against the
+ * current location.href (which pushState may have mutated).
+ *
+ * Logs: original path → resolved URL → resource type (for debugging).
+ */
+function resolveResourcePath(rawPath, resourceType) {
+  if (!rawPath || typeof rawPath !== 'string') return '';
+  try {
+    const encoded = rawPath.split('/').map(seg => encodeURIComponent(seg)).join('/');
+    const finalUrl = new URL(encoded, DOC_BASE_URI).href;
+    console.log('[MMA] Path resolution:', {
+      type:        resourceType || 'unknown',
+      originalPath: rawPath,
+      resolvedUrl:  finalUrl,
+    });
+    return finalUrl;
+  } catch (e) {
+    console.warn('[MMA] resolveResourcePath failed:', { rawPath, error: e.message });
+    return encodeURI(rawPath);
+  }
+}
+
+/**
+ * Convert the current full pathname (e.g. '/mma/resources')
+ * back to the short route key (e.g. '/resources') used by the routes map.
+ */
+function pathToRoute(pathname) {
+  const base = BASE_PATH.replace(/\/$/, ''); // e.g. '/mma'
+  let route = pathname;
+  if (base && route.startsWith(base)) {
+    route = route.slice(base.length) || '/';
+  }
+  if (!route.startsWith('/')) route = '/' + route;
+  // Normalize trailing slash: '/about/' → '/about'  (but '/' stays '/')
+  if (route.length > 1 && route.endsWith('/')) route = route.slice(0, -1);
+  return route || '/';
+}
+
 // ──────────────────────────────────────────────
 //  DATA: Members
 // ──────────────────────────────────────────────
@@ -147,7 +237,12 @@ const routes = {
 };
 
 function navigate(path, push = true) {
-  if (push) history.pushState({}, '', path);
+  // [FIX-2] Build the full pathname preserving the deployment base.
+  // 'path' is the short route key: '/', '/about', '/resources'
+  // fullPath on GH Pages: '/mma/', '/mma/about', '/mma/resources'
+  const base = BASE_PATH.replace(/\/$/, ''); // '/mma'
+  const fullPath = path === '/' ? BASE_PATH : base + path;
+  if (push) history.pushState({}, '', fullPath);
   updateNavHighlight(path);
   const app = document.getElementById('app');
   app.innerHTML = '';
@@ -157,7 +252,7 @@ function navigate(path, push = true) {
   document.getElementById('navLinks').classList.remove('open');
 }
 
-window.addEventListener('popstate', () => navigate(location.pathname, false));
+window.addEventListener('popstate', () => navigate(pathToRoute(location.pathname), false));
 
 function updateNavHighlight(path) {
   document.querySelectorAll('.nav-link').forEach(el => {
@@ -643,9 +738,22 @@ function renderResources(container) {
 async function loadResourceData() {
   showResourceSkeleton();
 
+  // [FIX-1] CRITICAL: Use absolute URLs derived from DOC_BASE_URI.
+  //
+  // PREVIOUS BUG: candidates were './mma/resources.json' and './mma/data/resources.json'
+  //   → On GH Pages (/mma/), these resolved to /mma/mma/resources.json → 404
+  //   → BOTH candidates failed → fell back to getSampleResourceData()
+  //   → Sample data has wrong paths → 404 on every click
+  //
+  // The comment at the top of this file described the fix correctly:
+  //   "Was: ./mma/resources.json  Now: ./resources.json"
+  // but the actual code was never updated. Now it is.
+  //
+  // We use new URL() against DOC_BASE_URI (captured before any pushState)
+  // so the fetch URL is always absolute and immune to routing changes.
   const candidates = [
-    './mma/resources.json',       // correct: relative to index.html at /mma/
-    './mma/data/resources.json',  // fallback: alternate layout
+    new URL('resources.json', DOC_BASE_URI).href,       // /mma/resources.json ✓
+    new URL('data/resources.json', DOC_BASE_URI).href,  // /mma/data/resources.json (fallback)
   ];
 
   let loaded = false;
@@ -878,7 +986,7 @@ function renderResourceCard(item, idx) {
         <div class="resource-card" data-idx="${idx}" style="cursor:pointer;padding:0;overflow:hidden;">
           <div style="position:relative;">
             ${item.thumbnail
-              ? `<img data-src="${escHtml(encodeURI(item.thumbnail))}" src="${thumbPlaceholder}"
+              ? `<img data-src="${escHtml(resolveResourcePath(item.thumbnail, 'thumbnail'))}" src="${thumbPlaceholder}"
                       alt="${escHtml(item.name)}" class="resource-card-thumb"
                       onerror="console.error('[MMA] Thumbnail 404:',this.dataset.src);this.src='${thumbPlaceholder}'" />`
               : `<div style="height:100px;background:rgba(74,144,226,0.08);display:flex;align-items:center;justify-content:center;font-size:2.5rem;">🎬</div>`
@@ -903,7 +1011,7 @@ function renderResourceCard(item, idx) {
     case 'image':
       return `
         <div class="resource-card" data-idx="${idx}" style="cursor:pointer;padding:0;overflow:hidden;">
-          <img data-src="${escHtml(encodeURI(item.path||''))}" src="${thumbPlaceholder}"
+          <img data-src="${escHtml(resolveResourcePath(item.path||'', 'image'))}" src="${thumbPlaceholder}"
                alt="${escHtml(item.name)}" class="resource-card-thumb"
                onerror="console.error('[MMA] Image 404:',this.dataset.src);this.src='${thumbPlaceholder}'" />
           <div style="padding:0.9rem;">
@@ -951,16 +1059,17 @@ function handleCardClick(item) {
       break;
  
     case 'pdf': {
-      const resolvedUrl = encodeURI(item.path);
-      console.log('[MMA] Opening PDF:', { name: item.name, originalPath: item.path, resolvedUrl });
-      window.open(resolvedUrl, '_blank', 'noopener,noreferrer');
+      // [FIX] Use resolveResourcePath so URL is absolute and path-segment encoded.
+      // Bypasses any document.URL mutation from pushState.
+      const finalUrl = resolveResourcePath(item.path, 'pdf');
+      console.log('[MMA] Opening PDF:', { name: item.name, originalPath: item.path, finalUrl });
+      window.open(finalUrl, '_blank', 'noopener,noreferrer');
       break;
     }
  
     case 'ppt': {
       // PPTX cannot render in-browser — always trigger a download
-      const resolvedUrl = encodeURI(item.path);
-      console.log('[MMA] Downloading PPTX:', { name: item.name, originalPath: item.path, resolvedUrl });
+      console.log('[MMA] Downloading PPTX:', { name: item.name, originalPath: item.path });
       triggerDownload(item.path, item.name);
       break;
     }
@@ -969,35 +1078,43 @@ function handleCardClick(item) {
       // ── Priority 1: item.link already baked in JSON ─────────────
       if (item.link && item.link.trim()) {
         const url = item.link.trim();
-        console.log('[MMA] Opening link:', { name: item.name, url });
+        console.log('[MMA] Opening baked link:', { name: item.name, url });
         window.open(url, '_blank', 'noopener,noreferrer');
 
       // ── Priority 2: fetch URL from .txt file at runtime ──────────
       } else if (item.txt && item.txt.trim()) {
-        const txtPath    = item.txt.trim();
-        const resolvedUrl = encodeURI(txtPath);
-        console.log('[MMA] Fetching .txt for link:', { name: item.name, originalPath: txtPath, resolvedUrl });
+        const txtPath = item.txt.trim();
+        // [FIX] Use resolveResourcePath → absolute URL immune to pushState
+        const txtUrl = resolveResourcePath(txtPath, 'link-txt');
+        console.log('[MMA] Fetching .txt for link:', {
+          name: item.name, originalPath: txtPath, finalUrl: txtUrl,
+        });
 
-        fetch(resolvedUrl)
+        fetch(txtUrl)
           .then(function(resp) {
             if (!resp.ok) {
-              console.error('[MMA] .txt fetch failed:', { name: item.name, originalPath: txtPath, resolvedUrl, httpStatus: resp.status });
+              console.error('[MMA] .txt fetch failed:', {
+                name: item.name, originalPath: txtPath, finalUrl: txtUrl, httpStatus: resp.status,
+              });
               throw new Error('HTTP ' + resp.status);
             }
             return resp.text();
           })
           .then(function(text) {
-            const url = text.trim();
+            // Take only the first non-blank line
+            const url = text.split('\n').map(l => l.trim()).find(l => l.startsWith('http')) || '';
             if (url) {
-              console.log('[MMA] .txt resolved URL:', url);
+              console.log('[MMA] .txt resolved URL:', { originalPath: txtPath, url });
               window.open(url, '_blank', 'noopener,noreferrer');
             } else {
-              console.error('[MMA] .txt is empty:', { originalPath: txtPath, resolvedUrl });
-              showToast('Link file is empty — check the .txt file: ' + txtPath, 'error');
+              console.error('[MMA] .txt is empty or has no URL:', { originalPath: txtPath, finalUrl: txtUrl });
+              showToast('Link file is empty — check the .txt file.', 'error');
             }
           })
           .catch(function(err) {
-            console.error('[MMA] .txt fetch error:', { name: item.name, originalPath: txtPath, resolvedUrl, error: err.message });
+            console.error('[MMA] .txt fetch error:', {
+              name: item.name, originalPath: txtPath, finalUrl: txtUrl, error: err.message,
+            });
             showToast('Could not load link — .txt fetch failed: ' + txtPath, 'error');
           });
 
@@ -1014,8 +1131,7 @@ function handleCardClick(item) {
 
     case 'docx': {
       // DOCX cannot render in-browser — always trigger a download
-      const resolvedUrl = encodeURI(item.path);
-      console.log('[MMA] Downloading DOCX:', { name: item.name, originalPath: item.path, resolvedUrl });
+      console.log('[MMA] Downloading DOCX:', { name: item.name, originalPath: item.path });
       triggerDownload(item.path, item.name);
       break;
     }
@@ -1027,10 +1143,12 @@ function handleCardClick(item) {
 // ──────────────────────────────────────────────
 function triggerDownload(path, name) {
   if (!path) return;
-  const encodedPath = encodeURI(path);
-  console.log('[MMA] Triggering download:', { name, originalPath: path, encodedPath });
+  // [FIX] resolveResourcePath gives absolute URL with proper encoding
+  // Safe against both the pushState URL mutation and filename special chars
+  const finalUrl = resolveResourcePath(path, 'download');
+  console.log('[MMA] Triggering download:', { name, originalPath: path, finalUrl });
   const a = document.createElement('a');
-  a.href = encodedPath;
+  a.href = finalUrl;
   a.download = name || path.split('/').pop();
   a.rel = 'noopener';
   document.body.appendChild(a);
@@ -1116,7 +1234,7 @@ function showImageModal(item) {
       <!-- Viewport -->
       <div id="ivViewport" style="width:100vw;height:100vh;overflow:hidden;display:flex;
                                    align-items:center;justify-content:center;cursor:grab;">
-        <img id="ivImg" src="${escHtml(encodeURI(item.path||''))}" alt="${escHtml(item.name)}"
+        <img id="ivImg" src="${escHtml(resolveResourcePath(item.path||'', 'image-modal'))}" alt="${escHtml(item.name)}"
              draggable="false" style="
                max-width:88vw;max-height:84vh;object-fit:contain;display:block;
                transform-origin:center center;
@@ -1124,7 +1242,7 @@ function showImageModal(item) {
                box-shadow:0 0 60px rgba(0,0,0,0.9);
                pointer-events:none;will-change:transform;
                transition:transform 0.1s ease;"
-             onerror="console.error('[MMA] Image modal 404:','${escHtml(encodeURI(item.path||''))}');this.alt='Image not found';this.style.padding='2rem';this.style.color='#666';" />
+             onerror="console.error('[MMA] Image modal 404:','${escHtml(resolveResourcePath(item.path||'', 'image-modal'))}');this.alt='Image not found';this.style.padding='2rem';this.style.color='#666';" />
       </div>
 
       <!-- Hints -->
@@ -1488,7 +1606,11 @@ window.showMemberModal = showMemberModal;
 //  BOOT
 // ──────────────────────────────────────────────
 (function init() {
-  const path = location.pathname;
-  updateNavHighlight(path);
-  navigate(path, false);
+  // [FIX] Convert the full current pathname (e.g. '/mma/resources') back
+  // to the short route key ('/resources') so the router can match it.
+  // On initial load this is '/mma/' → '/'
+  // On a deep-linked refresh at '/mma/resources' → '/resources'
+  const route = pathToRoute(location.pathname);
+  updateNavHighlight(route);
+  navigate(route, false);
 })();
