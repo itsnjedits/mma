@@ -644,8 +644,8 @@ async function loadResourceData() {
   showResourceSkeleton();
 
   const candidates = [
-    './resources.json',       // correct: relative to index.html at /mma/
-    './data/resources.json',  // fallback: alternate layout
+    './mma/resources.json',       // correct: relative to index.html at /mma/
+    './mma/data/resources.json',  // fallback: alternate layout
   ];
 
   let loaded = false;
