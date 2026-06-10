@@ -1,6 +1,6 @@
 [
   {
-    "name": "3Rd Sem",
+    "name": "3rd Sem",
     "type": "folder",
     "children": [
       {
@@ -10,57 +10,57 @@
           {
             "name": "726134781 Manufacturing Technology Vol 2 By P N Rao Compressed Part 1",
             "type": "pdf",
-            "path": "resources/3rd sem/books/726134781-Manufacturing-Technology-Vol-2-by-P-N-Rao_compressed part 1.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/books/726134781-Manufacturing-Technology-Vol-2-by-P-N-Rao_compressed%20part%201.pdf"
           },
           {
             "name": "726134781 Manufacturing Technology Vol 2 By P N Rao Compressed Part 2",
             "type": "pdf",
-            "path": "resources/3rd sem/books/726134781-Manufacturing-Technology-Vol-2-by-P-N-Rao_compressed part 2.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/books/726134781-Manufacturing-Technology-Vol-2-by-P-N-Rao_compressed%20part%202.pdf"
           },
           {
             "name": "A Textbook Of Manufacturing Technology Secondnbsped 9788131802441",
             "type": "pdf",
-            "path": "resources/3rd sem/books/a_textbook_of_manufacturing_technology_secondnbsped_9788131802441.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/books/a_textbook_of_manufacturing_technology_secondnbsped_9788131802441.pdf"
           },
           {
             "name": "B C Punmia Part 1",
             "type": "pdf",
-            "path": "resources/3rd sem/books/b c punmia part 1.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/books/b%20c%20punmia%20part%201.pdf"
           },
           {
             "name": "B C Punmia Part 2",
             "type": "pdf",
-            "path": "resources/3rd sem/books/b c punmia part 2.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/books/b%20c%20punmia%20part%202.pdf"
           },
           {
             "name": "B C Punmia Part 3",
             "type": "pdf",
-            "path": "resources/3rd sem/books/b c punmia part 3.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/books/b%20c%20punmia%20part%203.pdf"
           },
           {
             "name": "Engineering Materials (1)",
             "type": "pdf",
-            "path": "resources/3rd sem/books/ENGINEERING-MATERIALS (1).pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/books/ENGINEERING-MATERIALS%20%281%29.pdf"
           },
           {
             "name": "Maths Differential Equation",
             "type": "pdf",
-            "path": "resources/3rd sem/books/Maths - Differential equation.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/books/Maths%20-%20Differential%20equation.pdf"
           },
           {
             "name": "S S Rattan Theory Of Machines Mh (2014)",
             "type": "pdf",
-            "path": "resources/3rd sem/books/S S Rattan - Theory of Machines-MH (2014).pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/books/S%20S%20Rattan%20-%20Theory%20of%20Machines-MH%20%282014%29.pdf"
           },
           {
             "name": "Thermo",
             "type": "pdf",
-            "path": "resources/3rd sem/books/Thermo.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/books/Thermo.pdf"
           },
           {
             "name": "Thermo Temp",
             "type": "pdf",
-            "path": "resources/3rd sem/books/Thermo_temp.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/books/Thermo_temp.pdf"
           }
         ]
       },
@@ -71,62 +71,67 @@
           {
             "name": "Belt, Rope, Chain Drive Lectures",
             "type": "link",
-            "thumbnail": "resources/3rd sem/KOM/BELT, ROPE, CHAIN DRIVE LECTURES.jpg",
-            "txt": "resources/3rd sem/KOM/BELT, ROPE, CHAIN DRIVE LECTURES.txt"
+            "thumbnail": "https://raw.githubusercontent.com/itsnjedits/3sem/main/KOM/BELT%2C%20ROPE%2C%20CHAIN%20DRIVE%20LECTURES.jpg",
+            "txt": "https://raw.githubusercontent.com/itsnjedits/3sem/main/KOM/BELT%2C%20ROPE%2C%20CHAIN%20DRIVE%20LECTURES.txt",
+            "link": "https://www.youtube.com/playlist?list=PLtPuDMgNkebNQPuvnAgJ0HINjSI9SDMqc"
           },
           {
             "name": "Introduction Kom 1",
             "type": "pdf",
-            "path": "resources/3rd sem/KOM/Introduction-KOM 1.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/KOM/Introduction-KOM%201.pdf"
           },
           {
             "name": "Kinematics Of Machines (Complete Playlist)",
             "type": "link",
-            "thumbnail": "resources/3rd sem/KOM/Kinematics of Machines (Complete Playlist).jpg",
-            "txt": "resources/3rd sem/KOM/Kinematics of Machines (Complete Playlist).txt"
+            "thumbnail": "https://raw.githubusercontent.com/itsnjedits/3sem/main/KOM/Kinematics%20of%20Machines%20%28Complete%20Playlist%29.jpg",
+            "txt": "https://raw.githubusercontent.com/itsnjedits/3sem/main/KOM/Kinematics%20of%20Machines%20%28Complete%20Playlist%29.txt",
+            "link": "https://www.youtube.com/playlist?list=PLhSp9OSVmeyJSYB4gKPL8UrmB_a3kfHYI"
           },
           {
             "name": "Kom 3Rd Sem",
             "type": "pdf",
-            "path": "resources/3rd sem/KOM/KOM 3rd SEM.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/KOM/KOM%203rd%20SEM.pdf"
           },
           {
             "name": "Kom Dof 2",
             "type": "pdf",
-            "path": "resources/3rd sem/KOM/KOM DOF 2.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/KOM/KOM%20DOF%202.pdf"
           },
           {
             "name": "Lecture 3",
             "type": "pdf",
-            "path": "resources/3rd sem/KOM/Lecture - 3.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/KOM/Lecture%20-%203.pdf"
           },
           {
             "name": "Lecture 4",
             "type": "pdf",
-            "path": "resources/3rd sem/KOM/Lecture - 4.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/KOM/Lecture%20-%204.pdf"
           },
           {
             "name": "Theory Of Machines (Complete Playlist)",
             "type": "link",
-            "thumbnail": "resources/3rd sem/KOM/Theory of Machines (Complete Playlist).jpg",
-            "txt": "resources/3rd sem/KOM/Theory of Machines (Complete Playlist).txt"
-          },
-          {
-            "name": "Theory Of Machines I",
-            "type": "link",
-            "thumbnail": "resources/3rd sem/KOM/Theory of Machines I. Kinematic Analysis of Mechanisms.jpg",
-            "txt": "resources/3rd sem/KOM/Theory of Machines I. Kinematic Analysis of Mechanisms.txt"
+            "thumbnail": "https://raw.githubusercontent.com/itsnjedits/3sem/main/KOM/Theory%20of%20Machines%20%28Complete%20Playlist%29.jpg",
+            "txt": "https://raw.githubusercontent.com/itsnjedits/3sem/main/KOM/Theory%20of%20Machines%20%28Complete%20Playlist%29.txt",
+            "link": "https://www.youtube.com/playlist?list=PLhSp9OSVmeyI2PBr_MjBGJbIrqSk65oV_"
           },
           {
             "name": "Theory Of Machines I",
             "type": "image",
-            "path": "resources/3rd sem/KOM/Theory of Machines I.jpg"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/KOM/Theory%20of%20Machines%20I.jpg"
+          },
+          {
+            "name": "Theory Of Machines I",
+            "type": "link",
+            "thumbnail": "https://raw.githubusercontent.com/itsnjedits/3sem/main/KOM/Theory%20of%20Machines%20I.%20Kinematic%20Analysis%20of%20Mechanisms.jpg",
+            "txt": "https://raw.githubusercontent.com/itsnjedits/3sem/main/KOM/Theory%20of%20Machines%20I.%20Kinematic%20Analysis%20of%20Mechanisms.txt",
+            "link": "https://www.youtube.com/playlist?list=PL9wPcNdXzjFiHpY1nZQ1P3FWiRw6KHM5p"
           },
           {
             "name": "Velocity Analysis (Ic Method And Relative Velocity Method)",
             "type": "link",
-            "thumbnail": "resources/3rd sem/KOM/Velocity Analysis (IC Method and Relative Velocity Method).jpg",
-            "txt": "resources/3rd sem/KOM/Velocity Analysis (IC Method and Relative Velocity Method).txt"
+            "thumbnail": "https://raw.githubusercontent.com/itsnjedits/3sem/main/KOM/Velocity%20Analysis%20%28IC%20Method%20and%20Relative%20Velocity%20Method%29.jpg",
+            "txt": "https://raw.githubusercontent.com/itsnjedits/3sem/main/KOM/Velocity%20Analysis%20%28IC%20Method%20and%20Relative%20Velocity%20Method%29.txt",
+            "link": "https://www.youtube.com/playlist?list=PLhSp9OSVmeyKKS7M5Ze_FCoVy6aNoNsN8"
           }
         ]
       },
@@ -137,38 +142,39 @@
           {
             "name": "Heat Equation By Method Of Separation Of Variable Method",
             "type": "pdf",
-            "path": "resources/3rd sem/Maths/Heat Equation by method Of separation of variable Method.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/Maths/Heat%20Equation%20by%20method%20Of%20separation%20of%20variable%20Method.pdf"
           },
           {
             "name": "Maths Class Notes Mechanical",
             "type": "pdf",
-            "path": "resources/3rd sem/Maths/Maths class notes mechanical.pdf"
-          },
-          {
-            "name": "Maths Notes Sec B",
-            "type": "pdf",
-            "path": "resources/3rd sem/Maths/Maths Notes Sec B.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/Maths/Maths%20class%20notes%20mechanical.pdf"
           },
           {
             "name": "Maths Notes",
             "type": "pdf",
-            "path": "resources/3rd sem/Maths/Maths Notes.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/Maths/Maths%20Notes.pdf"
+          },
+          {
+            "name": "Maths Notes Sec B",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/Maths/Maths%20Notes%20Sec%20B.pdf"
           },
           {
             "name": "Numerical Analysis",
             "type": "link",
-            "thumbnail": "resources/3rd sem/Maths/Numerical Analysis.jpg",
-            "txt": "resources/3rd sem/Maths/Numerical Analysis.txt"
+            "thumbnail": "https://raw.githubusercontent.com/itsnjedits/3sem/main/Maths/Numerical%20Analysis.jpg",
+            "txt": "https://raw.githubusercontent.com/itsnjedits/3sem/main/Maths/Numerical%20Analysis.txt",
+            "link": "https://www.youtube.com/playlist?list=PLU6SqdYcYsfLrTna7UuaVfGZYkNo0cpVC"
           },
           {
             "name": "Solution Of Laplace Equation Using Seperation Of Variable Method",
             "type": "pdf",
-            "path": "resources/3rd sem/Maths/Solution_Of_Laplace_Equation_Using_Seperation_of_Variable_method.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/Maths/Solution_Of_Laplace_Equation_Using_Seperation_of_Variable_method.pdf"
           },
           {
             "name": "Wave Equation By Variable Separable Method",
             "type": "pdf",
-            "path": "resources/3rd sem/Maths/wave equation by variable separable method.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/Maths/wave%20equation%20by%20variable%20separable%20method.pdf"
           }
         ]
       },
@@ -179,190 +185,193 @@
           {
             "name": "Merge Mos L0 Syllabus 20210807 173121",
             "type": "pdf",
-            "path": "resources/3rd sem/MOS/-Merge-MOS_L0_syllabus_20210807_173121.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS/-Merge-MOS_L0_syllabus_20210807_173121.pdf"
           },
           {
             "name": "1",
             "type": "pdf",
-            "path": "resources/3rd sem/MOS/1. Simple Stresses and strains examples.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS/1.%20Simple%20Stresses%20and%20strains%20examples.pdf"
           },
           {
             "name": "10",
             "type": "pdf",
-            "path": "resources/3rd sem/MOS/10. Columns and Struts.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS/10.%20Columns%20and%20Struts.pdf"
           },
           {
             "name": "12",
             "type": "pdf",
-            "path": "resources/3rd sem/MOS/12. Double integration method examples.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS/12.%20Double%20integration%20method%20examples.pdf"
           },
           {
             "name": "3",
             "type": "pdf",
-            "path": "resources/3rd sem/MOS/3. Shear Force and bending moment diagrams examples.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS/3.%20Shear%20Force%20and%20bending%20moment%20diagrams%20examples.pdf"
           },
           {
             "name": "5",
             "type": "pdf",
-            "path": "resources/3rd sem/MOS/5. Bending stresses in beams.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS/5.%20Bending%20stresses%20in%20beams.pdf"
           },
           {
             "name": "8",
             "type": "pdf",
-            "path": "resources/3rd sem/MOS/8.Torsion of circular shafts Ex.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS/8.Torsion%20of%20circular%20shafts%20Ex.pdf"
           },
           {
             "name": "9",
             "type": "pdf",
-            "path": "resources/3rd sem/MOS/9. Principal stresses and strains examples.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS/9.%20Principal%20stresses%20and%20strains%20examples.pdf"
           },
           {
             "name": "Assignment Principal Stresses And Strains",
             "type": "pdf",
-            "path": "resources/3rd sem/MOS/Assignment Principal stresses and strains.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS/Assignment%20Principal%20stresses%20and%20strains.pdf"
           },
           {
             "name": "Assignment Torsion Of Circular Shafts",
             "type": "pdf",
-            "path": "resources/3rd sem/MOS/Assignment Torsion of circular shafts.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS/Assignment%20Torsion%20of%20circular%20shafts.pdf"
           },
           {
             "name": "Factor Of Safety",
             "type": "pdf",
-            "path": "resources/3rd sem/MOS/Factor of safety.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS/Factor%20of%20safety.pdf"
           },
           {
             "name": "Mohr Circle",
             "type": "link",
-            "thumbnail": "resources/3rd sem/MOS/Mohr circle.jpg",
-            "txt": "resources/3rd sem/MOS/Mohr circle.txt"
+            "thumbnail": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS/Mohr%20circle.jpg",
+            "txt": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS/Mohr%20circle.txt",
+            "link": "https://www.youtube.com/playlist?list=PLlAsaxNp1exM1XEgXKpx-U8NQ3KqGNGEA"
           },
           {
             "name": "Mos 3Rd Sem",
             "type": "pdf",
-            "path": "resources/3rd sem/MOS/MOS 3rd sem.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS/MOS%203rd%20sem.pdf"
           },
           {
             "name": "Mos Assignment (Book)",
             "type": "pdf",
-            "path": "resources/3rd sem/MOS/MOS Assignment (Book).pdf"
-          },
-          {
-            "name": "Mos Notes 8 10 25",
-            "type": "pdf",
-            "path": "resources/3rd sem/MOS/MOS Notes 8-10-25.pdf"
-          },
-          {
-            "name": "Mos Notes Ks",
-            "type": "pdf",
-            "path": "resources/3rd sem/MOS/MOS Notes KS.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS/MOS%20Assignment%20%28Book%29.pdf"
           },
           {
             "name": "Mos Notes",
             "type": "pdf",
-            "path": "resources/3rd sem/MOS/MOS notes.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS/MOS%20notes.pdf"
+          },
+          {
+            "name": "Mos Notes 8 10 25",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS/MOS%20Notes%208-10-25.pdf"
+          },
+          {
+            "name": "Mos Notes Ks",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS/MOS%20Notes%20KS.pdf"
           },
           {
             "name": "Mos L0 Syllabus",
             "type": "pdf",
-            "path": "resources/3rd sem/MOS/MOS_L0_syllabus.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS/MOS_L0_syllabus.pdf"
           },
           {
             "name": "Mos L10 Cg And Moi",
             "type": "pdf",
-            "path": "resources/3rd sem/MOS/MOS_L10_CG and MOI.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS/MOS_L10_CG%20and%20MOI.pdf"
           },
           {
             "name": "Mos L11 Cg And Moi Examples",
             "type": "pdf",
-            "path": "resources/3rd sem/MOS/MOS_L11_CG and MOI_Examples.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS/MOS_L11_CG%20and%20MOI_Examples.pdf"
           },
           {
             "name": "Mos L12 Bending Stresses",
             "type": "pdf",
-            "path": "resources/3rd sem/MOS/MOS_L12_Bending stresses.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS/MOS_L12_Bending%20stresses.pdf"
           },
           {
             "name": "Mos L13 Bending Stresses Examples",
             "type": "pdf",
-            "path": "resources/3rd sem/MOS/MOS_L13_Bending stresses_Examples.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS/MOS_L13_Bending%20stresses_Examples.pdf"
           },
           {
             "name": "Mos L17 1 Columns And Struts",
             "type": "pdf",
-            "path": "resources/3rd sem/MOS/MOS_L17-1_Columns and Struts.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS/MOS_L17-1_Columns%20and%20Struts.pdf"
           },
           {
             "name": "Mos L17 Columns And Struts",
             "type": "pdf",
-            "path": "resources/3rd sem/MOS/MOS_L17_Columns and Struts.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS/MOS_L17_Columns%20and%20Struts.pdf"
           },
           {
             "name": "Mos L19 Torsion Of Circular Shafts",
             "type": "pdf",
-            "path": "resources/3rd sem/MOS/MOS_L19_Torsion of circular shafts.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS/MOS_L19_Torsion%20of%20circular%20shafts.pdf"
           },
           {
             "name": "Mos L1 Introduction",
             "type": "pdf",
-            "path": "resources/3rd sem/MOS/MOS_L1_introduction.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS/MOS_L1_introduction.pdf"
           },
           {
             "name": "Mos L20 1 Elastic Constants Ex",
             "type": "pdf",
-            "path": "resources/3rd sem/MOS/MOS_L20-1_Elastic constants ex.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS/MOS_L20-1_Elastic%20constants%20ex.pdf"
           },
           {
             "name": "Mos L2 Simple Stresses And Strains",
             "type": "pdf",
-            "path": "resources/3rd sem/MOS/MOS_L2_Simple Stresses and strains.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS/MOS_L2_Simple%20Stresses%20and%20strains.pdf"
           },
           {
             "name": "Mos L3 Simple Stresses And Strains",
             "type": "pdf",
-            "path": "resources/3rd sem/MOS/MOS_L3_Simple Stresses and strains.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS/MOS_L3_Simple%20Stresses%20and%20strains.pdf"
           },
           {
             "name": "Mos L6",
             "type": "pdf",
-            "path": "resources/3rd sem/MOS/MOS_L6.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS/MOS_L6.pdf"
           },
           {
             "name": "Mos L7 Sfd And Bmd",
             "type": "pdf",
-            "path": "resources/3rd sem/MOS/MOS_L7_SFD and BMD.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS/MOS_L7_SFD%20and%20BMD.pdf"
           },
           {
             "name": "Mos L8 Sfd And Bmd",
             "type": "pdf",
-            "path": "resources/3rd sem/MOS/MOS_L8_SFD and BMD.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS/MOS_L8_SFD%20and%20BMD.pdf"
           },
           {
             "name": "Mos L9 Sfd And Bmd Examples",
             "type": "pdf",
-            "path": "resources/3rd sem/MOS/MOS_L9_SFD and BMD_Examples.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS/MOS_L9_SFD%20and%20BMD_Examples.pdf"
           },
           {
             "name": "Principal Stresses & Strains",
             "type": "link",
-            "thumbnail": "resources/3rd sem/MOS/Principal stresses & strains.jpg",
-            "txt": "resources/3rd sem/MOS/Principal stresses & strains.txt"
+            "thumbnail": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS/Principal%20stresses%20%26%20strains.jpg",
+            "txt": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS/Principal%20stresses%20%26%20strains.txt",
+            "link": "https://www.youtube.com/playlist?list=PL4K9r9dYCOorg2izEmfn_cLDmWqB-3oxV"
           },
           {
             "name": "Sfd & Bmd (Shear Force And Bending Moment Diagram)",
             "type": "link",
-            "thumbnail": "resources/3rd sem/MOS/SFD & BMD (Shear Force and bending moment diagram).jpg",
-            "txt": "resources/3rd sem/MOS/SFD & BMD (Shear Force and bending moment diagram).txt"
+            "thumbnail": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS/SFD%20%26%20BMD%20%28Shear%20Force%20and%20bending%20moment%20diagram%29.jpg",
+            "txt": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS/SFD%20%26%20BMD%20%28Shear%20Force%20and%20bending%20moment%20diagram%29.txt",
+            "link": "https://www.youtube.com/playlist?list=PL727BYvm8B1n-DA6Ruv-fYFpTr41Dkvm2"
           },
           {
             "name": "Theories Of Failure",
             "type": "pdf",
-            "path": "resources/3rd sem/MOS/Theories of failure.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS/Theories%20of%20failure.pdf"
           },
           {
             "name": "Thin Cyl1 Ppt",
             "type": "pdf",
-            "path": "resources/3rd sem/MOS/thin cyl1 ppt.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS/thin%20cyl1%20ppt.pdf"
           }
         ]
       },
@@ -373,68 +382,79 @@
           {
             "name": "Compression Test Mechanical Engineering",
             "type": "link",
-            "thumbnail": "resources/3rd sem/MOS practical/Compression Test - Mechanical Engineering.jpg",
-            "txt": "resources/3rd sem/MOS practical/Compression Test - Mechanical Engineering.txt"
+            "thumbnail": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS%20practical/Compression%20Test%20-%20Mechanical%20Engineering.jpg",
+            "txt": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS%20practical/Compression%20Test%20-%20Mechanical%20Engineering.txt",
+            "link": "https://youtu.be/WFOf4WwBH60"
           },
           {
             "name": "Compressive Strength Test Using Utm",
             "type": "link",
-            "thumbnail": "resources/3rd sem/MOS practical/Compressive strength test using UTM.jpg",
-            "txt": "resources/3rd sem/MOS practical/Compressive strength test using UTM.txt"
+            "thumbnail": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS%20practical/Compressive%20strength%20test%20using%20UTM.jpg",
+            "txt": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS%20practical/Compressive%20strength%20test%20using%20UTM.txt",
+            "link": "https://youtu.be/VGahH86LjX8"
           },
           {
             "name": "Digital Fatigue Testing Machine 2",
             "type": "link",
-            "thumbnail": "resources/3rd sem/MOS practical/DIGITAL FATIGUE TESTING MACHINE 2.jpg",
-            "txt": "resources/3rd sem/MOS practical/DIGITAL FATIGUE TESTING MACHINE 2.txt"
+            "thumbnail": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS%20practical/DIGITAL%20FATIGUE%20TESTING%20MACHINE%202.jpg",
+            "txt": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS%20practical/DIGITAL%20FATIGUE%20TESTING%20MACHINE%202.txt",
+            "link": "https://youtu.be/pLt-MaxKW0o"
           },
           {
             "name": "Impact Test Part 1 Izod Test",
             "type": "link",
-            "thumbnail": "resources/3rd sem/MOS practical/Impact Test - Part 1 - Izod test.jpg",
-            "txt": "resources/3rd sem/MOS practical/Impact Test - Part 1 - Izod test.txt"
+            "thumbnail": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS%20practical/Impact%20Test%20-%20Part%201%20-%20Izod%20test.jpg",
+            "txt": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS%20practical/Impact%20Test%20-%20Part%201%20-%20Izod%20test.txt",
+            "link": "https://youtu.be/HqD7KtvEgB4"
           },
           {
             "name": "Izod Impact Test Laboratory Practical Structural Mechanics",
             "type": "link",
-            "thumbnail": "resources/3rd sem/MOS practical/Izod Impact Test  Laboratory Practical  Structural Mechanics.jpg",
-            "txt": "resources/3rd sem/MOS practical/Izod Impact Test  Laboratory Practical  Structural Mechanics.txt"
+            "thumbnail": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS%20practical/Izod%20Impact%20Test%20%20Laboratory%20Practical%20%20Structural%20Mechanics.jpg",
+            "txt": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS%20practical/Izod%20Impact%20Test%20%20Laboratory%20Practical%20%20Structural%20Mechanics.txt",
+            "link": "https://youtu.be/DSr4G3l8e78"
           },
           {
             "name": "Materials Testing Lab(Mel203)Ktu(S3 Me) Bending Test On Wooden Beam",
             "type": "link",
-            "thumbnail": "resources/3rd sem/MOS practical/MATERIALS TESTING LAB(MEL203)KTU(S3 ME) - Bending test on wooden beam.jpg",
-            "txt": "resources/3rd sem/MOS practical/MATERIALS TESTING LAB(MEL203)KTU(S3 ME) - Bending test on wooden beam.txt"
+            "thumbnail": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS%20practical/MATERIALS%20TESTING%20LAB%28MEL203%29KTU%28S3%20ME%29%20-%20Bending%20test%20on%20wooden%20beam.jpg",
+            "txt": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS%20practical/MATERIALS%20TESTING%20LAB%28MEL203%29KTU%28S3%20ME%29%20-%20Bending%20test%20on%20wooden%20beam.txt",
+            "link": "https://youtu.be/WQFbb5bHRy8"
           },
           {
             "name": "Njs Torsion Testing Machine",
             "type": "link",
-            "thumbnail": "resources/3rd sem/MOS practical/NJS Torsion Testing Machine.jpg",
-            "txt": "resources/3rd sem/MOS practical/NJS Torsion Testing Machine.txt"
+            "thumbnail": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS%20practical/NJS%20Torsion%20Testing%20Machine.jpg",
+            "txt": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS%20practical/NJS%20Torsion%20Testing%20Machine.txt",
+            "link": "https://youtu.be/RPFrQ93OcKs"
           },
           {
             "name": "Rockwell Hardness Test",
             "type": "link",
-            "thumbnail": "resources/3rd sem/MOS practical/Rockwell hardness test.jpg",
-            "txt": "resources/3rd sem/MOS practical/Rockwell hardness test.txt"
+            "thumbnail": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS%20practical/Rockwell%20hardness%20test.jpg",
+            "txt": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS%20practical/Rockwell%20hardness%20test.txt",
+            "link": "https://youtu.be/w8-mAykM00I"
           },
           {
             "name": "Tensile Test And Bend Test On Utm(Universal Testing Machine) Learning Lounge",
             "type": "link",
-            "thumbnail": "resources/3rd sem/MOS practical/Tensile Test and Bend Test on UTM(Universal Testing Machine) LEARNING LOUNGE.jpg",
-            "txt": "resources/3rd sem/MOS practical/Tensile Test and Bend Test on UTM(Universal Testing Machine) LEARNING LOUNGE.txt"
+            "thumbnail": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS%20practical/Tensile%20Test%20and%20Bend%20Test%20on%20UTM%28Universal%20Testing%20Machine%29%20LEARNING%20LOUNGE.jpg",
+            "txt": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS%20practical/Tensile%20Test%20and%20Bend%20Test%20on%20UTM%28Universal%20Testing%20Machine%29%20LEARNING%20LOUNGE.txt",
+            "link": "https://youtu.be/YjOrDcjMduk"
           },
           {
             "name": "Universal Testing Machine (Utm) In Hindi (हिंदी) What Is Utm In Mechanical",
             "type": "link",
-            "thumbnail": "resources/3rd sem/MOS practical/Universal testing machine (UTM) in hindi (हिंदी)  what is UTM in mechanical.jpg",
-            "txt": "resources/3rd sem/MOS practical/Universal testing machine (UTM) in hindi (हिंदी)  what is UTM in mechanical.txt"
+            "thumbnail": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS%20practical/Universal%20testing%20machine%20%28UTM%29%20in%20hindi%20%28%E0%A4%B9%E0%A4%BF%E0%A4%82%E0%A4%A6%E0%A5%80%29%20%20what%20is%20UTM%20in%20mechanical.jpg",
+            "txt": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS%20practical/Universal%20testing%20machine%20%28UTM%29%20in%20hindi%20%28%E0%A4%B9%E0%A4%BF%E0%A4%82%E0%A4%A6%E0%A5%80%29%20%20what%20is%20UTM%20in%20mechanical.txt",
+            "link": "https://youtu.be/cC_C-3T1u_8"
           },
           {
             "name": "Utm Compression Test28 Days Quaring Block Compression Test Utm Machine",
             "type": "link",
-            "thumbnail": "resources/3rd sem/MOS practical/UTM compression test28 days quaring blockCompression testUTM machine.jpg",
-            "txt": "resources/3rd sem/MOS practical/UTM compression test28 days quaring blockCompression testUTM machine.txt"
+            "thumbnail": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS%20practical/UTM%20compression%20test28%20days%20quaring%20blockCompression%20testUTM%20machine.jpg",
+            "txt": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MOS%20practical/UTM%20compression%20test28%20days%20quaring%20blockCompression%20testUTM%20machine.txt",
+            "link": "https://youtu.be/gFhrCe2LMow"
           }
         ]
       },
@@ -445,28 +465,29 @@
           {
             "name": "Material Science (Gear Institute)",
             "type": "link",
-            "thumbnail": "resources/3rd sem/MT/Material science (gear Institute).jpg",
-            "txt": "resources/3rd sem/MT/Material science (gear Institute).txt"
+            "thumbnail": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MT/Material%20science%20%28gear%20Institute%29.jpg",
+            "txt": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MT/Material%20science%20%28gear%20Institute%29.txt",
+            "link": "https://www.youtube.com/playlist?list=PL727BYvm8B1ktF49TnajUYqZTvMd8R6bB"
           },
           {
             "name": "Mt 3Rd Sem",
             "type": "pdf",
-            "path": "resources/3rd sem/MT/MT 3rd Sem.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MT/MT%203rd%20Sem.pdf"
           },
           {
             "name": "Unit 1 Introduction & Crystalline Nature Of Materials",
             "type": "pdf",
-            "path": "resources/3rd sem/MT/UNIT-1 Introduction & Crystalline nature of Materials.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MT/UNIT-1%20Introduction%20%26%20Crystalline%20nature%20of%20Materials.pdf"
           },
           {
             "name": "Unit 2 Plastics Deformation Of Metals And Alloys",
             "type": "pdf",
-            "path": "resources/3rd sem/MT/UNIT-2 Plastics Deformation of Metals and Alloys.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MT/UNIT-2%20Plastics%20Deformation%20of%20Metals%20and%20Alloys.pdf"
           },
           {
             "name": "Unit 3 Iron Carbon Diagam & Heat Treatment",
             "type": "pdf",
-            "path": "resources/3rd sem/MT/UNIT-3 Iron Carbon Diagam & Heat Treatment.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/MT/UNIT-3%20Iron%20Carbon%20Diagam%20%26%20Heat%20Treatment.pdf"
           }
         ]
       },
@@ -477,67 +498,67 @@
           {
             "name": "Capstan And Turret",
             "type": "pdf",
-            "path": "resources/3rd sem/PMT/capstan-and-turret.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/PMT/capstan-and-turret.pdf"
           },
           {
             "name": "Chapter 4 Welding",
             "type": "pdf",
-            "path": "resources/3rd sem/PMT/CHAPTER 4 welding.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/PMT/CHAPTER%204%20welding.pdf"
           },
           {
             "name": "Lathe Machine",
             "type": "pdf",
-            "path": "resources/3rd sem/PMT/lathe-machine.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/PMT/lathe-machine.pdf"
           },
           {
             "name": "Milling Machine",
             "type": "pdf",
-            "path": "resources/3rd sem/PMT/Milling machine.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/PMT/Milling%20machine.pdf"
           },
           {
             "name": "Module 4",
             "type": "pdf",
-            "path": "resources/3rd sem/PMT/Module 4.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/PMT/Module%204.pdf"
           },
           {
             "name": "Module 5 (1)",
             "type": "pdf",
-            "path": "resources/3rd sem/PMT/Module-5 (1).pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/PMT/Module-5%20%281%29.pdf"
           },
           {
             "name": "Pending Pmt Class Notes",
             "type": "pdf",
-            "path": "resources/3rd sem/PMT/Pending PMT class notes.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/PMT/Pending%20PMT%20class%20notes.pdf"
           },
           {
             "name": "Pmt Last Year Paper",
             "type": "pdf",
-            "path": "resources/3rd sem/PMT/PMT last year paper.pdf"
-          },
-          {
-            "name": "Pmt Notes 6 10 25",
-            "type": "pdf",
-            "path": "resources/3rd sem/PMT/PMT Notes 6-10-25.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/PMT/PMT%20last%20year%20paper.pdf"
           },
           {
             "name": "Pmt Notes",
             "type": "pdf",
-            "path": "resources/3rd sem/PMT/PMT Notes.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/PMT/PMT%20Notes.pdf"
+          },
+          {
+            "name": "Pmt Notes 6 10 25",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/PMT/PMT%20Notes%206-10-25.pdf"
           },
           {
             "name": "Shaper & Planer",
             "type": "pdf",
-            "path": "resources/3rd sem/PMT/Shaper & Planer.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/PMT/Shaper%20%26%20Planer.pdf"
           },
           {
             "name": "Tamer Samir Mahmoud Abdul Majeed 2 Introduction To Cnc",
             "type": "pdf",
-            "path": "resources/3rd sem/PMT/Tamer Samir Mahmoud Abdul Majeed_2- Introduction to CNC.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/PMT/Tamer%20Samir%20Mahmoud%20Abdul%20Majeed_2-%20Introduction%20to%20CNC.pdf"
           },
           {
             "name": "Unit 3 2",
             "type": "pdf",
-            "path": "resources/3rd sem/PMT/UNIT-3-2.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/PMT/UNIT-3-2.pdf"
           }
         ]
       },
@@ -548,97 +569,97 @@
           {
             "name": "3Rd Sem Mid Term Pyqs",
             "type": "pdf",
-            "path": "resources/3rd sem/PYQs/3rd sem mid-term pyqs.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/PYQs/3rd%20sem%20mid-term%20pyqs.pdf"
           },
           {
             "name": "3Sem Mid Term Watermark",
             "type": "pdf",
-            "path": "resources/3rd sem/PYQs/3SemMidTerm_watermark.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/PYQs/3SemMidTerm_watermark.pdf"
           },
           {
             "name": "All Sub Pyq B 2025 By Nr Boss",
             "type": "pdf",
-            "path": "resources/3rd sem/PYQs/All sub pyq B-2025 by NR BOSS.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/PYQs/All%20sub%20pyq%20B-2025%20by%20NR%20BOSS.pdf"
           },
           {
             "name": "Doc Scanner 21 Sept 2025 6 09 Pm",
             "type": "pdf",
-            "path": "resources/3rd sem/PYQs/DocScanner 21 Sept 2025 6-09 pm.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/PYQs/DocScanner%2021%20Sept%202025%206-09%20pm.pdf"
           },
           {
             "name": "Iii Sem Paper 2024 Mechanical",
             "type": "pdf",
-            "path": "resources/3rd sem/PYQs/III Sem Paper 2024 Mechanical.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/PYQs/III%20Sem%20Paper%202024%20Mechanical.pdf"
           },
           {
             "name": "Iiird Sem Mt I Paper",
             "type": "pdf",
-            "path": "resources/3rd sem/PYQs/IIIrd Sem MT-I Paper.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/PYQs/IIIrd%20Sem%20MT-I%20Paper.pdf"
           },
           {
             "name": "Iiird Sem Mt Ii Paper",
             "type": "pdf",
-            "path": "resources/3rd sem/PYQs/IIIrd Sem MT-II Paper .pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/PYQs/IIIrd%20Sem%20MT-II%20Paper%20.pdf"
           },
           {
             "name": "Img 20251122 132413",
             "type": "pdf",
-            "path": "resources/3rd sem/PYQs/IMG_20251122_132413.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/PYQs/IMG_20251122_132413.pdf"
           },
           {
             "name": "Kom Papers Watermark",
             "type": "pdf",
-            "path": "resources/3rd sem/PYQs/KOM papers_watermark.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/PYQs/KOM%20papers_watermark.pdf"
           },
           {
             "name": "M3",
             "type": "pdf",
-            "path": "resources/3rd sem/PYQs/M3.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/PYQs/M3.pdf"
           },
           {
             "name": "Mech 24 25 Endsem Question Papers",
             "type": "pdf",
-            "path": "resources/3rd sem/PYQs/Mech 24-25 endsem question papers.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/PYQs/Mech%2024-25%20endsem%20question%20papers.pdf"
           },
           {
             "name": "Mech End Sem Qp'S 2025 26",
             "type": "pdf",
-            "path": "resources/3rd sem/PYQs/Mech End sem QP's 2025-26.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/PYQs/Mech%20End%20sem%20QP%27s%202025-26.pdf"
           },
           {
             "name": "Mechanical Iiird Sem Pyq'S",
             "type": "pdf",
-            "path": "resources/3rd sem/PYQs/Mechanical IIIrd Sem PYQ's.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/PYQs/Mechanical%20IIIrd%20Sem%20PYQ%27s.pdf"
           },
           {
             "name": "Mechanical Papers 2023",
             "type": "pdf",
-            "path": "resources/3rd sem/PYQs/mechanical papers 2023.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/PYQs/mechanical%20papers%202023.pdf"
           },
           {
             "name": "Mmi Papers Watermark",
             "type": "pdf",
-            "path": "resources/3rd sem/PYQs/MMI Papers_watermark.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/PYQs/MMI%20Papers_watermark.pdf"
           },
           {
             "name": "Mos Papers Watermark",
             "type": "pdf",
-            "path": "resources/3rd sem/PYQs/MOS Papers_watermark.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/PYQs/MOS%20Papers_watermark.pdf"
           },
           {
             "name": "Mt Previous Year Papers Watermark",
             "type": "pdf",
-            "path": "resources/3rd sem/PYQs/MT previous Year Papers_watermark.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/PYQs/MT%20previous%20Year%20Papers_watermark.pdf"
           },
           {
             "name": "New Doc 09 01 2024 21",
             "type": "pdf",
-            "path": "resources/3rd sem/PYQs/New Doc 09-01-2024 21.41.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/PYQs/New%20Doc%2009-01-2024%2021.41.pdf"
           },
           {
             "name": "Pyq 2024 25",
             "type": "pdf",
-            "path": "resources/3rd sem/PYQs/PYQ 2024-25.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/PYQs/PYQ%202024-25.pdf"
           }
         ]
       },
@@ -649,94 +670,94 @@
           {
             "name": "2Nd Law Of Thermodynamics",
             "type": "pdf",
-            "path": "resources/3rd sem/Thermo/2nd law of thermodynamics .pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/Thermo/2nd%20law%20of%20thermodynamics%20.pdf"
           },
           {
             "name": "Assignment Engineering Thermodynamics 25 26",
             "type": "pdf",
-            "path": "resources/3rd sem/Thermo/Assignment Engineering thermodynamics 25-26.docx.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/Thermo/Assignment%20Engineering%20thermodynamics%2025-26.docx.pdf"
           },
           {
             "name": "Engineering Thermodynamics 231028 095607",
             "type": "pdf",
-            "path": "resources/3rd sem/Thermo/Engineering Thermodynamics_231028_095607.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/Thermo/Engineering%20Thermodynamics_231028_095607.pdf"
           },
           {
             "name": "Entropy",
             "type": "pdf",
-            "path": "resources/3rd sem/Thermo/entropy.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/Thermo/entropy.pdf"
           },
           {
             "name": "Et Notes Extra Class",
             "type": "pdf",
-            "path": "resources/3rd sem/Thermo/ET notes extra class.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/Thermo/ET%20notes%20extra%20class.pdf"
           },
           {
             "name": "Exergy",
             "type": "pdf",
-            "path": "resources/3rd sem/Thermo/exergy.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/Thermo/exergy.pdf"
           },
           {
             "name": "Numericals Thermodynamics Of Combustion",
             "type": "pdf",
-            "path": "resources/3rd sem/Thermo/Numericals_thermodynamics of combustion .pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/Thermo/Numericals_thermodynamics%20of%20combustion%20.pdf"
           },
           {
             "name": "Properties Of Gases And Gas Mixtures",
             "type": "pdf",
-            "path": "resources/3rd sem/Thermo/properties of gases and gas mixtures.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/Thermo/properties%20of%20gases%20and%20gas%20mixtures.pdf"
           },
           {
             "name": "Reciprocating Air Compressor",
             "type": "pdf",
-            "path": "resources/3rd sem/Thermo/reciprocating air compressor .pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/Thermo/reciprocating%20air%20compressor%20.pdf"
           },
           {
             "name": "Steady And Unsteady Flow",
             "type": "pdf",
-            "path": "resources/3rd sem/Thermo/steady and unsteady flow.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/Thermo/steady%20and%20unsteady%20flow.pdf"
           },
           {
             "name": "Thermal Work",
             "type": "pdf",
-            "path": "resources/3rd sem/Thermo/thermal work.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/Thermo/thermal%20work.pdf"
           },
           {
             "name": "Thermodynamics Notes",
             "type": "pdf",
-            "path": "resources/3rd sem/Thermo/thermodynamics notes .pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/Thermo/thermodynamics%20notes%20.pdf"
           },
           {
             "name": "Thermodynamics Of Combustion",
             "type": "pdf",
-            "path": "resources/3rd sem/Thermo/Thermodynamics of combustion .pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/Thermo/Thermodynamics%20of%20Combustion.pdf"
           },
           {
             "name": "Thermodynamics Of Combustion",
             "type": "pdf",
-            "path": "resources/3rd sem/Thermo/Thermodynamics of Combustion.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/Thermo/Thermodynamics%20of%20combustion%20.pdf"
           },
           {
             "name": "Thermodynamics Relations",
             "type": "pdf",
-            "path": "resources/3rd sem/Thermo/Thermodynamics relations.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/Thermo/Thermodynamics%20relations.pdf"
           },
           {
             "name": "Tutorial Sheet Second Law Of Thermodynamics",
             "type": "pdf",
-            "path": "resources/3rd sem/Thermo/tutorial sheet_Second law of thermodynamics.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/Thermo/tutorial%20sheet_Second%20law%20of%20thermodynamics.pdf"
           },
           {
             "name": "Tutorial Sheet Unsteady Flow",
             "type": "pdf",
-            "path": "resources/3rd sem/Thermo/tutorial sheet_Unsteady flow.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/3sem/main/Thermo/tutorial%20sheet_Unsteady%20flow.pdf"
           }
         ]
       }
     ]
   },
   {
-    "name": "4Th Sem",
+    "name": "4th Sem",
     "type": "folder",
     "children": [
       {
@@ -746,70 +767,73 @@
           {
             "name": "Copy Of Fluid Mechanics & Hydraulic Machines",
             "type": "pdf",
-            "path": "resources/4th sem/FM/Copy of Fluid Mechanics & Hydraulic Machines.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/FM/Copy%20of%20Fluid%20Mechanics%20%26%20Hydraulic%20Machines.pdf"
           },
           {
             "name": "Flow In Pipes",
             "type": "link",
-            "thumbnail": "resources/4th sem/FM/Flow in pipes.jpg",
-            "txt": "resources/4th sem/FM/Flow in pipes.txt"
+            "thumbnail": "https://raw.githubusercontent.com/itsnjedits/4sem/main/FM/Flow%20in%20pipes.jpg",
+            "txt": "https://raw.githubusercontent.com/itsnjedits/4sem/main/FM/Flow%20in%20pipes.txt",
+            "link": "https://www.youtube.com/playlist?list=PL727BYvm8B1lxNR6uFpqNq81-_9IgnJNQ"
           },
           {
             "name": "Fluid Mechanics (Gear Institute)",
             "type": "link",
-            "thumbnail": "resources/4th sem/FM/Fluid mechanics (gear Institute).jpg",
-            "txt": "resources/4th sem/FM/Fluid mechanics (gear Institute).txt"
+            "thumbnail": "https://raw.githubusercontent.com/itsnjedits/4sem/main/FM/Fluid%20mechanics%20%28gear%20Institute%29.jpg",
+            "txt": "https://raw.githubusercontent.com/itsnjedits/4sem/main/FM/Fluid%20mechanics%20%28gear%20Institute%29.txt",
+            "link": "https://www.youtube.com/playlist?list=PL727BYvm8B1mINwfNNRyd1iDWmImB_Xdz"
           },
           {
             "name": "Fluid Mechanics (Hindi)",
             "type": "link",
-            "thumbnail": "resources/4th sem/FM/Fluid Mechanics (Hindi).jpg",
-            "txt": "resources/4th sem/FM/Fluid Mechanics (Hindi).txt"
+            "thumbnail": "https://raw.githubusercontent.com/itsnjedits/4sem/main/FM/Fluid%20Mechanics%20%28Hindi%29.jpg",
+            "txt": "https://raw.githubusercontent.com/itsnjedits/4sem/main/FM/Fluid%20Mechanics%20%28Hindi%29.txt",
+            "link": "https://www.youtube.com/playlist?list=PLOKNrldi7ClhMMDSfsvL67nTzrT7q-38S"
           },
           {
             "name": "Fluid Mechanics 1 Complete Chapter 3",
             "type": "pdf",
-            "path": "resources/4th sem/FM/fluid mechanics 1 complete chapter 3.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/FM/fluid%20mechanics%201%20complete%20chapter%203.pdf"
           },
           {
             "name": "Fluid Mechanics 1 Complete Chapter 4",
             "type": "pdf",
-            "path": "resources/4th sem/FM/fluid mechanics 1 complete chapter 4.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/FM/fluid%20mechanics%201%20complete%20chapter%204.pdf"
           },
           {
             "name": "Fluid Mechanics 1 Complete Chapter 5",
             "type": "pdf",
-            "path": "resources/4th sem/FM/fluid mechanics 1 complete chapter 5.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/FM/fluid%20mechanics%201%20complete%20chapter%205.pdf"
           },
           {
             "name": "Fluid Mechanics Unit 6 8 250320 191252",
             "type": "pdf",
-            "path": "resources/4th sem/FM/fluid mechanics unit 6-8_250320_191252.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/FM/fluid%20mechanics%20unit%206-8_250320_191252.pdf"
           },
           {
             "name": "Fluid Pipe Flow 260313 110741",
             "type": "pdf",
-            "path": "resources/4th sem/FM/fluid pipe flow_260313_110741.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/FM/fluid%20pipe%20flow_260313_110741.pdf"
           },
           {
             "name": "Fm Notes 1",
             "type": "pdf",
-            "path": "resources/4th sem/FM/FM notes 1.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/FM/FM%20notes%201.pdf"
           },
           {
             "name": "Introduction To Fluid Mechanics And Fluid Machines By S K Som, Gautam Biswas, Suman Chakraborty (Z Lib",
             "type": "pdf",
-            "path": "resources/4th sem/FM/Introduction To Fluid Mechanics And Fluid Machines by S K Som, Gautam Biswas, Suman Chakraborty (z-lib.org).pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/FM/Introduction%20To%20Fluid%20Mechanics%20And%20Fluid%20Machines%20by%20S%20K%20Som%2C%20Gautam%20Biswas%2C%20Suman%20Chakraborty%20%28z-lib.org%29.pdf"
           },
           {
             "name": "Laminar Flow",
             "type": "pdf",
-            "path": "resources/4th sem/FM/LAMINAR FLOW.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/FM/LAMINAR%20FLOW.pdf"
           },
           {
             "name": "Whats App Image 2026 01 06 At 10.11",
             "type": "image",
-            "path": "resources/4th sem/FM/WhatsApp Image 2026-01-06 at 10.11.23 AM.jpeg"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/FM/WhatsApp%20Image%202026-01-06%20at%2010.11.23%20AM.jpeg"
           }
         ]
       },
@@ -820,177 +844,177 @@
           {
             "name": "Adobe Scan 07 Apr 2025",
             "type": "pdf",
-            "path": "resources/4th sem/Industrial engineering/Adobe Scan 07 Apr 2025.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/Industrial%20engineering/Adobe%20Scan%2007%20Apr%202025.pdf"
           },
           {
             "name": "U 2 S1 Elements Of Costing",
             "type": "pdf",
-            "path": "resources/4th sem/Industrial engineering/U 2 S1 Elements of costing.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/Industrial%20engineering/U%202%20S1%20Elements%20of%20costing.pdf"
           },
           {
             "name": "U 2 S2 Component Of Cost",
             "type": "pdf",
-            "path": "resources/4th sem/Industrial engineering/U 2 S2 Component of cost.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/Industrial%20engineering/U%202%20S2%20Component%20of%20cost.pdf"
           },
           {
             "name": "U1 4 Make Or Buy Decisions Me653Dpcps",
             "type": "ppt",
-            "path": "resources/4th sem/Industrial engineering/U1 _ 4 - Make or Buy Decisions ME653DPCPS.pptx"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/Industrial%20engineering/U1%20_%204%20-%20Make%20or%20Buy%20Decisions%20ME653DPCPS.pptx"
           },
           {
             "name": "U1 S1 Theory Of Demand And Supply",
             "type": "pdf",
-            "path": "resources/4th sem/Industrial engineering/U1 S1 Theory of Demand and Supply.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/Industrial%20engineering/U1%20S1%20Theory%20of%20Demand%20and%20Supply.pdf"
           },
           {
             "name": "U1 S2 Law Of Demand And Demand Elasticities",
             "type": "ppt",
-            "path": "resources/4th sem/Industrial engineering/U1 S2 Law of demand and Demand Elasticities.pptx"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/Industrial%20engineering/U1%20S2%20Law%20of%20demand%20and%20Demand%20Elasticities.pptx"
           },
           {
             "name": "U1 S3 Theory Of Supply And Supply Elasticity",
             "type": "ppt",
-            "path": "resources/4th sem/Industrial engineering/U1 S3 Theory of Supply and Supply Elasticity.pptx"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/Industrial%20engineering/U1%20S3%20Theory%20of%20Supply%20and%20Supply%20Elasticity.pptx"
           },
           {
             "name": "U1 S4 Types Of Markets And Market Structure",
             "type": "ppt",
-            "path": "resources/4th sem/Industrial engineering/U1 S4 Types of Markets and Market Structure.pptx"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/Industrial%20engineering/U1%20S4%20Types%20of%20Markets%20and%20Market%20Structure.pptx"
           },
           {
             "name": "U1 S5 Demand Forecasting Techniques",
             "type": "ppt",
-            "path": "resources/4th sem/Industrial engineering/U1 S5 Demand Forecasting Techniques.pptx"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/Industrial%20engineering/U1%20S5%20Demand%20Forecasting%20Techniques.pptx"
           },
           {
             "name": "U2 S2 Component Of Cost",
             "type": "ppt",
-            "path": "resources/4th sem/Industrial engineering/U2 S2 Component of cost.pptx"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/Industrial%20engineering/U2%20S2%20Component%20of%20cost.pptx"
           },
           {
             "name": "U2 S3 Opkhanna Methods Of Depreciation 02 17 2025 21",
             "type": "pdf",
-            "path": "resources/4th sem/Industrial engineering/U2 S3_OPKhanna_ Methods of Depreciation _02-17-2025 21.10.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/Industrial%20engineering/U2%20S3_OPKhanna_%20Methods%20of%20Depreciation%20_02-17-2025%2021.10.pdf"
           },
           {
             "name": "U2 S4 Standard Costing",
             "type": "ppt",
-            "path": "resources/4th sem/Industrial engineering/U2 S4 Standard Costing.pptx"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/Industrial%20engineering/U2%20S4%20Standard%20Costing.pptx"
           },
           {
             "name": "U2 S6 Depreciation",
             "type": "ppt",
-            "path": "resources/4th sem/Industrial engineering/U2 S6 Depreciation.pptx"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/Industrial%20engineering/U2%20S6%20Depreciation.pptx"
           },
           {
             "name": "U2 S7 Budget And Budgetary Control",
             "type": "ppt",
-            "path": "resources/4th sem/Industrial engineering/U2 S7 Budget and Budgetary Control.pptx"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/Industrial%20engineering/U2%20S7%20Budget%20and%20Budgetary%20Control.pptx"
           },
           {
             "name": "U3 S1 Value Analysis And Value Engineering",
             "type": "ppt",
-            "path": "resources/4th sem/Industrial engineering/U3 S1 value Analysis and Value Engineering.pptx"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/Industrial%20engineering/U3%20S1%20value%20Analysis%20and%20Value%20Engineering.pptx"
           },
           {
             "name": "U3 S2 Product Development And Product Life Cycle",
             "type": "ppt",
-            "path": "resources/4th sem/Industrial engineering/U3 S2 Product Development and Product Life Cycle.pptx"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/Industrial%20engineering/U3%20S2%20Product%20Development%20and%20Product%20Life%20Cycle.pptx"
           },
           {
             "name": "U3 S3 Simplificaton, Standardisation And Diversification",
             "type": "ppt",
-            "path": "resources/4th sem/Industrial engineering/U3 S3 Simplificaton, Standardisation and Diversification.pptx"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/Industrial%20engineering/U3%20S3%20Simplificaton%2C%20Standardisation%20and%20Diversification.pptx"
           },
           {
             "name": "U3 S4 Reliability And Maintenance",
             "type": "ppt",
-            "path": "resources/4th sem/Industrial engineering/U3 S4 Reliability and Maintenance.pptx"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/Industrial%20engineering/U3%20S4%20Reliability%20and%20Maintenance.pptx"
           },
           {
             "name": "U4 S1 Work Study Method Study",
             "type": "pdf",
-            "path": "resources/4th sem/Industrial engineering/U4 S1 Work Study Method Study.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/Industrial%20engineering/U4%20S1%20Work%20Study%20Method%20Study.pdf"
           },
           {
             "name": "U4 S1 Work Study Method Study",
             "type": "ppt",
-            "path": "resources/4th sem/Industrial engineering/U4 S1 Work Study Method Study.pptx"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/Industrial%20engineering/U4%20S1%20Work%20Study%20Method%20Study.pptx"
           },
           {
             "name": "U4 S2 Micro And Memo Motion Study",
             "type": "pdf",
-            "path": "resources/4th sem/Industrial engineering/U4 S2 Micro and Memo Motion Study.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/Industrial%20engineering/U4%20S2%20Micro%20and%20Memo%20Motion%20Study.pdf"
           },
           {
             "name": "U4 S3 Work Measurement",
             "type": "pdf",
-            "path": "resources/4th sem/Industrial engineering/U4 S3 Work Measurement.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/Industrial%20engineering/U4%20S3%20Work%20Measurement.pdf"
           },
           {
             "name": "U4 S4 Work Sampling, Synthetic Data And Pre Determined Motion Time Standards",
             "type": "pdf",
-            "path": "resources/4th sem/Industrial engineering/U4 S4 Work Sampling, Synthetic Data and Pre-determined motion time standards.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/Industrial%20engineering/U4%20S4%20Work%20Sampling%2C%20Synthetic%20Data%20and%20Pre-determined%20motion%20time%20standards.pdf"
           },
           {
             "name": "U5 S1 Job Evaluation And Merit Rating",
             "type": "pdf",
-            "path": "resources/4th sem/Industrial engineering/U5 S1 Job evaluation and Merit Rating.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/Industrial%20engineering/U5%20S1%20Job%20evaluation%20and%20Merit%20Rating.pdf"
           },
           {
             "name": "U5 S2 Wage Payment And Methods Of Wage Payment",
             "type": "pdf",
-            "path": "resources/4th sem/Industrial engineering/U5 S2 Wage payment and methods of wage payment.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/Industrial%20engineering/U5%20S2%20Wage%20payment%20and%20methods%20of%20wage%20payment.pdf"
           },
           {
             "name": "U5 S3 Incentive Schemes",
             "type": "pdf",
-            "path": "resources/4th sem/Industrial engineering/U5 S3 Incentive schemes.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/Industrial%20engineering/U5%20S3%20Incentive%20schemes.pdf"
           },
           {
             "name": "U5 S4 Industrial Ralations",
             "type": "pdf",
-            "path": "resources/4th sem/Industrial engineering/U5 S4 Industrial ralations.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/Industrial%20engineering/U5%20S4%20Industrial%20ralations.pdf"
           },
           {
             "name": "U5 S5 Industrial Dispute And Methods Of Settling Them",
             "type": "ppt",
-            "path": "resources/4th sem/Industrial engineering/U5 S5 Industrial dispute and methods of settling them.pptx"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/Industrial%20engineering/U5%20S5%20Industrial%20dispute%20and%20methods%20of%20settling%20them.pptx"
           },
           {
             "name": "U5 S6 Workers Participaion",
             "type": "pdf",
-            "path": "resources/4th sem/Industrial engineering/U5 S6 Workers participaion.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/Industrial%20engineering/U5%20S6%20Workers%20participaion.pdf"
           },
           {
             "name": "U5 S7 Legal Legilation And Acts",
             "type": "pdf",
-            "path": "resources/4th sem/Industrial engineering/U5 S7 Legal legilation and Acts.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/Industrial%20engineering/U5%20S7%20Legal%20legilation%20and%20Acts.pdf"
           },
           {
             "name": "U5 S8 Labour Welfare And Safety",
             "type": "pdf",
-            "path": "resources/4th sem/Industrial engineering/U5 S8 Labour welfare and Safety.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/Industrial%20engineering/U5%20S8%20Labour%20welfare%20and%20Safety.pdf"
           },
           {
             "name": "U5 S9 Pollution And Waste Management",
             "type": "pdf",
-            "path": "resources/4th sem/Industrial engineering/U5 S9 Pollution and Waste Management.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/Industrial%20engineering/U5%20S9%20Pollution%20and%20Waste%20Management.pdf"
           },
           {
             "name": "Uit5",
             "type": "pdf",
-            "path": "resources/4th sem/Industrial engineering/uit5.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/Industrial%20engineering/uit5.pdf"
           },
           {
             "name": "Unit 4 Productivity",
             "type": "pdf",
-            "path": "resources/4th sem/Industrial engineering/Unit-4_Productivity.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/Industrial%20engineering/Unit-4_Productivity.pdf"
           },
           {
             "name": "Whats App Image 2026 01 06 At 10.11",
             "type": "image",
-            "path": "resources/4th sem/Industrial engineering/WhatsApp Image 2026-01-06 at 10.11.16 AM.jpeg"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/Industrial%20engineering/WhatsApp%20Image%202026-01-06%20at%2010.11.16%20AM.jpeg"
           }
         ]
       },
@@ -1001,114 +1025,121 @@
           {
             "name": "571824888 Theory Of Machines S S Ratan",
             "type": "pdf",
-            "path": "resources/4th sem/KDM/571824888-Theory-of-Machines-s-s-Ratan.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/KDM/571824888-Theory-of-Machines-s-s-Ratan.pdf"
           },
           {
             "name": "Brake",
             "type": "pdf",
-            "path": "resources/4th sem/KDM/Brake.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/KDM/Brake.pdf"
+          },
+          {
+            "name": "Brake Assignment Kdm",
+            "type": "docx",
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/KDM/Brake%20Assignment%20KDM.docx"
           },
           {
             "name": "Cam And Follower",
             "type": "pdf",
-            "path": "resources/4th sem/KDM/CAM and follower.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/KDM/CAM%20and%20follower.pdf"
           },
           {
             "name": "Cam Profile",
             "type": "link",
-            "thumbnail": "resources/4th sem/KDM/Cam profile.jpg",
-            "txt": "resources/4th sem/KDM/Cam profile.txt"
+            "thumbnail": "https://raw.githubusercontent.com/itsnjedits/4sem/main/KDM/Cam%20profile.jpg",
+            "txt": "https://raw.githubusercontent.com/itsnjedits/4sem/main/KDM/Cam%20profile.txt",
+            "link": "https://www.youtube.com/playlist?list=PL03n4PEXL4sZyEMmPgeMaTWSZ16fe1Rxy"
           },
           {
             "name": "Dynamometer",
             "type": "pdf",
-            "path": "resources/4th sem/KDM/Dynamometer.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/KDM/Dynamometer.pdf"
           },
           {
             "name": "Dynamometers",
             "type": "pdf",
-            "path": "resources/4th sem/KDM/Dynamometers.pdf"
-          },
-          {
-            "name": "Flywheel & Governors Tom For Gate, Ssc Je, Ese, Ies, Psu",
-            "type": "link",
-            "thumbnail": "resources/4th sem/KDM/Flywheel & Governors - TOM For GATE, SSC JE, ESE, IES, PSU.jpg",
-            "txt": "resources/4th sem/KDM/Flywheel & Governors - TOM For GATE, SSC JE, ESE, IES, PSU.txt"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/KDM/Dynamometers.pdf"
           },
           {
             "name": "Flywheel",
             "type": "pdf",
-            "path": "resources/4th sem/KDM/flywheel.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/KDM/flywheel.pdf"
+          },
+          {
+            "name": "Flywheel & Governors Tom For Gate, Ssc Je, Ese, Ies, Psu",
+            "type": "link",
+            "thumbnail": "https://raw.githubusercontent.com/itsnjedits/4sem/main/KDM/Flywheel%20%26%20Governors%20-%20TOM%20For%20GATE%2C%20SSC%20JE%2C%20ESE%2C%20IES%2C%20PSU.jpg",
+            "txt": "https://raw.githubusercontent.com/itsnjedits/4sem/main/KDM/Flywheel%20%26%20Governors%20-%20TOM%20For%20GATE%2C%20SSC%20JE%2C%20ESE%2C%20IES%2C%20PSU.txt",
+            "link": "https://www.youtube.com/playlist?list=PLCiOuVdcDqQW8SrcSLL6rZzslryhOds-T"
           },
           {
             "name": "Gyroscope",
             "type": "pdf",
-            "path": "resources/4th sem/KDM/gyroscope.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/KDM/gyroscope.pdf"
           },
           {
             "name": "Gyroscopic Couple And Precessional Motion",
             "type": "pdf",
-            "path": "resources/4th sem/KDM/GYROSCOPIC COUPLE AND PRECESSIONAL MOTION.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/KDM/GYROSCOPIC%20COUPLE%20AND%20PRECESSIONAL%20MOTION.pdf"
           },
           {
             "name": "Hartnell Governors",
             "type": "pdf",
-            "path": "resources/4th sem/KDM/Hartnell-Governors.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/KDM/Hartnell-Governors.pdf"
           },
           {
             "name": "Inertia Governors",
             "type": "pdf",
-            "path": "resources/4th sem/KDM/Inertia-Governors.pdf"
-          },
-          {
-            "name": "Kdm Gyroscope Aero Plane",
-            "type": "pdf",
-            "path": "resources/4th sem/KDM/KDM-Gyroscope Aero plane.pdf"
-          },
-          {
-            "name": "Kdm Gyroscope On Naval Ships",
-            "type": "pdf",
-            "path": "resources/4th sem/KDM/KDM-Gyroscope on Naval Ships.pdf"
-          },
-          {
-            "name": "Kdm Gyroscope On Vehicle",
-            "type": "pdf",
-            "path": "resources/4th sem/KDM/KDM-Gyroscope on Vehicle.pdf"
-          },
-          {
-            "name": "Kdm Gyroscope",
-            "type": "pdf",
-            "path": "resources/4th sem/KDM/KDM-Gyroscope.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/KDM/Inertia-Governors.pdf"
           },
           {
             "name": "Kdm",
             "type": "ppt",
-            "path": "resources/4th sem/KDM/KDM.pptx"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/KDM/KDM.pptx"
+          },
+          {
+            "name": "Kdm Gyroscope",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/KDM/KDM-Gyroscope.pdf"
+          },
+          {
+            "name": "Kdm Gyroscope Aero Plane",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/KDM/KDM-Gyroscope%20Aero%20plane.pdf"
+          },
+          {
+            "name": "Kdm Gyroscope On Naval Ships",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/KDM/KDM-Gyroscope%20on%20Naval%20Ships.pdf"
+          },
+          {
+            "name": "Kdm Gyroscope On Vehicle",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/KDM/KDM-Gyroscope%20on%20Vehicle.pdf"
           },
           {
             "name": "Khurmi",
             "type": "pdf",
-            "path": "resources/4th sem/KDM/Khurmi.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/KDM/Khurmi.pdf"
           },
           {
             "name": "Porter Governors",
             "type": "pdf",
-            "path": "resources/4th sem/KDM/Porter-Governors.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/KDM/Porter-Governors.pdf"
           },
           {
             "name": "Proell Governors",
             "type": "pdf",
-            "path": "resources/4th sem/KDM/Proell-Governors.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/KDM/Proell-Governors.pdf"
           },
           {
             "name": "Static Force Analysis",
             "type": "pdf",
-            "path": "resources/4th sem/KDM/Static force analysis.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/KDM/Static%20force%20analysis.pdf"
           },
           {
             "name": "Whats App Image 2026 01 06 At 10.11",
             "type": "image",
-            "path": "resources/4th sem/KDM/WhatsApp Image 2026-01-06 at 10.11.21 AM.jpeg"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/KDM/WhatsApp%20Image%202026-01-06%20at%2010.11.21%20AM.jpeg"
           }
         ]
       },
@@ -1119,42 +1150,49 @@
           {
             "name": "Basics Of Metal Cutting",
             "type": "pdf",
-            "path": "resources/4th sem/MCM/Basics of metal cutting.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/MCM/Basics%20of%20metal%20cutting.pdf"
           },
           {
             "name": "Force And Power In Metal Cutting",
             "type": "pdf",
-            "path": "resources/4th sem/MCM/Force and power in metal cutting.pdf"
-          },
-          {
-            "name": "Mcm Unit 1 And 2",
-            "type": "pdf",
-            "path": "resources/4th sem/MCM/MCM UNIT 1 AND 2.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/MCM/Force%20and%20power%20in%20metal%20cutting.pdf"
           },
           {
             "name": "Mcm",
             "type": "pdf",
-            "path": "resources/4th sem/MCM/mcm.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/MCM/mcm.pdf"
+          },
+          {
+            "name": "Mcm Unit 1 And 2",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/MCM/MCM%20UNIT%201%20AND%202.pdf"
           },
           {
             "name": "Metal Cutting",
             "type": "pdf",
-            "path": "resources/4th sem/MCM/metal cutting.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/MCM/metal%20cutting.pdf"
+          },
+          {
+            "name": "Statistical Quality Control (Sqc)",
+            "type": "link",
+            "thumbnail": "https://raw.githubusercontent.com/itsnjedits/4sem/main/MCM/STATISTICAL%20QUALITY%20CONTROL%20%28SQC%29.jpg",
+            "txt": "https://raw.githubusercontent.com/itsnjedits/4sem/main/MCM/STATISTICAL%20QUALITY%20CONTROL%20%28SQC%29.txt",
+            "link": "https://www.youtube.com/playlist?list=PLTj8Y3qIWmgGR-gEE9zwx91L3JbI412Mr"
           },
           {
             "name": "Tolerance And Tool Wear",
             "type": "pdf",
-            "path": "resources/4th sem/MCM/Tolerance and tool wear.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/MCM/Tolerance%20and%20tool%20wear.pdf"
           },
           {
             "name": "Tool Wear And Machinability (1)",
             "type": "pdf",
-            "path": "resources/4th sem/MCM/tool wear and machinability (1).pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/MCM/tool%20wear%20and%20machinability%20%281%29.pdf"
           },
           {
             "name": "Whats App Image 2026 01 06 At 10.11",
             "type": "image",
-            "path": "resources/4th sem/MCM/WhatsApp Image 2026-01-06 at 10.11.22 AM.jpeg"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/MCM/WhatsApp%20Image%202026-01-06%20at%2010.11.22%20AM.jpeg"
           }
         ]
       },
@@ -1165,92 +1203,83 @@
           {
             "name": "243532178 Machine Design By V B Bhandari Compress",
             "type": "pdf",
-            "path": "resources/4th sem/MD/243532178-machine-design-by-v-b-bhandari_compress.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/MD/243532178-machine-design-by-v-b-bhandari_compress.pdf"
           },
           {
             "name": "4Th Edition Design Data Handbook For Mechanical Engineers In Si And Metric Units By K Mahadevan K Balaveera Reddy Compressed Part 1",
             "type": "pdf",
-            "path": "resources/4th sem/MD/4th_Edition_Design_Data_Handbook_for_Mechanical_Engineers_in_SI_and_Metric_Units_by_K_Mahadevan_K_Balaveera_Reddy_compressed part 1.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/MD/4th_Edition_Design_Data_Handbook_for_Mechanical_Engineers_in_SI_and_Metric_Units_by_K_Mahadevan_K_Balaveera_Reddy_compressed%20part%201.pdf"
           },
           {
             "name": "4Th Edition Design Data Handbook For Mechanical Engineers In Si And Metric Units By K Mahadevan K Balaveera Reddy Compressed Part 2",
             "type": "pdf",
-            "path": "resources/4th sem/MD/4th_Edition_Design_Data_Handbook_for_Mechanical_Engineers_in_SI_and_Metric_Units_by_K_Mahadevan_K_Balaveera_Reddy_compressed part 2.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/MD/4th_Edition_Design_Data_Handbook_for_Mechanical_Engineers_in_SI_and_Metric_Units_by_K_Mahadevan_K_Balaveera_Reddy_compressed%20part%202.pdf"
           },
           {
             "name": "Design Of Cotter Joint, Knuckle Joint, Levers And Offset Links Dom For Gate Ies Ese Ssc Je Psu",
             "type": "link",
-            "thumbnail": "resources/4th sem/MD/Design of Cotter joint, Knuckle Joint, Levers and Offset Links - DOM For GATE IES ESE SSC JE PSU.jpg",
-            "txt": "resources/4th sem/MD/Design of Cotter joint, Knuckle Joint, Levers and Offset Links - DOM For GATE IES ESE SSC JE PSU.txt"
+            "thumbnail": "https://raw.githubusercontent.com/itsnjedits/4sem/main/MD/Design%20of%20Cotter%20joint%2C%20Knuckle%20Joint%2C%20Levers%20and%20Offset%20Links%20-%20DOM%20For%20GATE%20IES%20ESE%20SSC%20JE%20PSU.jpg",
+            "txt": "https://raw.githubusercontent.com/itsnjedits/4sem/main/MD/Design%20of%20Cotter%20joint%2C%20Knuckle%20Joint%2C%20Levers%20and%20Offset%20Links%20-%20DOM%20For%20GATE%20IES%20ESE%20SSC%20JE%20PSU.txt",
+            "link": "https://www.youtube.com/playlist?list=PLCiOuVdcDqQVghdkDSi7UOLXyNLZSOM5x"
           },
           {
             "name": "Design Of Machine (Dom) For Gate Ies Ese Ssc Je Psu",
             "type": "link",
-            "thumbnail": "resources/4th sem/MD/Design of Machine (DOM) for GATE IES ESE SSC JE PSU.jpg",
-            "txt": "resources/4th sem/MD/Design of Machine (DOM) for GATE IES ESE SSC JE PSU.txt"
+            "thumbnail": "https://raw.githubusercontent.com/itsnjedits/4sem/main/MD/Design%20of%20Machine%20%28DOM%29%20for%20GATE%20IES%20ESE%20SSC%20JE%20PSU.jpg",
+            "txt": "https://raw.githubusercontent.com/itsnjedits/4sem/main/MD/Design%20of%20Machine%20%28DOM%29%20for%20GATE%20IES%20ESE%20SSC%20JE%20PSU.txt",
+            "link": "https://www.youtube.com/playlist?list=PLm_MSClsnwm-QwOu8EkbM7C-DOUB4DxLD"
           },
           {
             "name": "Design Of Machine Elements",
             "type": "pdf",
-            "path": "resources/4th sem/MD/Design-Of-Machine Elements.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/MD/Design-Of-Machine%20Elements.pdf"
           },
           {
             "name": "Machine Design Vb Bhandari",
             "type": "pdf",
-            "path": "resources/4th sem/MD/machine design VB bhandari.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/MD/machine%20design%20VB%20bhandari.pdf"
           },
           {
             "name": "Springs",
             "type": "link",
-            "thumbnail": "resources/4th sem/MD/Springs.jpg",
-            "txt": "resources/4th sem/MD/Springs.txt"
-          },
-          {
-            "name": "Unit 1 (Me 254) Copy",
-            "type": "pdf",
-            "path": "resources/4th sem/MD/Unit 1 (ME-254) - Copy.pdf"
+            "thumbnail": "https://raw.githubusercontent.com/itsnjedits/4sem/main/MD/Springs.jpg",
+            "txt": "https://raw.githubusercontent.com/itsnjedits/4sem/main/MD/Springs.txt",
+            "link": "https://www.youtube.com/playlist?list=PL4K9r9dYCOopj1vhL3ho8W39v1NPoQ-cQ"
           },
           {
             "name": "Unit 1 (Me 254)",
             "type": "pdf",
-            "path": "resources/4th sem/MD/Unit 1 (ME-254).pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/MD/Unit%201%20%28ME-254%29.pdf"
+          },
+          {
+            "name": "Unit 1 (Me 254) Copy",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/MD/Unit%201%20%28ME-254%29%20-%20Copy.pdf"
           },
           {
             "name": "Unit 2(Me 254)",
             "type": "pdf",
-            "path": "resources/4th sem/MD/Unit 2(ME-254).pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/MD/Unit%202%28ME-254%29.pdf"
           },
           {
             "name": "Unit 3(Me 254) 1",
             "type": "pdf",
-            "path": "resources/4th sem/MD/Unit 3(ME-254)-1.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/MD/Unit%203%28ME-254%29-1.pdf"
           },
           {
             "name": "Unit 4(Me 254)",
             "type": "pdf",
-            "path": "resources/4th sem/MD/Unit-4(ME-254).pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/MD/Unit-4%28ME-254%29.pdf"
           },
           {
             "name": "Unit 5(Me 305)",
             "type": "pdf",
-            "path": "resources/4th sem/MD/Unit-5(ME-305).pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/MD/Unit-5%28ME-305%29.pdf"
           },
           {
             "name": "Whats App Image 2026 01 06 At 10.11",
             "type": "image",
-            "path": "resources/4th sem/MD/WhatsApp Image 2026-01-06 at 10.11.22 AM.jpeg"
-          }
-        ]
-      },
-      {
-        "name": "Pmt",
-        "type": "folder",
-        "children": [
-          {
-            "name": "Statistical Quality Control (Sqc)",
-            "type": "link",
-            "thumbnail": "resources/4th sem/PMT/STATISTICAL QUALITY CONTROL (SQC).jpg",
-            "txt": "resources/4th sem/PMT/STATISTICAL QUALITY CONTROL (SQC).txt"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/MD/WhatsApp%20Image%202026-01-06%20at%2010.11.22%20AM.jpeg"
           }
         ]
       },
@@ -1261,69 +1290,857 @@
           {
             "name": "2Nd Year 4Th Sem Tom",
             "type": "pdf",
-            "path": "resources/4th sem/PYQS/2nd year 4th sem TOM.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/PYQS/2nd%20year%204th%20sem%20TOM.pdf"
           },
           {
             "name": "4Th Sem Papers 2023",
             "type": "pdf",
-            "path": "resources/4th sem/PYQS/4th sem papers 2023.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/PYQS/4th%20sem%20papers%202023.pdf"
           },
           {
             "name": "Md Kdm Mcm 2025",
             "type": "pdf",
-            "path": "resources/4th sem/PYQS/MD KDM MCM 2025.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/PYQS/MD%20KDM%20MCM%202025.pdf"
           },
           {
             "name": "Mid Term 2",
             "type": "pdf",
-            "path": "resources/4th sem/PYQS/mid term 2.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/PYQS/mid%20term%202.pdf"
           },
           {
             "name": "New Doc 2024 12 24 13.37",
             "type": "pdf",
-            "path": "resources/4th sem/PYQS/New Doc 2024-12-24 13.37.40.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/PYQS/New%20Doc%202024-12-24%2013.37.40.pdf"
           }
         ]
       },
       {
         "name": "Mbm All Elective Syllabus",
         "type": "pdf",
-        "path": "resources/4th sem/Mbm All Elective syllabus.pdf"
+        "path": "https://raw.githubusercontent.com/itsnjedits/4sem/main/Mbm%20All%20Elective%20syllabus.pdf"
       }
     ]
   },
   {
-    "name": "5Th Sem",
+    "name": "5th Sem",
     "type": "folder",
     "children": [
       {
-        "name": "Sda(System Design And Analysis",
+        "name": "Fm",
         "type": "folder",
         "children": [
           {
-            "name": "Lecture Notes Sda Classification Of Systems",
+            "name": "Copy Of Fluid Mechanics & Hydraulic Machines",
             "type": "pdf",
-            "path": "resources/5th sem/SDA(system design and analysis/Lecture notes SDA Classification of Systems.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/FM/Copy%20of%20Fluid%20Mechanics%20%26%20Hydraulic%20Machines.pdf"
           },
           {
-            "name": "Lecture Notes Sda Unit 1",
-            "type": "pdf",
-            "path": "resources/5th sem/SDA(system design and analysis/Lecture Notes SDA Unit 1.pdf"
+            "name": "Flow In Pipes",
+            "type": "link",
+            "thumbnail": "https://raw.githubusercontent.com/itsnjedits/5sem/main/FM/Flow%20in%20pipes.jpg",
+            "txt": "https://raw.githubusercontent.com/itsnjedits/5sem/main/FM/Flow%20in%20pipes.txt",
+            "link": "https://www.youtube.com/playlist?list=PL727BYvm8B1lxNR6uFpqNq81-_9IgnJNQ"
           },
           {
-            "name": "Lecture Notes Sda Unit 2",
-            "type": "pdf",
-            "path": "resources/5th sem/SDA(system design and analysis/Lecture Notes SDA Unit 2.pdf"
+            "name": "Fluid Mechanics (Gear Institute)",
+            "type": "link",
+            "thumbnail": "https://raw.githubusercontent.com/itsnjedits/5sem/main/FM/Fluid%20mechanics%20%28gear%20Institute%29.jpg",
+            "txt": "https://raw.githubusercontent.com/itsnjedits/5sem/main/FM/Fluid%20mechanics%20%28gear%20Institute%29.txt",
+            "link": "https://www.youtube.com/playlist?list=PL727BYvm8B1mINwfNNRyd1iDWmImB_Xdz"
           },
           {
-            "name": "Lecture Notes Sda Unit 3",
-            "type": "pdf",
-            "path": "resources/5th sem/SDA(system design and analysis/Lecture Notes SDA Unit 3.pdf"
+            "name": "Fluid Mechanics (Hindi)",
+            "type": "link",
+            "thumbnail": "https://raw.githubusercontent.com/itsnjedits/5sem/main/FM/Fluid%20Mechanics%20%28Hindi%29.jpg",
+            "txt": "https://raw.githubusercontent.com/itsnjedits/5sem/main/FM/Fluid%20Mechanics%20%28Hindi%29.txt",
+            "link": "https://www.youtube.com/playlist?list=PLOKNrldi7ClhMMDSfsvL67nTzrT7q-38S"
           },
           {
-            "name": "Lecture Notes Sda Unit 4",
+            "name": "Fluid Mechanics 1 Complete Chapter 3",
             "type": "pdf",
-            "path": "resources/5th sem/SDA(system design and analysis/Lecture Notes SDA Unit 4.pdf"
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/FM/fluid%20mechanics%201%20complete%20chapter%203.pdf"
+          },
+          {
+            "name": "Fluid Mechanics 1 Complete Chapter 4",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/FM/fluid%20mechanics%201%20complete%20chapter%204.pdf"
+          },
+          {
+            "name": "Fluid Mechanics 1 Complete Chapter 5",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/FM/fluid%20mechanics%201%20complete%20chapter%205.pdf"
+          },
+          {
+            "name": "Fluid Mechanics Unit 6 8 250320 191252",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/FM/fluid%20mechanics%20unit%206-8_250320_191252.pdf"
+          },
+          {
+            "name": "Fluid Pipe Flow 260313 110741",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/FM/fluid%20pipe%20flow_260313_110741.pdf"
+          },
+          {
+            "name": "Fm Notes 1",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/FM/FM%20notes%201.pdf"
+          },
+          {
+            "name": "Introduction To Fluid Mechanics And Fluid Machines By S K Som, Gautam Biswas, Suman Chakraborty (Z Lib",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/FM/Introduction%20To%20Fluid%20Mechanics%20And%20Fluid%20Machines%20by%20S%20K%20Som%2C%20Gautam%20Biswas%2C%20Suman%20Chakraborty%20%28z-lib.org%29.pdf"
+          },
+          {
+            "name": "Laminar Flow",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/FM/LAMINAR%20FLOW.pdf"
+          },
+          {
+            "name": "Whats App Image 2026 01 06 At 10.11",
+            "type": "image",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/FM/WhatsApp%20Image%202026-01-06%20at%2010.11.23%20AM.jpeg"
+          }
+        ]
+      },
+      {
+        "name": "Industrial Engineering",
+        "type": "folder",
+        "children": [
+          {
+            "name": "Adobe Scan 07 Apr 2025",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Industrial%20engineering/Adobe%20Scan%2007%20Apr%202025.pdf"
+          },
+          {
+            "name": "U 2 S1 Elements Of Costing",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Industrial%20engineering/U%202%20S1%20Elements%20of%20costing.pdf"
+          },
+          {
+            "name": "U 2 S2 Component Of Cost",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Industrial%20engineering/U%202%20S2%20Component%20of%20cost.pdf"
+          },
+          {
+            "name": "U1 4 Make Or Buy Decisions Me653Dpcps",
+            "type": "ppt",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Industrial%20engineering/U1%20_%204%20-%20Make%20or%20Buy%20Decisions%20ME653DPCPS.pptx"
+          },
+          {
+            "name": "U1 S1 Theory Of Demand And Supply",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Industrial%20engineering/U1%20S1%20Theory%20of%20Demand%20and%20Supply.pdf"
+          },
+          {
+            "name": "U1 S2 Law Of Demand And Demand Elasticities",
+            "type": "ppt",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Industrial%20engineering/U1%20S2%20Law%20of%20demand%20and%20Demand%20Elasticities.pptx"
+          },
+          {
+            "name": "U1 S3 Theory Of Supply And Supply Elasticity",
+            "type": "ppt",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Industrial%20engineering/U1%20S3%20Theory%20of%20Supply%20and%20Supply%20Elasticity.pptx"
+          },
+          {
+            "name": "U1 S4 Types Of Markets And Market Structure",
+            "type": "ppt",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Industrial%20engineering/U1%20S4%20Types%20of%20Markets%20and%20Market%20Structure.pptx"
+          },
+          {
+            "name": "U1 S5 Demand Forecasting Techniques",
+            "type": "ppt",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Industrial%20engineering/U1%20S5%20Demand%20Forecasting%20Techniques.pptx"
+          },
+          {
+            "name": "U2 S2 Component Of Cost",
+            "type": "ppt",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Industrial%20engineering/U2%20S2%20Component%20of%20cost.pptx"
+          },
+          {
+            "name": "U2 S3 Opkhanna Methods Of Depreciation 02 17 2025 21",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Industrial%20engineering/U2%20S3_OPKhanna_%20Methods%20of%20Depreciation%20_02-17-2025%2021.10.pdf"
+          },
+          {
+            "name": "U2 S4 Standard Costing",
+            "type": "ppt",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Industrial%20engineering/U2%20S4%20Standard%20Costing.pptx"
+          },
+          {
+            "name": "U2 S6 Depreciation",
+            "type": "ppt",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Industrial%20engineering/U2%20S6%20Depreciation.pptx"
+          },
+          {
+            "name": "U2 S7 Budget And Budgetary Control",
+            "type": "ppt",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Industrial%20engineering/U2%20S7%20Budget%20and%20Budgetary%20Control.pptx"
+          },
+          {
+            "name": "U3 S1 Value Analysis And Value Engineering",
+            "type": "ppt",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Industrial%20engineering/U3%20S1%20value%20Analysis%20and%20Value%20Engineering.pptx"
+          },
+          {
+            "name": "U3 S2 Product Development And Product Life Cycle",
+            "type": "ppt",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Industrial%20engineering/U3%20S2%20Product%20Development%20and%20Product%20Life%20Cycle.pptx"
+          },
+          {
+            "name": "U3 S3 Simplificaton, Standardisation And Diversification",
+            "type": "ppt",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Industrial%20engineering/U3%20S3%20Simplificaton%2C%20Standardisation%20and%20Diversification.pptx"
+          },
+          {
+            "name": "U3 S4 Reliability And Maintenance",
+            "type": "ppt",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Industrial%20engineering/U3%20S4%20Reliability%20and%20Maintenance.pptx"
+          },
+          {
+            "name": "U4 S1 Work Study Method Study",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Industrial%20engineering/U4%20S1%20Work%20Study%20Method%20Study.pdf"
+          },
+          {
+            "name": "U4 S1 Work Study Method Study",
+            "type": "ppt",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Industrial%20engineering/U4%20S1%20Work%20Study%20Method%20Study.pptx"
+          },
+          {
+            "name": "U4 S2 Micro And Memo Motion Study",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Industrial%20engineering/U4%20S2%20Micro%20and%20Memo%20Motion%20Study.pdf"
+          },
+          {
+            "name": "U4 S3 Work Measurement",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Industrial%20engineering/U4%20S3%20Work%20Measurement.pdf"
+          },
+          {
+            "name": "U4 S4 Work Sampling, Synthetic Data And Pre Determined Motion Time Standards",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Industrial%20engineering/U4%20S4%20Work%20Sampling%2C%20Synthetic%20Data%20and%20Pre-determined%20motion%20time%20standards.pdf"
+          },
+          {
+            "name": "U5 S1 Job Evaluation And Merit Rating",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Industrial%20engineering/U5%20S1%20Job%20evaluation%20and%20Merit%20Rating.pdf"
+          },
+          {
+            "name": "U5 S2 Wage Payment And Methods Of Wage Payment",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Industrial%20engineering/U5%20S2%20Wage%20payment%20and%20methods%20of%20wage%20payment.pdf"
+          },
+          {
+            "name": "U5 S3 Incentive Schemes",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Industrial%20engineering/U5%20S3%20Incentive%20schemes.pdf"
+          },
+          {
+            "name": "U5 S4 Industrial Ralations",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Industrial%20engineering/U5%20S4%20Industrial%20ralations.pdf"
+          },
+          {
+            "name": "U5 S5 Industrial Dispute And Methods Of Settling Them",
+            "type": "ppt",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Industrial%20engineering/U5%20S5%20Industrial%20dispute%20and%20methods%20of%20settling%20them.pptx"
+          },
+          {
+            "name": "U5 S6 Workers Participaion",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Industrial%20engineering/U5%20S6%20Workers%20participaion.pdf"
+          },
+          {
+            "name": "U5 S7 Legal Legilation And Acts",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Industrial%20engineering/U5%20S7%20Legal%20legilation%20and%20Acts.pdf"
+          },
+          {
+            "name": "U5 S8 Labour Welfare And Safety",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Industrial%20engineering/U5%20S8%20Labour%20welfare%20and%20Safety.pdf"
+          },
+          {
+            "name": "U5 S9 Pollution And Waste Management",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Industrial%20engineering/U5%20S9%20Pollution%20and%20Waste%20Management.pdf"
+          },
+          {
+            "name": "Uit5",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Industrial%20engineering/uit5.pdf"
+          },
+          {
+            "name": "Unit 4 Productivity",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Industrial%20engineering/Unit-4_Productivity.pdf"
+          },
+          {
+            "name": "Whats App Image 2026 01 06 At 10.11",
+            "type": "image",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Industrial%20engineering/WhatsApp%20Image%202026-01-06%20at%2010.11.16%20AM.jpeg"
+          }
+        ]
+      },
+      {
+        "name": "Kdm",
+        "type": "folder",
+        "children": [
+          {
+            "name": "571824888 Theory Of Machines S S Ratan",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/KDM/571824888-Theory-of-Machines-s-s-Ratan.pdf"
+          },
+          {
+            "name": "Brake",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/KDM/Brake.pdf"
+          },
+          {
+            "name": "Brake Assignment Kdm",
+            "type": "docx",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/KDM/Brake%20Assignment%20KDM.docx"
+          },
+          {
+            "name": "Cam And Follower",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/KDM/CAM%20and%20follower.pdf"
+          },
+          {
+            "name": "Cam Profile",
+            "type": "link",
+            "thumbnail": "https://raw.githubusercontent.com/itsnjedits/5sem/main/KDM/Cam%20profile.jpg",
+            "txt": "https://raw.githubusercontent.com/itsnjedits/5sem/main/KDM/Cam%20profile.txt",
+            "link": "https://www.youtube.com/playlist?list=PL03n4PEXL4sZyEMmPgeMaTWSZ16fe1Rxy"
+          },
+          {
+            "name": "Dynamometer",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/KDM/Dynamometer.pdf"
+          },
+          {
+            "name": "Dynamometers",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/KDM/Dynamometers.pdf"
+          },
+          {
+            "name": "Flywheel",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/KDM/flywheel.pdf"
+          },
+          {
+            "name": "Flywheel & Governors Tom For Gate, Ssc Je, Ese, Ies, Psu",
+            "type": "link",
+            "thumbnail": "https://raw.githubusercontent.com/itsnjedits/5sem/main/KDM/Flywheel%20%26%20Governors%20-%20TOM%20For%20GATE%2C%20SSC%20JE%2C%20ESE%2C%20IES%2C%20PSU.jpg",
+            "txt": "https://raw.githubusercontent.com/itsnjedits/5sem/main/KDM/Flywheel%20%26%20Governors%20-%20TOM%20For%20GATE%2C%20SSC%20JE%2C%20ESE%2C%20IES%2C%20PSU.txt",
+            "link": "https://www.youtube.com/playlist?list=PLCiOuVdcDqQW8SrcSLL6rZzslryhOds-T"
+          },
+          {
+            "name": "Gyroscope",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/KDM/gyroscope.pdf"
+          },
+          {
+            "name": "Gyroscopic Couple And Precessional Motion",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/KDM/GYROSCOPIC%20COUPLE%20AND%20PRECESSIONAL%20MOTION.pdf"
+          },
+          {
+            "name": "Hartnell Governors",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/KDM/Hartnell-Governors.pdf"
+          },
+          {
+            "name": "Inertia Governors",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/KDM/Inertia-Governors.pdf"
+          },
+          {
+            "name": "Kdm",
+            "type": "ppt",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/KDM/KDM.pptx"
+          },
+          {
+            "name": "Kdm Gyroscope",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/KDM/KDM-Gyroscope.pdf"
+          },
+          {
+            "name": "Kdm Gyroscope Aero Plane",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/KDM/KDM-Gyroscope%20Aero%20plane.pdf"
+          },
+          {
+            "name": "Kdm Gyroscope On Naval Ships",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/KDM/KDM-Gyroscope%20on%20Naval%20Ships.pdf"
+          },
+          {
+            "name": "Kdm Gyroscope On Vehicle",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/KDM/KDM-Gyroscope%20on%20Vehicle.pdf"
+          },
+          {
+            "name": "Khurmi",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/KDM/Khurmi.pdf"
+          },
+          {
+            "name": "Porter Governors",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/KDM/Porter-Governors.pdf"
+          },
+          {
+            "name": "Proell Governors",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/KDM/Proell-Governors.pdf"
+          },
+          {
+            "name": "Static Force Analysis",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/KDM/Static%20force%20analysis.pdf"
+          },
+          {
+            "name": "Whats App Image 2026 01 06 At 10.11",
+            "type": "image",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/KDM/WhatsApp%20Image%202026-01-06%20at%2010.11.21%20AM.jpeg"
+          }
+        ]
+      },
+      {
+        "name": "Mcm",
+        "type": "folder",
+        "children": [
+          {
+            "name": "Basics Of Metal Cutting",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/MCM/Basics%20of%20metal%20cutting.pdf"
+          },
+          {
+            "name": "Force And Power In Metal Cutting",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/MCM/Force%20and%20power%20in%20metal%20cutting.pdf"
+          },
+          {
+            "name": "Mcm",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/MCM/mcm.pdf"
+          },
+          {
+            "name": "Mcm Unit 1 And 2",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/MCM/MCM%20UNIT%201%20AND%202.pdf"
+          },
+          {
+            "name": "Metal Cutting",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/MCM/metal%20cutting.pdf"
+          },
+          {
+            "name": "Statistical Quality Control (Sqc)",
+            "type": "link",
+            "thumbnail": "https://raw.githubusercontent.com/itsnjedits/5sem/main/MCM/STATISTICAL%20QUALITY%20CONTROL%20%28SQC%29.jpg",
+            "txt": "https://raw.githubusercontent.com/itsnjedits/5sem/main/MCM/STATISTICAL%20QUALITY%20CONTROL%20%28SQC%29.txt",
+            "link": "https://www.youtube.com/playlist?list=PLTj8Y3qIWmgGR-gEE9zwx91L3JbI412Mr"
+          },
+          {
+            "name": "Tolerance And Tool Wear",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/MCM/Tolerance%20and%20tool%20wear.pdf"
+          },
+          {
+            "name": "Tool Wear And Machinability (1)",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/MCM/tool%20wear%20and%20machinability%20%281%29.pdf"
+          },
+          {
+            "name": "Whats App Image 2026 01 06 At 10.11",
+            "type": "image",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/MCM/WhatsApp%20Image%202026-01-06%20at%2010.11.22%20AM.jpeg"
+          }
+        ]
+      },
+      {
+        "name": "Md",
+        "type": "folder",
+        "children": [
+          {
+            "name": "243532178 Machine Design By V B Bhandari Compress",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/MD/243532178-machine-design-by-v-b-bhandari_compress.pdf"
+          },
+          {
+            "name": "4Th Edition Design Data Handbook For Mechanical Engineers In Si And Metric Units By K Mahadevan K Balaveera Reddy Compressed Part 1",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/MD/4th_Edition_Design_Data_Handbook_for_Mechanical_Engineers_in_SI_and_Metric_Units_by_K_Mahadevan_K_Balaveera_Reddy_compressed%20part%201.pdf"
+          },
+          {
+            "name": "4Th Edition Design Data Handbook For Mechanical Engineers In Si And Metric Units By K Mahadevan K Balaveera Reddy Compressed Part 2",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/MD/4th_Edition_Design_Data_Handbook_for_Mechanical_Engineers_in_SI_and_Metric_Units_by_K_Mahadevan_K_Balaveera_Reddy_compressed%20part%202.pdf"
+          },
+          {
+            "name": "Design Of Cotter Joint, Knuckle Joint, Levers And Offset Links Dom For Gate Ies Ese Ssc Je Psu",
+            "type": "link",
+            "thumbnail": "https://raw.githubusercontent.com/itsnjedits/5sem/main/MD/Design%20of%20Cotter%20joint%2C%20Knuckle%20Joint%2C%20Levers%20and%20Offset%20Links%20-%20DOM%20For%20GATE%20IES%20ESE%20SSC%20JE%20PSU.jpg",
+            "txt": "https://raw.githubusercontent.com/itsnjedits/5sem/main/MD/Design%20of%20Cotter%20joint%2C%20Knuckle%20Joint%2C%20Levers%20and%20Offset%20Links%20-%20DOM%20For%20GATE%20IES%20ESE%20SSC%20JE%20PSU.txt",
+            "link": "https://www.youtube.com/playlist?list=PLCiOuVdcDqQVghdkDSi7UOLXyNLZSOM5x"
+          },
+          {
+            "name": "Design Of Machine (Dom) For Gate Ies Ese Ssc Je Psu",
+            "type": "link",
+            "thumbnail": "https://raw.githubusercontent.com/itsnjedits/5sem/main/MD/Design%20of%20Machine%20%28DOM%29%20for%20GATE%20IES%20ESE%20SSC%20JE%20PSU.jpg",
+            "txt": "https://raw.githubusercontent.com/itsnjedits/5sem/main/MD/Design%20of%20Machine%20%28DOM%29%20for%20GATE%20IES%20ESE%20SSC%20JE%20PSU.txt",
+            "link": "https://www.youtube.com/playlist?list=PLm_MSClsnwm-QwOu8EkbM7C-DOUB4DxLD"
+          },
+          {
+            "name": "Design Of Machine Elements",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/MD/Design-Of-Machine%20Elements.pdf"
+          },
+          {
+            "name": "Machine Design Vb Bhandari",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/MD/machine%20design%20VB%20bhandari.pdf"
+          },
+          {
+            "name": "Springs",
+            "type": "link",
+            "thumbnail": "https://raw.githubusercontent.com/itsnjedits/5sem/main/MD/Springs.jpg",
+            "txt": "https://raw.githubusercontent.com/itsnjedits/5sem/main/MD/Springs.txt",
+            "link": "https://www.youtube.com/playlist?list=PL4K9r9dYCOopj1vhL3ho8W39v1NPoQ-cQ"
+          },
+          {
+            "name": "Unit 1 (Me 254)",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/MD/Unit%201%20%28ME-254%29.pdf"
+          },
+          {
+            "name": "Unit 1 (Me 254) Copy",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/MD/Unit%201%20%28ME-254%29%20-%20Copy.pdf"
+          },
+          {
+            "name": "Unit 2(Me 254)",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/MD/Unit%202%28ME-254%29.pdf"
+          },
+          {
+            "name": "Unit 3(Me 254) 1",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/MD/Unit%203%28ME-254%29-1.pdf"
+          },
+          {
+            "name": "Unit 4(Me 254)",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/MD/Unit-4%28ME-254%29.pdf"
+          },
+          {
+            "name": "Unit 5(Me 305)",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/MD/Unit-5%28ME-305%29.pdf"
+          },
+          {
+            "name": "Whats App Image 2026 01 06 At 10.11",
+            "type": "image",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/MD/WhatsApp%20Image%202026-01-06%20at%2010.11.22%20AM.jpeg"
+          }
+        ]
+      },
+      {
+        "name": "Mt",
+        "type": "folder",
+        "children": [
+          {
+            "name": "Material Science (Gear Institute)",
+            "type": "link",
+            "thumbnail": "https://raw.githubusercontent.com/itsnjedits/5sem/main/MT/Material%20science%20%28gear%20Institute%29.jpg",
+            "txt": "https://raw.githubusercontent.com/itsnjedits/5sem/main/MT/Material%20science%20%28gear%20Institute%29.txt",
+            "link": "https://www.youtube.com/playlist?list=PL727BYvm8B1ktF49TnajUYqZTvMd8R6bB"
+          },
+          {
+            "name": "Mt 3Rd Sem",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/MT/MT%203rd%20Sem.pdf"
+          },
+          {
+            "name": "Unit 1 Introduction & Crystalline Nature Of Materials",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/MT/UNIT-1%20Introduction%20%26%20Crystalline%20nature%20of%20Materials.pdf"
+          },
+          {
+            "name": "Unit 2 Plastics Deformation Of Metals And Alloys",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/MT/UNIT-2%20Plastics%20Deformation%20of%20Metals%20and%20Alloys.pdf"
+          },
+          {
+            "name": "Unit 3 Iron Carbon Diagam & Heat Treatment",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/MT/UNIT-3%20Iron%20Carbon%20Diagam%20%26%20Heat%20Treatment.pdf"
+          }
+        ]
+      },
+      {
+        "name": "Pmt",
+        "type": "folder",
+        "children": [
+          {
+            "name": "Capstan And Turret",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/PMT/capstan-and-turret.pdf"
+          },
+          {
+            "name": "Chapter 4 Welding",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/PMT/CHAPTER%204%20welding.pdf"
+          },
+          {
+            "name": "Lathe Machine",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/PMT/lathe-machine.pdf"
+          },
+          {
+            "name": "Milling Machine",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/PMT/Milling%20machine.pdf"
+          },
+          {
+            "name": "Module 4",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/PMT/Module%204.pdf"
+          },
+          {
+            "name": "Module 5 (1)",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/PMT/Module-5%20%281%29.pdf"
+          },
+          {
+            "name": "Pending Pmt Class Notes",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/PMT/Pending%20PMT%20class%20notes.pdf"
+          },
+          {
+            "name": "Pmt Last Year Paper",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/PMT/PMT%20last%20year%20paper.pdf"
+          },
+          {
+            "name": "Pmt Notes",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/PMT/PMT%20Notes.pdf"
+          },
+          {
+            "name": "Pmt Notes 6 10 25",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/PMT/PMT%20Notes%206-10-25.pdf"
+          },
+          {
+            "name": "Shaper & Planer",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/PMT/Shaper%20%26%20Planer.pdf"
+          },
+          {
+            "name": "Tamer Samir Mahmoud Abdul Majeed 2 Introduction To Cnc",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/PMT/Tamer%20Samir%20Mahmoud%20Abdul%20Majeed_2-%20Introduction%20to%20CNC.pdf"
+          },
+          {
+            "name": "Unit 3 2",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/PMT/UNIT-3-2.pdf"
+          }
+        ]
+      },
+      {
+        "name": "Pyqs",
+        "type": "folder",
+        "children": [
+          {
+            "name": "3Rd Sem Mid Term Pyqs",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/PYQs/3rd%20sem%20mid-term%20pyqs.pdf"
+          },
+          {
+            "name": "3Sem Mid Term Watermark",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/PYQs/3SemMidTerm_watermark.pdf"
+          },
+          {
+            "name": "All Sub Pyq B 2025 By Nr Boss",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/PYQs/All%20sub%20pyq%20B-2025%20by%20NR%20BOSS.pdf"
+          },
+          {
+            "name": "Doc Scanner 21 Sept 2025 6 09 Pm",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/PYQs/DocScanner%2021%20Sept%202025%206-09%20pm.pdf"
+          },
+          {
+            "name": "Iii Sem Paper 2024 Mechanical",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/PYQs/III%20Sem%20Paper%202024%20Mechanical.pdf"
+          },
+          {
+            "name": "Iiird Sem Mt I Paper",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/PYQs/IIIrd%20Sem%20MT-I%20Paper.pdf"
+          },
+          {
+            "name": "Iiird Sem Mt Ii Paper",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/PYQs/IIIrd%20Sem%20MT-II%20Paper%20.pdf"
+          },
+          {
+            "name": "Img 20251122 132413",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/PYQs/IMG_20251122_132413.pdf"
+          },
+          {
+            "name": "Kom Papers Watermark",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/PYQs/KOM%20papers_watermark.pdf"
+          },
+          {
+            "name": "M3",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/PYQs/M3.pdf"
+          },
+          {
+            "name": "Mech 24 25 Endsem Question Papers",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/PYQs/Mech%2024-25%20endsem%20question%20papers.pdf"
+          },
+          {
+            "name": "Mech End Sem Qp'S 2025 26",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/PYQs/Mech%20End%20sem%20QP%27s%202025-26.pdf"
+          },
+          {
+            "name": "Mechanical Iiird Sem Pyq'S",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/PYQs/Mechanical%20IIIrd%20Sem%20PYQ%27s.pdf"
+          },
+          {
+            "name": "Mechanical Papers 2023",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/PYQs/mechanical%20papers%202023.pdf"
+          },
+          {
+            "name": "Mmi Papers Watermark",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/PYQs/MMI%20Papers_watermark.pdf"
+          },
+          {
+            "name": "Mos Papers Watermark",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/PYQs/MOS%20Papers_watermark.pdf"
+          },
+          {
+            "name": "Mt Previous Year Papers Watermark",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/PYQs/MT%20previous%20Year%20Papers_watermark.pdf"
+          },
+          {
+            "name": "New Doc 09 01 2024 21",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/PYQs/New%20Doc%2009-01-2024%2021.41.pdf"
+          },
+          {
+            "name": "Pyq 2024 25",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/PYQs/PYQ%202024-25.pdf"
+          }
+        ]
+      },
+      {
+        "name": "Thermo",
+        "type": "folder",
+        "children": [
+          {
+            "name": "2Nd Law Of Thermodynamics",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Thermo/2nd%20law%20of%20thermodynamics%20.pdf"
+          },
+          {
+            "name": "Assignment Engineering Thermodynamics 25 26",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Thermo/Assignment%20Engineering%20thermodynamics%2025-26.docx.pdf"
+          },
+          {
+            "name": "Engineering Thermodynamics 231028 095607",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Thermo/Engineering%20Thermodynamics_231028_095607.pdf"
+          },
+          {
+            "name": "Entropy",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Thermo/entropy.pdf"
+          },
+          {
+            "name": "Et Notes Extra Class",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Thermo/ET%20notes%20extra%20class.pdf"
+          },
+          {
+            "name": "Exergy",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Thermo/exergy.pdf"
+          },
+          {
+            "name": "Numericals Thermodynamics Of Combustion",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Thermo/Numericals_thermodynamics%20of%20combustion%20.pdf"
+          },
+          {
+            "name": "Properties Of Gases And Gas Mixtures",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Thermo/properties%20of%20gases%20and%20gas%20mixtures.pdf"
+          },
+          {
+            "name": "Reciprocating Air Compressor",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Thermo/reciprocating%20air%20compressor%20.pdf"
+          },
+          {
+            "name": "Steady And Unsteady Flow",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Thermo/steady%20and%20unsteady%20flow.pdf"
+          },
+          {
+            "name": "Thermal Work",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Thermo/thermal%20work.pdf"
+          },
+          {
+            "name": "Thermodynamics Notes",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Thermo/thermodynamics%20notes%20.pdf"
+          },
+          {
+            "name": "Thermodynamics Of Combustion",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Thermo/Thermodynamics%20of%20Combustion.pdf"
+          },
+          {
+            "name": "Thermodynamics Of Combustion",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Thermo/Thermodynamics%20of%20combustion%20.pdf"
+          },
+          {
+            "name": "Thermodynamics Relations",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Thermo/Thermodynamics%20relations.pdf"
+          },
+          {
+            "name": "Tutorial Sheet Second Law Of Thermodynamics",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Thermo/tutorial%20sheet_Second%20law%20of%20thermodynamics.pdf"
+          },
+          {
+            "name": "Tutorial Sheet Unsteady Flow",
+            "type": "pdf",
+            "path": "https://raw.githubusercontent.com/itsnjedits/5sem/main/Thermo/tutorial%20sheet_Unsteady%20flow.pdf"
           }
         ]
       }

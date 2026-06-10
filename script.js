@@ -55,6 +55,18 @@
  *    - Every failure logs httpStatus + error message.
  *    - Thumbnail/image onerror logs the failing URL.
  *
+ *  [FIX-9] Absolute URL pass-through in resolveResourcePath (GitHub migration)
+ *    - After migrating file storage to GitHub repositories, all path/thumbnail/txt
+ *      fields in resources.json are absolute raw.githubusercontent.com URLs.
+ *    - The old logic split on '/' and called encodeURIComponent on each segment,
+ *      which encoded 'https:' → 'https%3A', then passed that to new URL() as a
+ *      relative path → resolved to /mma/https%3A//raw.githubusercontent.com/... → 404.
+ *    - Fix: if rawPath already starts with http:// or https://, return it unchanged.
+ *    - Fully backward-compatible: existing relative paths (resources/3rd sem/...)
+ *      still go through the original per-segment encoding path.
+ *    - Also covers item.link (YouTube, Drive) which was never passed to this
+ *      function, but now thumbnails and file paths can be absolute too.
+ *
  * ============================================================
  */
 
@@ -119,6 +131,26 @@ const BASE_PATH = (() => {
  */
 function resolveResourcePath(rawPath, resourceType) {
   if (!rawPath || typeof rawPath !== 'string') return '';
+
+  // [FIX-9] Absolute URLs pass through unchanged.
+  //
+  // WHY: After the GitHub storage migration, path/thumbnail/txt fields in
+  // resources.json are absolute raw.githubusercontent.com URLs.  The old
+  // per-segment encodeURIComponent logic would encode 'https:' → 'https%3A',
+  // making new URL() treat the whole thing as a relative path and resolve it
+  // against DOC_BASE_URI → /mma/https%3A//raw.githubusercontent.com/... → 404.
+  //
+  // This guard is fully backward-compatible: legacy relative paths
+  // (e.g. 'resources/3rd sem/file.pdf') do NOT start with http(s)://
+  // and continue through the original encoding + base-URL resolution path.
+  if (/^https?:\/\//i.test(rawPath)) {
+    console.log('[MMA] Path resolution (absolute):', {
+      type: resourceType || 'unknown',
+      url:  rawPath,
+    });
+    return rawPath;
+  }
+
   try {
     const encoded = rawPath.split('/').map(seg => encodeURIComponent(seg)).join('/');
     const finalUrl = new URL(encoded, DOC_BASE_URI).href;
