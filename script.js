@@ -70,7 +70,7 @@
  * ============================================================
  */
 
-'use strict';
+"use strict";
 
 // ══════════════════════════════════════════════════════════════
 //  [FORENSIC FIX] BASE PATH & URL RESOLUTION
@@ -113,7 +113,7 @@ const BASE_PATH = (() => {
   try {
     return new URL(DOC_BASE_URI).pathname; // e.g. '/mma/'
   } catch {
-    return '/';
+    return "/";
   }
 })();
 
@@ -130,7 +130,7 @@ const BASE_PATH = (() => {
  * Logs: original path → resolved URL → resource type (for debugging).
  */
 function resolveResourcePath(rawPath, resourceType) {
-  if (!rawPath || typeof rawPath !== 'string') return '';
+  if (!rawPath || typeof rawPath !== "string") return "";
 
   // [FIX-9] Absolute URLs pass through unchanged.
   //
@@ -144,24 +144,30 @@ function resolveResourcePath(rawPath, resourceType) {
   // (e.g. 'resources/3rd sem/file.pdf') do NOT start with http(s)://
   // and continue through the original encoding + base-URL resolution path.
   if (/^https?:\/\//i.test(rawPath)) {
-    console.log('[MMA] Path resolution (absolute):', {
-      type: resourceType || 'unknown',
-      url:  rawPath,
+    console.log("[MMA] Path resolution (absolute):", {
+      type: resourceType || "unknown",
+      url: rawPath,
     });
     return rawPath;
   }
 
   try {
-    const encoded = rawPath.split('/').map(seg => encodeURIComponent(seg)).join('/');
+    const encoded = rawPath
+      .split("/")
+      .map((seg) => encodeURIComponent(seg))
+      .join("/");
     const finalUrl = new URL(encoded, DOC_BASE_URI).href;
-    console.log('[MMA] Path resolution:', {
-      type:        resourceType || 'unknown',
+    console.log("[MMA] Path resolution:", {
+      type: resourceType || "unknown",
       originalPath: rawPath,
-      resolvedUrl:  finalUrl,
+      resolvedUrl: finalUrl,
     });
     return finalUrl;
   } catch (e) {
-    console.warn('[MMA] resolveResourcePath failed:', { rawPath, error: e.message });
+    console.warn("[MMA] resolveResourcePath failed:", {
+      rawPath,
+      error: e.message,
+    });
     return encodeURI(rawPath);
   }
 }
@@ -171,16 +177,20 @@ function resolveResourcePath(rawPath, resourceType) {
  * back to the short route key (e.g. '/resources') used by the routes map.
  */
 function pathToRoute(pathname) {
-  const base = BASE_PATH.replace(/\/$/, ''); // e.g. '/mma'
+  const base = BASE_PATH.replace(/\/$/, ""); // e.g. '/mma'
   let route = pathname;
   if (base && route.startsWith(base)) {
-    route = route.slice(base.length) || '/';
+    route = route.slice(base.length) || "/";
   }
-  if (!route.startsWith('/')) route = '/' + route;
+  if (!route.startsWith("/")) route = "/" + route;
   // Normalize trailing slash: '/about/' → '/about'  (but '/' stays '/')
-  if (route.length > 1 && route.endsWith('/')) route = route.slice(0, -1);
-  return route || '/';
+  if (route.length > 1 && route.endsWith("/")) route = route.slice(0, -1);
+  return route || "/";
 }
+
+document.getElementById("logoBtn").addEventListener("click", () => {
+  navigate("/");
+});
 
 // ──────────────────────────────────────────────
 //  DATA: Members
@@ -188,32 +198,72 @@ function pathToRoute(pathname) {
 const MEMBERS = [
   {
     id: 1,
-    initials: 'NM',
-    name: 'Nikhil Mittal',
-    role: 'Founder',
-    dept: 'Ministry of Mechanical Affairs',
-    bio: 'The visionary who forged the foundations of the Ministry. Driven by precision, discipline, and an unwavering commitment to engineering excellence, he transformed a shared passion for mechanical innovation into a brotherhood united by purpose and craftsmanship.',
-    skills: ['Leadership', 'Engineering Vision', 'Innovation', 'Strategic Planning'],
+    initials: "NM",
+    name: "Nikhil Mittal",
+    role: "Founder",
+    dept: "Ministry of Mechanical Affairs",
+    bio: "The visionary who forged the foundations of the Ministry. Driven by precision, discipline, and an unwavering commitment to engineering excellence, he transformed a shared passion for mechanical innovation into a brotherhood united by purpose and craftsmanship.",
+    skills: [
+      "Leadership",
+      "Engineering Vision",
+      "Innovation",
+      "Strategic Planning",
+    ],
   },
 
   {
     id: 2,
-    initials: 'SS',
-    name: 'Shivam Sharma',
-    role: 'Co-Founder',
-    dept: 'Ministry of Mechanical Affairs',
-    bio: 'A key architect behind the Ministry’s growth and culture. Known for his problem-solving mindset and relentless pursuit of perfection, he bridges ideas with execution and inspires members to push beyond conventional limits.',
-    skills: ['Project Management', 'Team Building', 'Mechanical Design', 'Operations'],
+    initials: "SS",
+    name: "Shivam Sharma",
+    role: "Co-Founder",
+    dept: "Ministry of Mechanical Affairs",
+    bio: "A key architect behind the Ministry’s growth and culture. Known for his problem-solving mindset and relentless pursuit of perfection, he bridges ideas with execution and inspires members to push beyond conventional limits.",
+    skills: [
+      "Project Management",
+      "Team Building",
+      "Mechanical Design",
+      "Operations",
+    ],
   },
 
   {
     id: 3,
-    initials: 'SC',
-    name: 'Sunil Choudhary',
-    role: 'Union Leader',
-    dept: 'Ministry of Mechanical Affairs',
-    bio: 'The voice of unity and brotherhood within the Ministry. Respected for his dedication, mentorship, and ability to bring engineers together under a common mission, he strengthens the spirit that drives the organization forward.',
-    skills: ['Mentorship', 'Communication', 'Leadership', 'Community Building'],
+    initials: "SC",
+    name: "Sunil Choudhary",
+    role: "Union Leader",
+    dept: "Ministry of Mechanical Affairs",
+    bio: "The voice of unity and brotherhood within the Ministry. Respected for his dedication, mentorship, and ability to bring engineers together under a common mission, he strengthens the spirit that drives the organization forward.",
+    skills: ["Mentorship", "Communication", "Leadership", "Community Building"],
+  },
+
+  {
+    id: 4,
+    initials: "RM",
+    name: "Rocky Mann",
+    role: "Head of Law & Order",
+    dept: "Ministry of Mechanical Affairs",
+    bio: "Guardian of order and discipline within the Ministry. With a firm sense of responsibility and an unwavering commitment to structure, he ensures that every operation upholds the principles, standards, and integrity upon which the brotherhood stands.",
+    skills: [
+      "Discipline",
+      "Conflict Resolution",
+      "Organization",
+      "Accountability",
+    ],
+  },
+
+  {
+    id: 5,
+    initials: "AK",
+    name: "Anish Kumar",
+    role: "Finance Minister",
+    dept: "Ministry of Mechanical Affairs",
+    bio: "Custodian of the Ministry’s resources and financial strategy. Through careful planning, foresight, and stewardship, he ensures that every asset serves the greater mission of sustaining growth, innovation, and long-term stability.",
+    skills: [
+      "Financial Planning",
+      "Resource Management",
+      "Budgeting",
+      "Strategic Analysis",
+    ],
   },
 ];
 
@@ -223,27 +273,43 @@ const MEMBERS = [
 
 const COUNCIL = [
   {
-    initials: 'NM',
-    name: 'Nikhil Mittal',
-    role: 'Founder',
-    desc: 'The visionary who established the Ministry and laid the foundations of its culture. Guided by discipline, innovation, and brotherhood, he transformed a shared passion for engineering into a movement driven by purpose and excellence.',
-    icon: '⚙️',
+    initials: "NM",
+    name: "Nikhil Mittal",
+    role: "Founder",
+    desc: "The visionary who established the Ministry and laid the foundations of its culture. Guided by discipline, innovation, and brotherhood, he transformed a shared passion for engineering into a movement driven by purpose and excellence.",
+    icon: "⚙️",
   },
 
   {
-    initials: 'SS',
-    name: 'Shivam Sharma',
-    role: 'Co-Founder',
-    desc: 'A founding pillar of the Ministry who helped shape its identity and direction. Known for turning ambitious ideas into reality, he continues to strengthen the bond between creativity, engineering, and leadership.',
-    icon: '🔧',
+    initials: "SS",
+    name: "Shivam Sharma",
+    role: "Co-Founder",
+    desc: "A founding pillar of the Ministry who helped shape its identity and direction. Known for turning ambitious ideas into reality, he continues to strengthen the bond between creativity, engineering, and leadership.",
+    icon: "🔧",
   },
 
   {
-    initials: 'SC',
-    name: 'Sunil Choudhary',
-    role: 'Union Leader',
-    desc: 'The voice of unity within the Brotherhood. Through mentorship, guidance, and unwavering dedication, he ensures that every member contributes to the Ministry’s shared mission and collective growth.',
-    icon: '🏛️',
+    initials: "SC",
+    name: "Sunil Choudhary",
+    role: "Union Leader",
+    desc: "The voice of unity within the Brotherhood. Through mentorship, guidance, and unwavering dedication, he ensures that every member contributes to the Ministry’s shared mission and collective growth.",
+    icon: "🏛️",
+  },
+
+  {
+    initials: "RM",
+    name: "Rocky Mann",
+    role: "Head of Law & Order",
+    desc: "Guardian of order and discipline within the Ministry. Entrusted with maintaining structure, accountability, and operational integrity, he safeguards the standards upon which the Brotherhood was built and ensures that the Ministry’s code is upheld without compromise.",
+    icon: "🛡️",
+  },
+
+  {
+    initials: "AK",
+    name: "Anish Kumar",
+    role: "Finance Minister",
+    desc: "Custodian of the Ministry’s resources and long-term prosperity. Through strategic planning, careful stewardship, and financial foresight, he ensures that every resource serves the greater mission of growth, stability, and engineering excellence.",
+    icon: "💰",
   },
 ];
 
@@ -253,86 +319,99 @@ const COUNCIL = [
 const state = {
   logoClickCount: 0,
   logoClickTimer: null,
-  resourceData:   null,
-  resourceStack:  [],
-  searchQuery:    '',
-  sortMode:       'name-az',
+  resourceData: null,
+  resourceStack: [],
+  searchQuery: "",
+  sortMode: "name-az",
 };
 
 // ──────────────────────────────────────────────
 //  ROUTER
 // ──────────────────────────────────────────────
 const routes = {
-  '/':          renderHome,
-  '/about':     renderAbout,
-  '/resources': renderResources,
+  "/": renderHome,
+  "/about": renderAbout,
+  "/resources": renderResources,
 };
 
 function navigate(path, push = true) {
   // [FIX-2] Build the full pathname preserving the deployment base.
   // 'path' is the short route key: '/', '/about', '/resources'
   // fullPath on GH Pages: '/mma/', '/mma/about', '/mma/resources'
-  const base = BASE_PATH.replace(/\/$/, ''); // '/mma'
-  const fullPath = path === '/' ? BASE_PATH : base + path;
-  if (push) history.pushState({}, '', fullPath);
+  const base = BASE_PATH.replace(/\/$/, ""); // '/mma'
+  const fullPath = path === "/" ? BASE_PATH : base + path;
+  if (push) history.pushState({}, "", fullPath);
   updateNavHighlight(path);
-  const app = document.getElementById('app');
-  app.innerHTML = '';
+  const app = document.getElementById("app");
+  app.innerHTML = "";
   const render = routes[path] || renderHome;
   render(app);
   window.scrollTo(0, 0);
-  document.getElementById('navLinks').classList.remove('open');
+  document.getElementById("navLinks").classList.remove("open");
 }
 
-window.addEventListener('popstate', () => navigate(pathToRoute(location.pathname), false));
+window.addEventListener("popstate", () =>
+  navigate(pathToRoute(location.pathname), false),
+);
 
 function updateNavHighlight(path) {
-  document.querySelectorAll('.nav-link').forEach(el => {
-    el.classList.toggle('active', el.dataset.route === path);
+  document.querySelectorAll(".nav-link").forEach((el) => {
+    el.classList.toggle("active", el.dataset.route === path);
   });
 }
 
 // ──────────────────────────────────────────────
 //  NAVBAR
 // ──────────────────────────────────────────────
-document.querySelectorAll('.nav-link').forEach(el => {
-  el.addEventListener('click', () => navigate(el.dataset.route));
+document.querySelectorAll(".nav-link").forEach((el) => {
+  el.addEventListener("click", () => navigate(el.dataset.route));
 });
 
-document.getElementById('hamburger').addEventListener('click', () => {
-  document.getElementById('navLinks').classList.toggle('open');
+document.getElementById("hamburger").addEventListener("click", () => {
+  document.getElementById("navLinks").classList.toggle("open");
 });
 
-document.getElementById('logoBtn').addEventListener('click', () => {
+document.getElementById("logoBtn").addEventListener("click", () => {
   state.logoClickCount++;
   clearTimeout(state.logoClickTimer);
   if (state.logoClickCount >= 5) {
     state.logoClickCount = 0;
     showEasterEgg();
   } else {
-    state.logoClickTimer = setTimeout(() => { state.logoClickCount = 0; }, 2000);
+    state.logoClickTimer = setTimeout(() => {
+      state.logoClickCount = 0;
+    }, 2000);
   }
 });
 
 // ──────────────────────────────────────────────
 //  GEAR SVG BUILDER (used in hero / footer)
 // ──────────────────────────────────────────────
-function buildGearSVG({ cx, cy, r, teeth, stroke, opacity, cls, strokeW = 1.5 }) {
+function buildGearSVG({
+  cx,
+  cy,
+  r,
+  teeth,
+  stroke,
+  opacity,
+  cls,
+  strokeW = 1.5,
+}) {
   const toothH = r * 0.22;
-  const inner  = r - toothH;
-  const step   = (2 * Math.PI) / teeth;
-  let d = '';
+  const inner = r - toothH;
+  const step = (2 * Math.PI) / teeth;
+  let d = "";
   for (let i = 0; i < teeth; i++) {
     const a1 = i * step - step * 0.35;
     const a2 = i * step - step * 0.1;
     const a3 = i * step + step * 0.1;
     const a4 = i * step + step * 0.35;
     d += `L ${cx + inner * Math.cos(a1)} ${cy + inner * Math.sin(a1)} `;
-    d += `L ${cx + r     * Math.cos(a2)} ${cy + r     * Math.sin(a2)} `;
-    d += `L ${cx + r     * Math.cos(a3)} ${cy + r     * Math.sin(a3)} `;
+    d += `L ${cx + r * Math.cos(a2)} ${cy + r * Math.sin(a2)} `;
+    d += `L ${cx + r * Math.cos(a3)} ${cy + r * Math.sin(a3)} `;
     d += `L ${cx + inner * Math.cos(a4)} ${cy + inner * Math.sin(a4)} `;
   }
-  d = 'M' + d.slice(1) + 'Z';
+  d = "M" + d.slice(1) + "Z";
   return `<path class="gear ${cls}" d="${d}" stroke="${stroke}" stroke-width="${strokeW}" fill="none" opacity="${opacity}" />
           <circle cx="${cx}" cy="${cy}" r="${r * 0.22}" stroke="${stroke}" stroke-width="${strokeW}" fill="none" opacity="${opacity}" class="gear ${cls}" />`;
 }
@@ -341,27 +420,37 @@ function buildGearSVG({ cx, cy, r, teeth, stroke, opacity, cls, strokeW = 1.5 })
 //  PERPETUAL MOTION MACHINE  (SVG)
 // ──────────────────────────────────────────────
 function buildPMM() {
-  const gold  = '#C9A84C', goldD = '#9A7530', goldL = '#E8C96A';
-  const blue  = '#4A90E2', steel = '#2C2C2C', steelL = '#4A4A4A';
+  const gold = "#C9A84C",
+    goldD = "#9A7530",
+    goldL = "#E8C96A";
+  const blue = "#4A90E2",
+    steel = "#2C2C2C",
+    steelL = "#4A4A4A";
 
   // Gear outline path builder
   function gear(cx, cy, r, teeth, animCls, color, sw) {
-    const toothH = r * 0.20, inner = r - toothH;
-    const step   = (2 * Math.PI) / teeth;
-    let d = '';
+    const toothH = r * 0.2,
+      inner = r - toothH;
+    const step = (2 * Math.PI) / teeth;
+    let d = "";
     for (let i = 0; i < teeth; i++) {
-      const a1 = i * step - step * 0.35, a2 = i * step - step * 0.1;
-      const a3 = i * step + step * 0.1,  a4 = i * step + step * 0.35;
-      d += `L ${cx + inner*Math.cos(a1)} ${cy + inner*Math.sin(a1)} `;
-      d += `L ${cx + r    *Math.cos(a2)} ${cy + r    *Math.sin(a2)} `;
-      d += `L ${cx + r    *Math.cos(a3)} ${cy + r    *Math.sin(a3)} `;
-      d += `L ${cx + inner*Math.cos(a4)} ${cy + inner*Math.sin(a4)} `;
+      const a1 = i * step - step * 0.35,
+        a2 = i * step - step * 0.1;
+      const a3 = i * step + step * 0.1,
+        a4 = i * step + step * 0.35;
+      d += `L ${cx + inner * Math.cos(a1)} ${cy + inner * Math.sin(a1)} `;
+      d += `L ${cx + r * Math.cos(a2)} ${cy + r * Math.sin(a2)} `;
+      d += `L ${cx + r * Math.cos(a3)} ${cy + r * Math.sin(a3)} `;
+      d += `L ${cx + inner * Math.cos(a4)} ${cy + inner * Math.sin(a4)} `;
     }
-    d = 'M' + d.slice(1) + 'Z';
-    const spokes = Array.from({length: Math.max(4, Math.floor(teeth / 3))}, (_, i) => {
-      const a = (2 * Math.PI / Math.max(4, Math.floor(teeth / 3))) * i;
-      return `<line x1="${cx}" y1="${cy}" x2="${cx + inner * 0.75 * Math.cos(a)}" y2="${cy + inner * 0.75 * Math.sin(a)}" stroke="${color}" stroke-width="${sw * 0.6}" opacity="0.4"/>`;
-    }).join('');
+    d = "M" + d.slice(1) + "Z";
+    const spokes = Array.from(
+      { length: Math.max(4, Math.floor(teeth / 3)) },
+      (_, i) => {
+        const a = ((2 * Math.PI) / Math.max(4, Math.floor(teeth / 3))) * i;
+        return `<line x1="${cx}" y1="${cy}" x2="${cx + inner * 0.75 * Math.cos(a)}" y2="${cy + inner * 0.75 * Math.sin(a)}" stroke="${color}" stroke-width="${sw * 0.6}" opacity="0.4"/>`;
+      },
+    ).join("");
     return `<g class="${animCls}" style="transform-origin:${cx}px ${cy}px;">
       <path d="${d}" stroke="${color}" stroke-width="${sw}" fill="${color}" fill-opacity="0.06" opacity="0.8"/>
       ${spokes}
@@ -371,13 +460,25 @@ function buildPMM() {
   }
 
   // Gear layout — meshing radii: G1+G2 must touch, G2+G3 must touch
-  const g1cx = 155, g1cy = 148, g1r = 55, g1t = 16;
-  const g2cx = 265, g2cy = 148, g2r = 35, g2t = 10;
-  const g3cx = 350, g3cy = 148, g3r = 21, g3t = 6;
-  const fwcx = 420, fwcy = 148, fwr = 28;
+  const g1cx = 155,
+    g1cy = 148,
+    g1r = 55,
+    g1t = 16;
+  const g2cx = 265,
+    g2cy = 148,
+    g2r = 35,
+    g2t = 10;
+  const g3cx = 350,
+    g3cy = 148,
+    g3r = 21,
+    g3t = 6;
+  const fwcx = 420,
+    fwcy = 148,
+    fwr = 28;
 
   // Belt tangent lines from G2 axle to flywheel
-  const beltTop = g2cy - g2r * 0.35, beltBot = g2cy + g2r * 0.35;
+  const beltTop = g2cy - g2r * 0.35,
+    beltBot = g2cy + g2r * 0.35;
 
   return `
   <div style="display:flex;flex-direction:column;align-items:center;">
@@ -417,40 +518,43 @@ function buildPMM() {
       <rect x="50" y="223" width="415" height="2" rx="1" fill="${goldD}"  opacity="0.2"/>
 
       <!-- Support pillars -->
-      <rect x="${g1cx-3}" y="${g1cy+g1r+2}" width="6" height="${218-g1cy-g1r-2}" fill="${steelL}" opacity="0.45"/>
-      <rect x="${g2cx-3}" y="${g2cy+g2r+2}" width="6" height="${218-g2cy-g2r-2}" fill="${steelL}" opacity="0.4"/>
-      <rect x="${fwcx-3}" y="${fwcy+fwr+2}" width="6" height="${218-fwcy-fwr-2}" fill="${steelL}" opacity="0.35"/>
+      <rect x="${g1cx - 3}" y="${g1cy + g1r + 2}" width="6" height="${218 - g1cy - g1r - 2}" fill="${steelL}" opacity="0.45"/>
+      <rect x="${g2cx - 3}" y="${g2cy + g2r + 2}" width="6" height="${218 - g2cy - g2r - 2}" fill="${steelL}" opacity="0.4"/>
+      <rect x="${fwcx - 3}" y="${fwcy + fwr + 2}" width="6" height="${218 - fwcy - fwr - 2}" fill="${steelL}" opacity="0.35"/>
 
       <!-- Belt: G2 to flywheel -->
-      <line x1="${g2cx+g2r}" y1="${beltTop}" x2="${fwcx-fwr}" y2="${beltTop}"
+      <line x1="${g2cx + g2r}" y1="${beltTop}" x2="${fwcx - fwr}" y2="${beltTop}"
             stroke="${goldD}" stroke-width="2" stroke-dasharray="6 3" opacity="0.35"
             class="pmm-belt-flow"/>
-      <line x1="${g2cx+g2r}" y1="${beltBot}" x2="${fwcx-fwr}" y2="${beltBot}"
+      <line x1="${g2cx + g2r}" y1="${beltBot}" x2="${fwcx - fwr}" y2="${beltBot}"
             stroke="${goldD}" stroke-width="2" stroke-dasharray="6 3" opacity="0.25"
             style="animation: beltDash 2s linear infinite reverse;"/>
 
       <!-- Flywheel (belt-driven, CW) -->
       <g class="pmm-fw" style="transform-origin:${fwcx}px ${fwcy}px;">
         <circle cx="${fwcx}" cy="${fwcy}" r="${fwr}" stroke="${gold}" stroke-width="2.5" fill="none" opacity="0.7" filter="url(#pgold)"/>
-        <circle cx="${fwcx}" cy="${fwcy}" r="${fwr*0.65}" stroke="${goldD}" stroke-width="1" fill="none" opacity="0.3"/>
-        ${Array.from({length:6},(_,i)=>{const a=(Math.PI/3)*i; return `<line x1="${fwcx}" y1="${fwcy}" x2="${fwcx+fwr*0.85*Math.cos(a)}" y2="${fwcy+fwr*0.85*Math.sin(a)}" stroke="${gold}" stroke-width="1.2" opacity="0.45"/>`;}).join('')}
-        <circle cx="${fwcx}" cy="${fwcy}" r="${fwr*0.2}" fill="${steelL}" stroke="${gold}" stroke-width="1.2" opacity="0.9"/>
-        <circle cx="${fwcx}" cy="${fwcy}" r="${fwr*0.07}" fill="${gold}" opacity="1"/>
+        <circle cx="${fwcx}" cy="${fwcy}" r="${fwr * 0.65}" stroke="${goldD}" stroke-width="1" fill="none" opacity="0.3"/>
+        ${Array.from({ length: 6 }, (_, i) => {
+          const a = (Math.PI / 3) * i;
+          return `<line x1="${fwcx}" y1="${fwcy}" x2="${fwcx + fwr * 0.85 * Math.cos(a)}" y2="${fwcy + fwr * 0.85 * Math.sin(a)}" stroke="${gold}" stroke-width="1.2" opacity="0.45"/>`;
+        }).join("")}
+        <circle cx="${fwcx}" cy="${fwcy}" r="${fwr * 0.2}" fill="${steelL}" stroke="${gold}" stroke-width="1.2" opacity="0.9"/>
+        <circle cx="${fwcx}" cy="${fwcy}" r="${fwr * 0.07}" fill="${gold}" opacity="1"/>
       </g>
 
       <!-- G1: main large gear CW -->
-      ${gear(g1cx, g1cy, g1r, g1t, 'pmm-cw', gold, 2.2)}
+      ${gear(g1cx, g1cy, g1r, g1t, "pmm-cw", gold, 2.2)}
 
       <!-- G2: medium gear CCW (meshes with G1) -->
-      ${gear(g2cx, g2cy, g2r, g2t, 'pmm-ccw', goldL, 1.8)}
+      ${gear(g2cx, g2cy, g2r, g2t, "pmm-ccw", goldL, 1.8)}
 
       <!-- G3: small fast gear CW (meshes with G2) -->
-      ${gear(g3cx, g3cy, g3r, g3t, 'pmm-fast', blue, 1.4)}
+      ${gear(g3cx, g3cy, g3r, g3t, "pmm-fast", blue, 1.4)}
 
       <!-- Pendulum attached to G1 column -->
       <g class="pmm-pend">
         <!-- pivot bar -->
-        <rect x="${g1cx-7}" y="46" width="14" height="8" rx="2" fill="${steel}" stroke="${goldD}" stroke-width="1" opacity="0.85"/>
+        <rect x="${g1cx - 7}" y="46" width="14" height="8" rx="2" fill="${steel}" stroke="${goldD}" stroke-width="1" opacity="0.85"/>
         <!-- rod -->
         <line x1="${g1cx}" y1="52" x2="${g1cx}" y2="118" stroke="${gold}" stroke-width="1.8" opacity="0.55"/>
         <!-- mid weight ring -->
@@ -481,13 +585,13 @@ function renderHome(container) {
 
       <div class="hero-gears">
         <svg width="100%" height="100%" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" style="position:absolute;inset:0;">
-          ${buildGearSVG({ cx:80,   cy:120, r:60, teeth:12, stroke:'#C9A84C', opacity:0.12, cls:'gear-cw'   })}
-          ${buildGearSVG({ cx:180,  cy:90,  r:30, teeth:8,  stroke:'#C9A84C', opacity:0.10, cls:'gear-ccw'  })}
-          ${buildGearSVG({ cx:1120, cy:650, r:80, teeth:16, stroke:'#C9A84C', opacity:0.10, cls:'gear-cw'   })}
-          ${buildGearSVG({ cx:1000, cy:700, r:40, teeth:10, stroke:'#4A90E2', opacity:0.08, cls:'gear-ccw'  })}
-          ${buildGearSVG({ cx:600,  cy:750, r:50, teeth:12, stroke:'#C9A84C', opacity:0.06, cls:'gear-slow' })}
-          ${buildGearSVG({ cx:200,  cy:750, r:35, teeth:9,  stroke:'#4A90E2', opacity:0.07, cls:'gear-ccw'  })}
-          ${buildGearSVG({ cx:1050, cy:100, r:45, teeth:10, stroke:'#C9A84C', opacity:0.09, cls:'gear-slow' })}
+          ${buildGearSVG({ cx: 80, cy: 120, r: 60, teeth: 12, stroke: "#C9A84C", opacity: 0.12, cls: "gear-cw" })}
+          ${buildGearSVG({ cx: 180, cy: 90, r: 30, teeth: 8, stroke: "#C9A84C", opacity: 0.1, cls: "gear-ccw" })}
+          ${buildGearSVG({ cx: 1120, cy: 650, r: 80, teeth: 16, stroke: "#C9A84C", opacity: 0.1, cls: "gear-cw" })}
+          ${buildGearSVG({ cx: 1000, cy: 700, r: 40, teeth: 10, stroke: "#4A90E2", opacity: 0.08, cls: "gear-ccw" })}
+          ${buildGearSVG({ cx: 600, cy: 750, r: 50, teeth: 12, stroke: "#C9A84C", opacity: 0.06, cls: "gear-slow" })}
+          ${buildGearSVG({ cx: 200, cy: 750, r: 35, teeth: 9, stroke: "#4A90E2", opacity: 0.07, cls: "gear-ccw" })}
+          ${buildGearSVG({ cx: 1050, cy: 100, r: 45, teeth: 10, stroke: "#C9A84C", opacity: 0.09, cls: "gear-slow" })}
         </svg>
       </div>
 
@@ -525,7 +629,7 @@ function renderHome(container) {
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;">
         <div class="stat-card"><div class="stat-icon">⚙️</div><div class="stat-number">10+</div><div class="stat-label">Active Members</div></div>
         <div class="stat-card"><div class="stat-icon">📍</div><div class="stat-number">Jodhpur</div><div class="stat-label">Rajasthan, India</div></div>
-        <div class="stat-card"><div class="stat-icon">🏛️</div><div class="stat-number">1994</div><div class="stat-label">Founded Year</div></div>
+        <div class="stat-card"><div class="stat-icon">🏛️</div><div class="stat-number">2025</div><div class="stat-label">Founded Year</div></div>
         <div class="stat-card"><div class="stat-icon">🔩</div><div class="stat-number">∞</div><div class="stat-label">Commitment</div></div>
       </div>
     </section>
@@ -544,7 +648,8 @@ function renderHome(container) {
         </p>
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1.25rem;">
-        ${MEMBERS.map(m => `
+        ${MEMBERS.map(
+          (m) => `
           <div class="member-card" onclick="showMemberModal(${m.id})">
             <div class="member-avatar">${m.initials}</div>
             <div class="member-name">${m.name}</div>
@@ -554,7 +659,8 @@ function renderHome(container) {
               <span style="font-size:0.65rem;color:#444;letter-spacing:0.15em;text-transform:uppercase;">Active</span>
             </div>
           </div>
-        `).join('')}
+        `,
+        ).join("")}
       </div>
     </section>
 
@@ -566,7 +672,7 @@ function renderHome(container) {
 //  MEMBER MODAL
 // ──────────────────────────────────────────────
 function showMemberModal(id) {
-  const m = MEMBERS.find(x => x.id === id);
+  const m = MEMBERS.find((x) => x.id === id);
   if (!m) return;
   showModal(`
     <div style="display:flex;flex-direction:column;align-items:center;text-align:center;">
@@ -577,9 +683,13 @@ function showMemberModal(id) {
       <div style="width:40px;height:1px;background:linear-gradient(90deg,transparent,#C9A84C,transparent);margin-bottom:1.5rem;"></div>
       <p style="color:#999;font-size:0.95rem;line-height:1.7;text-align:left;">${m.bio}</p>
       <div style="margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:0.5rem;justify-content:center;">
-        ${m.skills.map(s => `
+        ${m.skills
+          .map(
+            (s) => `
           <span style="background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.25);color:#C9A84C;padding:0.25rem 0.75rem;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;">${s}</span>
-        `).join('')}
+        `,
+          )
+          .join("")}
       </div>
     </div>
   `);
@@ -619,17 +729,21 @@ function renderAbout(container) {
         <div style="background:rgba(26,26,26,0.8);border:1px solid rgba(201,168,76,0.15);padding:2rem;">
           <div class="section-tag" style="margin-bottom:1rem;">[ MINISTRY CHARTER ]</div>
           ${[
-            'Pursue engineering excellence without compromise',
-            'Support every member\'s growth relentlessly',
-            'Solve real-world problems with first-principles thinking',
-            'Uphold the dignity of the mechanical discipline',
-            'Build, break, rebuild — until it\'s right',
-          ].map((item, i) => `
+            "Pursue engineering excellence without compromise",
+            "Support every member's growth relentlessly",
+            "Solve real-world problems with first-principles thinking",
+            "Uphold the dignity of the mechanical discipline",
+            "Build, break, rebuild — until it's right",
+          ]
+            .map(
+              (item, i) => `
             <div style="display:flex;gap:1rem;align-items:flex-start;padding:0.75rem 0;border-bottom:1px solid rgba(255,255,255,0.04);">
-              <span style="font-family:'Cinzel',serif;color:rgba(201,168,76,0.4);font-size:0.9rem;min-width:1.5rem;">0${i+1}</span>
+              <span style="font-family:'Cinzel',serif;color:rgba(201,168,76,0.4);font-size:0.9rem;min-width:1.5rem;">0${i + 1}</span>
               <span style="color:#888;font-size:0.9rem;line-height:1.5;">${item}</span>
             </div>
-          `).join('')}
+          `,
+            )
+            .join("")}
         </div>
       </div>
     </section>
@@ -642,7 +756,8 @@ function renderAbout(container) {
         <h2 class="section-title">The High <span>Council</span></h2>
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;">
-        ${COUNCIL.map(c => `
+        ${COUNCIL.map(
+          (c) => `
           <div class="council-card">
             <div style="font-size:2.5rem;margin-bottom:1.5rem;">${c.icon}</div>
             <div class="member-avatar" style="margin-bottom:1rem;">${c.initials}</div>
@@ -650,62 +765,431 @@ function renderAbout(container) {
             <div style="font-size:0.7rem;letter-spacing:0.25em;text-transform:uppercase;color:#C9A84C;opacity:0.7;margin:0.4rem 0 1rem;">${c.role}</div>
             <p style="color:#666;font-size:0.9rem;line-height:1.6;">${c.desc}</p>
           </div>
-        `).join('')}
+        `,
+        ).join("")}
       </div>
     </section>
 
     <div class="gold-divider" style="max-width:1100px;margin:0 auto;"></div>
+<section style="padding:4rem 2rem;max-width:1100px;margin:0 auto;">
 
-    <section style="padding:4rem 2rem;max-width:900px;margin:0 auto;">
-      <div style="margin-bottom:3rem;">
-        <div class="section-tag">[ ENLISTMENT PROTOCOL ]</div>
-        <h2 class="section-title">How to <span>Join</span></h2>
-        <div class="section-line"></div>
+  <div style="text-align:center;margin-bottom:3rem;">
+    <div class="section-tag">[ WHY JOIN THE MINISTRY ]</div>
+    <h2 class="section-title">Become Part of the <span>Brotherhood</span></h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div style="
+    max-width:900px;
+    margin:0 auto 3rem;
+    text-align:center;
+    color:#777;
+    line-height:1.9;
+    font-size:1rem;
+  ">
+
+    The Ministry is more than a club—it is a network of engineers who learn,
+    build, fail, improve, and grow together.
+
+    <br><br>
+
+  By joining MMA, juniors gain direct access to a Brotherhood of seniors who freely share guidance, resources, practical knowledge, and lessons learned through experience. Instead of navigating engineering alone, members can learn, ask questions, exchange ideas, and grow alongside fellow mechanical engineers who are always willing to help
+
+  </div>
+
+  <div style="
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:1.2rem;
+  ">
+
+    <div class="council-card">
+      <div style="font-size:2rem;margin-bottom:1rem;">🎓</div>
+
+      <div style="
+        font-family:'Cinzel',serif;
+        color:#D4AF37;
+        margin-bottom:0.75rem;
+      ">
+        Senior Guidance
       </div>
-      <div style="display:flex;flex-direction:column;gap:0.5rem;">
-        ${[
-          { n:'01', t:'Application',         d:'Submit your application with a statement of intent and your engineering philosophy.' },
-          { n:'02', t:'Eligibility Review',   d:'Academic record, extracurriculars, and project portfolio evaluated. Minimum CGPA 7.5.' },
-          { n:'03', t:'Physical Aptitude Test',d:'A hands-on fabrication challenge in the workshop under pressure.' },
-          { n:'04', t:'Mental Calibration Test',d:'Analytical exam: thermodynamics, mechanics, fluid systems, design thinking.' },
-        ].map(s => `
-          <div class="step-item">
-            <div class="step-num">${s.n}</div>
-            <div>
-              <div style="font-family:'Cinzel',serif;font-weight:700;font-size:1.05rem;color:#CCC;margin-bottom:0.5rem;">${s.t}</div>
-              <p style="color:#666;font-size:0.9rem;line-height:1.6;">${s.d}</p>
-            </div>
-          </div>
-        `).join('')}
+
+      <p style="color:#666;font-size:0.9rem;line-height:1.7;">
+        Learn from seniors who have already solved the problems you are facing
+        today—from subjects and exams to internships and career decisions.
+      </p>
+    </div>
+
+    <div class="council-card">
+      <div style="font-size:2rem;margin-bottom:1rem;">📚</div>
+
+      <div style="
+        font-family:'Cinzel',serif;
+        color:#D4AF37;
+        margin-bottom:0.75rem;
+      ">
+        Courses & Resources
       </div>
-    </section>
+
+      <p style="color:#666;font-size:0.9rem;line-height:1.7;">
+        Access useful notes, study material, software resources, courses,
+        opportunities, and knowledge shared by fellow members.
+      </p>
+    </div>
+
+    <div class="council-card">
+      <div style="font-size:2rem;margin-bottom:1rem;">⚙️</div>
+
+      <div style="
+        font-family:'Cinzel',serif;
+        color:#D4AF37;
+        margin-bottom:0.75rem;
+      ">
+        Projects & Skills
+      </div>
+
+      <p style="color:#666;font-size:0.9rem;line-height:1.7;">
+        Discuss ideas, improve technical skills, showcase projects,
+        and learn practical engineering beyond the classroom.
+      </p>
+    </div>
+
+    <div class="council-card">
+      <div style="font-size:2rem;margin-bottom:1rem;">🤝</div>
+
+      <div style="
+        font-family:'Cinzel',serif;
+        color:#D4AF37;
+        margin-bottom:0.75rem;
+      ">
+        Brotherhood
+      </div>
+
+      <p style="color:#666;font-size:0.9rem;line-height:1.7;">
+        Build friendships, confidence, communication skills,
+        and become part of a supportive mechanical community
+        that grows together.
+      </p>
+    </div>
+
+  </div>
+
+  <div style="
+    margin-top:3rem;
+    text-align:center;
+    font-family:'Cinzel',serif;
+    color:#D4AF37;
+    letter-spacing:.15em;
+    line-height:2;
+  ">
+
+    ⚙️ KNOWLEDGE SHARED IS POWER MULTIPLIED ⚙️
+
+    <br>
+
+    <span style="font-size:.8rem;color:#666;">
+      Learn Together • Build Together • Grow Together
+    </span>
+
+  </div>
+
+</section>
+
+<div class="gold-divider" style="max-width:1100px;margin:0 auto;"></div>
+
+      <section style="padding:4rem 2rem;max-width:1000px;margin:0 auto;">
+
+  <div style="margin-bottom:3rem;">
+    <div class="section-tag">[ ENLISTMENT PROTOCOL ]</div>
+    <h2 class="section-title">Choose Your <span>Path</span></h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="join-intro">
+
+
+The Ministry does not recruit through exams,
+CGPA cutoffs, interviews,
+blood sacrifices,
+or 17-page application forms.
+
+<br><br>
+
+Choose any path below.
+
+Share a meme.
+Show a project.
+Reveal a hidden talent.
+Talk about your goals.
+
+Or arrive with absolutely nothing except curiosity.
+
+<br><br>
+
+<span class="join-highlight">
+  Every engineer has a story.
+  We're interested in yours.
+</span>
+
+
+  </div>
+
+  <div class="join-grid">
+
+
+<a href="https://wa.me/12692864097?text=Greetings%20MMA.%20I%20would%20like%20to%20play%20UNO."
+   target="_blank"
+   class="path-card">
+
+  <div class="path-icon">🔄</div>
+
+  <div class="path-title">
+    UNO Challenge
+  </div>
+
+  <div class="path-desc">
+    Challenge existing members to a legendary UNO battle.
+    Victory is optional.
+    Chaos is guaranteed.
+  </div>
+
+  <div class="path-footer">
+    INITIATE MATCH →
+  </div>
+
+</a>
+
+<a href="https://wa.me/12692864097?text=Greetings%20MMA.%20I%20have%20a%20Mechanical%20Engineering%20meme%20to%20share."
+   target="_blank"
+   class="path-card">
+
+  <div class="path-icon">😂</div>
+
+  <div class="path-title">
+    Engineering Meme
+  </div>
+
+  <div class="path-desc">
+    The Brotherhood respects intelligence.
+    It also respects top-tier mechanical memes.
+  </div>
+
+  <div class="path-footer">
+    TRANSMIT MEME →
+  </div>
+
+</a>
+
+<a href="https://wa.me/12692864097?text=Greetings%20MMA.%20I%20would%20like%20to%20showcase%20a%20hidden%20talent."
+   target="_blank"
+   class="path-card">
+
+  <div class="path-icon">🎭</div>
+
+  <div class="path-title">
+    Hidden Talent
+  </div>
+
+  <div class="path-desc">
+    Music, speaking, editing, coding,
+    photography, magic tricks—
+    surprise us.
+  </div>
+
+  <div class="path-footer">
+    REVEAL TALENT →
+  </div>
+
+</a>
+
+<a href="https://wa.me/12692864097?text=Greetings%20MMA.%20I%20would%20like%20to%20share%20my%20collection%20or%20hobby."
+   target="_blank"
+   class="path-card">
+
+  <div class="path-icon">📚</div>
+
+  <div class="path-title">
+    Collection / Hobby
+  </div>
+
+  <div class="path-desc">
+    Collect something unusual?
+    Obsessed with a hobby?
+    We want to see it.
+  </div>
+
+  <div class="path-footer">
+    OPEN ARCHIVES →
+  </div>
+
+</a>
+
+<a href="https://wa.me/12692864097?text=Greetings%20MMA.%20I%20would%20like%20to%20share%20my%20artwork%20or%20creative%20work."
+   target="_blank"
+   class="path-card">
+
+  <div class="path-icon">🎨</div>
+
+  <div class="path-title">
+    Art & Creativity
+  </div>
+
+  <div class="path-desc">
+    Drawings, writing,
+    designs, editing,
+    crafts and creative projects.
+  </div>
+
+  <div class="path-footer">
+    SHOW CREATION →
+  </div>
+
+</a>
+
+<a href="https://wa.me/12692864097?text=Greetings%20MMA.%20I%20would%20like%20to%20share%20an%20engineering%20project."
+   target="_blank"
+   class="path-card">
+
+  <div class="path-icon">⚙️</div>
+
+  <div class="path-title">
+    Engineering Project
+  </div>
+
+  <div class="path-desc">
+    Built something?
+    Designed something?
+    Fixed something that should never have worked?
+    Show us.
+  </div>
+
+  <div class="path-footer">
+    TRANSMIT PROJECT →
+  </div>
+
+</a>
+
+<a href="https://wa.me/12692864097?text=Greetings%20MMA.%20I%20would%20like%20to%20introduce%20myself%20and%20share%20my%20goals."
+   target="_blank"
+   class="path-card">
+
+  <div class="path-icon">🚀</div>
+
+  <div class="path-title">
+    Introduce Yourself
+  </div>
+
+  <div class="path-desc">
+    Tell us your goals,
+    why you chose Mechanical Engineering,
+    and where you're headed.
+  </div>
+
+  <div class="path-footer">
+    OPEN CHANNEL →
+  </div>
+
+</a>
+
+<a href="https://wa.me/12692864097?text=Greetings%20MMA.%20I%20am%20not%20sure%20which%20path%20to%20choose%20but%20I%20would%20still%20like%20to%20join."
+   target="_blank"
+   class="path-card">
+
+  <div class="path-icon">🤔</div>
+
+  <div class="path-title">
+    Nothing Special... Yet
+  </div>
+
+  <div class="path-desc">
+    No project.
+    No meme.
+    No talent ready.
+
+    That's okay.
+
+    Curiosity alone is enough to start.
+  </div>
+
+  <div class="path-footer">
+    REQUEST ENTRY →
+  </div>
+
+</a>
+
+
+  </div>
+
+  <div class="join-closing">
+
+
+<div class="join-closing-main">
+  ⚙️ THE GATE IS OPEN ⚙️
+</div>
+
+<div class="join-closing-sub">
+  Choose a path. Send a message. Enter the Brotherhood.
+</div>
+
+
+  </div>
+
+</section>
+
 
     <div class="gold-divider" style="max-width:1100px;margin:0 auto;"></div>
 
-    <section style="padding:4rem 2rem 6rem;max-width:900px;margin:0 auto;">
-      <div style="margin-bottom:3rem;">
-        <div class="section-tag">[ SECURE CHANNEL ]</div>
-        <h2 class="section-title">Contact the <span>Ministry</span></h2>
-        <div class="section-line"></div>
-      </div>
-      <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center;">
-        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ministryofmechanicalaffairs@gmail.com" target="_blank" class="contact-btn" style="color:#D4AF37;border-color:rgba(212,175,55,0.3);">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
-          ministryofmechanicalaffairs@gmail.com
-        </a>
-        <a href="https://www.instagram.com/ministry_of_mechanical_affairs?igsh=MXgydW5jb3lvMGFvNA==" target="_blank" class="contact-btn" style="color:#E1306C;border-color:rgba(225,48,108,0.3);">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="m16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-          @mma_official
-        </a>
-        
-      </div>
-    </section>
+   <section style="padding:4rem 2rem 6rem;max-width:900px;margin:0 auto;">
+  <div style="margin-bottom:3rem;">
+    <div class="section-tag">[ SECURE CHANNEL ]</div>
+    <h2 class="section-title">Contact the <span>Ministry</span></h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:center;">
+
+    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ministryofmechanicalaffairs@gmail.com"
+       target="_blank"
+       class="contact-btn"
+       style="color:#D4AF37;border-color:rgba(212,175,55,0.3);">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+        <polyline points="22,6 12,12 2,6"/>
+      </svg>
+      MAIL HERE
+    </a>
+
+    <a href="https://www.instagram.com/ministry_of_mechanical_affairs?igsh=MXgydW5jb3lvMGFvNA=="
+       target="_blank"
+       class="contact-btn"
+       style="color:#E1306C;border-color:rgba(225,48,108,0.3);">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+        <path d="m16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+      </svg>
+      INSTAGRAM
+    </a>
+
+    <a href="https://wa.me/12692864097"
+       target="_blank"
+       class="contact-btn"
+       style="color:#25D366;border-color:rgba(37,211,102,0.3);">
+      <svg width="16" height="16" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.5L3 21l2.1-5.2A8.5 8.5 0 1 1 21 11.5z"/>
+      </svg>
+      Chat
+    </a>
+
+  </div>
+</section>
     ${renderFooter()}
   `;
 
   if (window.innerWidth < 768) {
-    const grid = container.querySelector('.about-grid');
-    if (grid) grid.style.gridTemplateColumns = '1fr';
+    const grid = container.querySelector(".about-grid");
+    if (grid) grid.style.gridTemplateColumns = "1fr";
   }
 }
 
@@ -730,9 +1214,9 @@ function renderResources(container) {
             <input class="search-input" id="searchInput" type="text" placeholder="Search resources..." value="${state.searchQuery}" />
           </div>
           <select class="sort-select" id="sortSelect">
-            <option value="name-az" ${state.sortMode==='name-az'?'selected':''}>Name A–Z</option>
-            <option value="name-za" ${state.sortMode==='name-za'?'selected':''}>Name Z–A</option>
-            <option value="type"    ${state.sortMode==='type'   ?'selected':''}>Type Priority</option>
+            <option value="name-az" ${state.sortMode === "name-az" ? "selected" : ""}>Name A–Z</option>
+            <option value="name-za" ${state.sortMode === "name-za" ? "selected" : ""}>Name Z–A</option>
+            <option value="type"    ${state.sortMode === "type" ? "selected" : ""}>Type Priority</option>
           </select>
         </div>
         <div class="breadcrumb" id="breadcrumb"></div>
@@ -742,11 +1226,11 @@ function renderResources(container) {
     ${renderFooter()}
   `;
 
-  document.getElementById('searchInput').addEventListener('input', e => {
+  document.getElementById("searchInput").addEventListener("input", (e) => {
     state.searchQuery = e.target.value;
     renderResourceGrid();
   });
-  document.getElementById('sortSelect').addEventListener('change', e => {
+  document.getElementById("sortSelect").addEventListener("change", (e) => {
     state.sortMode = e.target.value;
     renderResourceGrid();
   });
@@ -784,18 +1268,20 @@ async function loadResourceData() {
   // We use new URL() against DOC_BASE_URI (captured before any pushState)
   // so the fetch URL is always absolute and immune to routing changes.
   const candidates = [
-    new URL('resources.json', DOC_BASE_URI).href,       // /mma/resources.json ✓
-    new URL('data/resources.json', DOC_BASE_URI).href,  // /mma/data/resources.json (fallback)
+    new URL("resources.json", DOC_BASE_URI).href, // /mma/resources.json ✓
+    new URL("data/resources.json", DOC_BASE_URI).href, // /mma/data/resources.json (fallback)
   ];
 
   let loaded = false;
   for (const url of candidates) {
     try {
-      console.log('[MMA] Trying:', url);
+      console.log("[MMA] Trying:", url);
       const resp = await fetch(url);
       if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
       state.resourceData = await resp.json();
-      console.log(`[MMA] ✓ Loaded from ${url} — ${state.resourceData.length} top-level items`);
+      console.log(
+        `[MMA] ✓ Loaded from ${url} — ${state.resourceData.length} top-level items`,
+      );
       loaded = true;
       break;
     } catch (err) {
@@ -804,11 +1290,11 @@ async function loadResourceData() {
   }
 
   if (!loaded) {
-    console.warn('[MMA] All fetch attempts failed — using sample data');
+    console.warn("[MMA] All fetch attempts failed — using sample data");
     state.resourceData = getSampleResourceData();
   }
 
-  state.resourceStack = [{ name: 'All Resources', items: state.resourceData }];
+  state.resourceStack = [{ name: "All Resources", items: state.resourceData }];
   populateResourceSidebar();
   renderResourceGrid();
 }
@@ -819,26 +1305,54 @@ async function loadResourceData() {
 function getSampleResourceData() {
   return [
     {
-      name: 'Mechanics', type: 'folder',
+      name: "Mechanics",
+      type: "folder",
       children: [
-        { name: 'Engineering Mechanics Notes', type: 'pdf',   path: 'resources/Mechanics/engineering_mechanics_notes.pdf' },
-        { name: 'Free Body Diagram Guide',      type: 'pdf',   path: 'resources/Mechanics/free_body_diagram_guide.pdf' },
-        { name: 'Statics Explained',
-          type: 'link', thumbnail: 'resources/Mechanics/statics_explained.jpg',
-          link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' },
+        {
+          name: "Engineering Mechanics Notes",
+          type: "pdf",
+          path: "resources/Mechanics/engineering_mechanics_notes.pdf",
+        },
+        {
+          name: "Free Body Diagram Guide",
+          type: "pdf",
+          path: "resources/Mechanics/free_body_diagram_guide.pdf",
+        },
+        {
+          name: "Statics Explained",
+          type: "link",
+          thumbnail: "resources/Mechanics/statics_explained.jpg",
+          link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        },
       ],
     },
     {
-      name: 'Thermodynamics', type: 'folder',
+      name: "Thermodynamics",
+      type: "folder",
       children: [
-        { name: 'First Law of Thermodynamics', type: 'pdf', path: 'resources/Thermodynamics/first_law.pdf' },
-        { name: 'PV Diagram Reference',         type: 'image', path: 'resources/Thermodynamics/pv_diagram.jpg' },
-        { name: 'Heat Engines Lecture',
-          type: 'link', thumbnail: 'resources/Thermodynamics/heat_engines.jpg',
-          link: 'https://www.youtube.com/watch?v=example_heat' },
+        {
+          name: "First Law of Thermodynamics",
+          type: "pdf",
+          path: "resources/Thermodynamics/first_law.pdf",
+        },
+        {
+          name: "PV Diagram Reference",
+          type: "image",
+          path: "resources/Thermodynamics/pv_diagram.jpg",
+        },
+        {
+          name: "Heat Engines Lecture",
+          type: "link",
+          thumbnail: "resources/Thermodynamics/heat_engines.jpg",
+          link: "https://www.youtube.com/watch?v=example_heat",
+        },
       ],
     },
-    { name: 'Ministry Handbook', type: 'pdf', path: 'resources/ministry_handbook.pdf' },
+    {
+      name: "Ministry Handbook",
+      type: "pdf",
+      path: "resources/ministry_handbook.pdf",
+    },
   ];
 }
 
@@ -846,36 +1360,44 @@ function getSampleResourceData() {
 //  SIDEBAR — builds from top-level folders
 // ──────────────────────────────────────────────
 function populateResourceSidebar() {
-  const sidebar = document.getElementById('sidebarItems');
+  const sidebar = document.getElementById("sidebarItems");
   if (!sidebar) return;
-  const folders = state.resourceData.filter(i => i.type === 'folder');
+  const folders = state.resourceData.filter((i) => i.type === "folder");
 
   sidebar.innerHTML = `
     <div class="sidebar-item active" data-idx="0">
       ${homeIcon()} All Resources
     </div>
-    ${folders.map((f, i) => `
+    ${folders
+      .map(
+        (f, i) => `
       <div class="sidebar-item" data-idx="${i + 1}">
         ${folderIcon()} ${escHtml(f.name)}
       </div>
-    `).join('')}
+    `,
+      )
+      .join("")}
   `;
 
-  sidebar.querySelectorAll('.sidebar-item').forEach((el, idx) => {
-    el.addEventListener('click', () => {
-      sidebar.querySelectorAll('.sidebar-item').forEach(x => x.classList.remove('active'));
-      el.classList.add('active');
-      state.searchQuery = '';
-      const inp = document.getElementById('searchInput');
-      if (inp) inp.value = '';
+  sidebar.querySelectorAll(".sidebar-item").forEach((el, idx) => {
+    el.addEventListener("click", () => {
+      sidebar
+        .querySelectorAll(".sidebar-item")
+        .forEach((x) => x.classList.remove("active"));
+      el.classList.add("active");
+      state.searchQuery = "";
+      const inp = document.getElementById("searchInput");
+      if (inp) inp.value = "";
 
       if (idx === 0) {
-        state.resourceStack = [{ name: 'All Resources', items: state.resourceData }];
+        state.resourceStack = [
+          { name: "All Resources", items: state.resourceData },
+        ];
       } else {
         const folder = folders[idx - 1];
         state.resourceStack = [
-          { name: 'All Resources', items: state.resourceData },
-          { name: folder.name,     items: folder.children || [] },
+          { name: "All Resources", items: state.resourceData },
+          { name: folder.name, items: folder.children || [] },
         ];
       }
       renderResourceGrid();
@@ -887,21 +1409,23 @@ function populateResourceSidebar() {
 //  RESOURCE GRID RENDER
 // ──────────────────────────────────────────────
 function renderResourceGrid() {
-  const grid = document.getElementById('resourceGrid');
-  const bc   = document.getElementById('breadcrumb');
+  const grid = document.getElementById("resourceGrid");
+  const bc = document.getElementById("breadcrumb");
   if (!grid) return;
 
   // Breadcrumb
   if (bc) {
-    bc.innerHTML = state.resourceStack.map((level, i) => {
-      const isLast = i === state.resourceStack.length - 1;
-      return `
-        ${i > 0 ? '<span class="breadcrumb-sep">›</span>' : ''}
-        <span class="breadcrumb-item" style="${isLast ? 'color:#C9A84C;' : ''}" data-level="${i}">${escHtml(level.name)}</span>
+    bc.innerHTML = state.resourceStack
+      .map((level, i) => {
+        const isLast = i === state.resourceStack.length - 1;
+        return `
+        ${i > 0 ? '<span class="breadcrumb-sep">›</span>' : ""}
+        <span class="breadcrumb-item" style="${isLast ? "color:#C9A84C;" : ""}" data-level="${i}">${escHtml(level.name)}</span>
       `;
-    }).join('');
-    bc.querySelectorAll('.breadcrumb-item').forEach(el => {
-      el.addEventListener('click', () => {
+      })
+      .join("");
+    bc.querySelectorAll(".breadcrumb-item").forEach((el) => {
+      el.addEventListener("click", () => {
         const lvl = parseInt(el.dataset.level);
         state.resourceStack = state.resourceStack.slice(0, lvl + 1);
         renderResourceGrid();
@@ -929,44 +1453,46 @@ function renderResourceGrid() {
 
   // Store items by unique key (index) to avoid name-collision issues
   const itemMap = {};
-  items.forEach((item, i) => { itemMap[i] = item; });
+  items.forEach((item, i) => {
+    itemMap[i] = item;
+  });
 
   grid.innerHTML = `
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1.25rem;">
-      ${items.map((item, i) => renderResourceCard(item, i)).join('')}
+      ${items.map((item, i) => renderResourceCard(item, i)).join("")}
     </div>`;
 
   // Card click — use data-idx to look up item, avoiding name-matching bugs
-  grid.querySelectorAll('[data-idx]').forEach(el => {
+  grid.querySelectorAll("[data-idx]").forEach((el) => {
     // Don't bind on download btn itself — it has its own handler below
-    if (el.dataset.role === 'download') return;
-    el.addEventListener('click', () => {
+    if (el.dataset.role === "download") return;
+    el.addEventListener("click", () => {
       const item = itemMap[parseInt(el.dataset.idx)];
       if (item) handleCardClick(item);
     });
   });
 
   // Download buttons — separate so click doesn't bubble to card
-  grid.querySelectorAll('[data-role="download"]').forEach(el => {
-    el.addEventListener('click', e => {
+  grid.querySelectorAll('[data-role="download"]').forEach((el) => {
+    el.addEventListener("click", (e) => {
       e.stopPropagation();
       triggerDownload(el.dataset.path, el.dataset.name);
     });
   });
 
   // Lazy-load thumbnails via IntersectionObserver
-  const imgs = grid.querySelectorAll('img[data-src]');
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
+  const imgs = grid.querySelectorAll("img[data-src]");
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
         const img = entry.target;
         img.src = img.dataset.src;
-        img.removeAttribute('data-src');
+        img.removeAttribute("data-src");
         io.unobserve(img);
       }
     });
   });
-  imgs.forEach(img => io.observe(img));
+  imgs.forEach((img) => io.observe(img));
 }
 
 // ──────────────────────────────────────────────
@@ -977,51 +1503,51 @@ function renderResourceCard(item, idx) {
   const thumbPlaceholder = `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='90'><rect width='160' height='90' fill='%23222'/><text x='80' y='50' text-anchor='middle' fill='%23444' font-size='24'>🖼</text></svg>`;
 
   switch (item.type) {
-
     // ── FOLDER ─────────────────────────────────────────────
-    case 'folder':
+    case "folder":
       return `
         <div class="resource-card" data-idx="${idx}" style="cursor:pointer;">
           <div class="resource-card-icon">📁</div>
           <div class="resource-card-name">${escHtml(item.name)}</div>
-          <div class="resource-card-type">Folder · ${(item.children||[]).length} items</div>
+          <div class="resource-card-type">Folder · ${(item.children || []).length} items</div>
         </div>`;
 
     // ── PDF ────────────────────────────────────────────────
-    case 'pdf':
+    case "pdf":
       return `
         <div class="resource-card" data-idx="${idx}" style="cursor:pointer;">
           <div class="resource-card-icon">📄</div>
           <div class="resource-card-name">${escHtml(item.name)}</div>
           <div class="resource-card-type">PDF Document</div>
-          <div class="download-btn" data-role="download" data-path="${escHtml(item.path||'')}" data-name="${escHtml(item.name)}">
+          <div class="download-btn" data-role="download" data-path="${escHtml(item.path || "")}" data-name="${escHtml(item.name)}">
             ↓ Download
           </div>
         </div>`;
 
     // ── PPT / PPTX ─────────────────────────────────────────
-    case 'ppt':
+    case "ppt":
       return `
         <div class="resource-card" data-idx="${idx}" style="cursor:pointer;">
           <div class="resource-card-icon">📊</div>
           <div class="resource-card-name">${escHtml(item.name)}</div>
           <div class="resource-card-type" style="color:#C9844C;">PPTX Presentation</div>
-          <div class="download-btn" data-role="download" data-path="${escHtml(item.path||'')}" data-name="${escHtml(item.name)}" style="border-color:rgba(201,132,76,0.35);color:#C9844C;">
+          <div class="download-btn" data-role="download" data-path="${escHtml(item.path || "")}" data-name="${escHtml(item.name)}" style="border-color:rgba(201,132,76,0.35);color:#C9844C;">
             ↓ Download
           </div>
         </div>`;
 
     // ── LINK (YouTube / Drive) ─────────────────────────────
     // item.link is a baked URL (from generate_json.py), or falls back to fetching .txt at runtime
-    case 'link':
+    case "link":
       return `
         <div class="resource-card" data-idx="${idx}" style="cursor:pointer;padding:0;overflow:hidden;">
           <div style="position:relative;">
-            ${item.thumbnail
-              ? `<img data-src="${escHtml(resolveResourcePath(item.thumbnail, 'thumbnail'))}" src="${thumbPlaceholder}"
+            ${
+              item.thumbnail
+                ? `<img data-src="${escHtml(resolveResourcePath(item.thumbnail, "thumbnail"))}" src="${thumbPlaceholder}"
                       alt="${escHtml(item.name)}" class="resource-card-thumb"
                       onerror="console.error('[MMA] Thumbnail 404:',this.dataset.src);this.src='${thumbPlaceholder}'" />`
-              : `<div style="height:100px;background:rgba(74,144,226,0.08);display:flex;align-items:center;justify-content:center;font-size:2.5rem;">🎬</div>`
+                : `<div style="height:100px;background:rgba(74,144,226,0.08);display:flex;align-items:center;justify-content:center;font-size:2.5rem;">🎬</div>`
             }
             <!-- Play overlay -->
             <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.35);transition:background 0.2s;">
@@ -1034,16 +1560,16 @@ function renderResourceCard(item, idx) {
           <div style="padding:0.9rem;">
             <div class="resource-card-name">${escHtml(item.name)}</div>
             <div class="resource-card-type" style="margin-top:0.25rem;">
-              ${item.link && item.link.includes('drive.google') ? '📁 Google Drive' : '▶ Video Link'}
+              ${item.link && item.link.includes("drive.google") ? "📁 Google Drive" : "▶ Video Link"}
             </div>
           </div>
         </div>`;
 
     // ── IMAGE ──────────────────────────────────────────────
-    case 'image':
+    case "image":
       return `
         <div class="resource-card" data-idx="${idx}" style="cursor:pointer;padding:0;overflow:hidden;">
-          <img data-src="${escHtml(resolveResourcePath(item.path||'', 'image'))}" src="${thumbPlaceholder}"
+          <img data-src="${escHtml(resolveResourcePath(item.path || "", "image"))}" src="${thumbPlaceholder}"
                alt="${escHtml(item.name)}" class="resource-card-thumb"
                onerror="console.error('[MMA] Image 404:',this.dataset.src);this.src='${thumbPlaceholder}'" />
           <div style="padding:0.9rem;">
@@ -1053,13 +1579,13 @@ function renderResourceCard(item, idx) {
         </div>`;
 
     // ── DOCX ───────────────────────────────────────────────
-    case 'docx':
+    case "docx":
       return `
         <div class="resource-card" data-idx="${idx}" style="cursor:pointer;">
           <div class="resource-card-icon">📝</div>
           <div class="resource-card-name">${escHtml(item.name)}</div>
           <div class="resource-card-type" style="color:#4A90E2;">Word Document</div>
-          <div class="download-btn" data-role="download" data-path="${escHtml(item.path||'')}" data-name="${escHtml(item.name)}" style="border-color:rgba(74,144,226,0.35);color:#4A90E2;">
+          <div class="download-btn" data-role="download" data-path="${escHtml(item.path || "")}" data-name="${escHtml(item.name)}" style="border-color:rgba(74,144,226,0.35);color:#4A90E2;">
             ↓ Download
           </div>
         </div>`;
@@ -1085,85 +1611,116 @@ function renderResourceCard(item, idx) {
 // ──────────────────────────────────────────────
 function handleCardClick(item) {
   switch (item.type) {
-    case 'folder':
+    case "folder":
       state.resourceStack.push({ name: item.name, items: item.children || [] });
       renderResourceGrid();
       break;
- 
-    case 'pdf': {
+
+    case "pdf": {
       // [FIX] Use resolveResourcePath so URL is absolute and path-segment encoded.
       // Bypasses any document.URL mutation from pushState.
-      const finalUrl = resolveResourcePath(item.path, 'pdf');
-      console.log('[MMA] Opening PDF:', { name: item.name, originalPath: item.path, finalUrl });
-      window.open(finalUrl, '_blank', 'noopener,noreferrer');
+      const finalUrl = resolveResourcePath(item.path, "pdf");
+      console.log("[MMA] Opening PDF:", {
+        name: item.name,
+        originalPath: item.path,
+        finalUrl,
+      });
+      window.open(finalUrl, "_blank", "noopener,noreferrer");
       break;
     }
- 
-    case 'ppt': {
+
+    case "ppt": {
       // PPTX cannot render in-browser — always trigger a download
-      console.log('[MMA] Downloading PPTX:', { name: item.name, originalPath: item.path });
+      console.log("[MMA] Downloading PPTX:", {
+        name: item.name,
+        originalPath: item.path,
+      });
       triggerDownload(item.path, item.name);
       break;
     }
- 
-    case 'link':
+
+    case "link":
       // ── Priority 1: item.link already baked in JSON ─────────────
       if (item.link && item.link.trim()) {
         const url = item.link.trim();
-        console.log('[MMA] Opening baked link:', { name: item.name, url });
-        window.open(url, '_blank', 'noopener,noreferrer');
+        console.log("[MMA] Opening baked link:", { name: item.name, url });
+        window.open(url, "_blank", "noopener,noreferrer");
 
-      // ── Priority 2: fetch URL from .txt file at runtime ──────────
+        // ── Priority 2: fetch URL from .txt file at runtime ──────────
       } else if (item.txt && item.txt.trim()) {
         const txtPath = item.txt.trim();
         // [FIX] Use resolveResourcePath → absolute URL immune to pushState
-        const txtUrl = resolveResourcePath(txtPath, 'link-txt');
-        console.log('[MMA] Fetching .txt for link:', {
-          name: item.name, originalPath: txtPath, finalUrl: txtUrl,
+        const txtUrl = resolveResourcePath(txtPath, "link-txt");
+        console.log("[MMA] Fetching .txt for link:", {
+          name: item.name,
+          originalPath: txtPath,
+          finalUrl: txtUrl,
         });
 
         fetch(txtUrl)
-          .then(function(resp) {
+          .then(function (resp) {
             if (!resp.ok) {
-              console.error('[MMA] .txt fetch failed:', {
-                name: item.name, originalPath: txtPath, finalUrl: txtUrl, httpStatus: resp.status,
+              console.error("[MMA] .txt fetch failed:", {
+                name: item.name,
+                originalPath: txtPath,
+                finalUrl: txtUrl,
+                httpStatus: resp.status,
               });
-              throw new Error('HTTP ' + resp.status);
+              throw new Error("HTTP " + resp.status);
             }
             return resp.text();
           })
-          .then(function(text) {
+          .then(function (text) {
             // Take only the first non-blank line
-            const url = text.split('\n').map(l => l.trim()).find(l => l.startsWith('http')) || '';
+            const url =
+              text
+                .split("\n")
+                .map((l) => l.trim())
+                .find((l) => l.startsWith("http")) || "";
             if (url) {
-              console.log('[MMA] .txt resolved URL:', { originalPath: txtPath, url });
-              window.open(url, '_blank', 'noopener,noreferrer');
+              console.log("[MMA] .txt resolved URL:", {
+                originalPath: txtPath,
+                url,
+              });
+              window.open(url, "_blank", "noopener,noreferrer");
             } else {
-              console.error('[MMA] .txt is empty or has no URL:', { originalPath: txtPath, finalUrl: txtUrl });
-              showToast('Link file is empty — check the .txt file.', 'error');
+              console.error("[MMA] .txt is empty or has no URL:", {
+                originalPath: txtPath,
+                finalUrl: txtUrl,
+              });
+              showToast("Link file is empty — check the .txt file.", "error");
             }
           })
-          .catch(function(err) {
-            console.error('[MMA] .txt fetch error:', {
-              name: item.name, originalPath: txtPath, finalUrl: txtUrl, error: err.message,
+          .catch(function (err) {
+            console.error("[MMA] .txt fetch error:", {
+              name: item.name,
+              originalPath: txtPath,
+              finalUrl: txtUrl,
+              error: err.message,
             });
-            showToast('Could not load link — .txt fetch failed: ' + txtPath, 'error');
+            showToast(
+              "Could not load link — .txt fetch failed: " + txtPath,
+              "error",
+            );
           });
 
-      // ── No link source found ─────────────────────────────────────
+        // ── No link source found ─────────────────────────────────────
       } else {
-        console.warn('[MMA] Link item has no url or txt path:', item);
-        showToast('No link configured for this resource.', 'error');
+        console.warn("[MMA] Link item has no url or txt path:", item);
+        showToast("No link configured for this resource.", "error");
       }
       break;
- 
-    case 'image':
+
+    case "image":
       showImageModal(item);
       break;
 
-    case 'docx': {
+    case "docx": {
       // DOCX cannot render in-browser — always trigger a download
-      console.log('[MMA] Downloading DOCX:', { name: item.name, originalPath: item.path });
+      console.log("[MMA] Downloading DOCX:", {
+        name: item.name,
+        originalPath: item.path,
+      });
       triggerDownload(item.path, item.name);
       break;
     }
@@ -1177,12 +1734,16 @@ function triggerDownload(path, name) {
   if (!path) return;
   // [FIX] resolveResourcePath gives absolute URL with proper encoding
   // Safe against both the pushState URL mutation and filename special chars
-  const finalUrl = resolveResourcePath(path, 'download');
-  console.log('[MMA] Triggering download:', { name, originalPath: path, finalUrl });
-  const a = document.createElement('a');
+  const finalUrl = resolveResourcePath(path, "download");
+  console.log("[MMA] Triggering download:", {
+    name,
+    originalPath: path,
+    finalUrl,
+  });
+  const a = document.createElement("a");
   a.href = finalUrl;
-  a.download = name || path.split('/').pop();
-  a.rel = 'noopener';
+  a.download = name || path.split("/").pop();
+  a.rel = "noopener";
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
@@ -1192,11 +1753,11 @@ function triggerDownload(path, name) {
 //  SKELETON LOADER
 // ──────────────────────────────────────────────
 function showResourceSkeleton() {
-  const grid = document.getElementById('resourceGrid');
+  const grid = document.getElementById("resourceGrid");
   if (!grid) return;
   grid.innerHTML = `
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1.25rem;">
-      ${Array(8).fill('<div class="skeleton skeleton-card"></div>').join('')}
+      ${Array(8).fill('<div class="skeleton skeleton-card"></div>').join("")}
     </div>`;
 }
 
@@ -1208,7 +1769,7 @@ function recursiveSearch(items, query) {
   for (const item of items) {
     if (item.name.toLowerCase().includes(query)) {
       results.push(item);
-    } else if (item.type === 'folder' && item.children) {
+    } else if (item.type === "folder" && item.children) {
       const inner = recursiveSearch(item.children, query);
       results.push(...inner);
     }
@@ -1222,9 +1783,10 @@ function recursiveSearch(items, query) {
 function sortItems(items, mode) {
   const typeOrder = { folder: 0, pdf: 1, ppt: 2, docx: 3, link: 4, image: 5 };
   return [...items].sort((a, b) => {
-    if (mode === 'name-az') return a.name.localeCompare(b.name);
-    if (mode === 'name-za') return b.name.localeCompare(a.name);
-    if (mode === 'type')    return (typeOrder[a.type] ?? 9) - (typeOrder[b.type] ?? 9);
+    if (mode === "name-az") return a.name.localeCompare(b.name);
+    if (mode === "name-za") return b.name.localeCompare(a.name);
+    if (mode === "type")
+      return (typeOrder[a.type] ?? 9) - (typeOrder[b.type] ?? 9);
     return 0;
   });
 }
@@ -1236,8 +1798,8 @@ function showImageModal(item) {
   // Remove any existing modal first
   closeImageModal();
 
-  const container = document.createElement('div');
-  container.id = 'imageModalContainer';
+  const container = document.createElement("div");
+  container.id = "imageModalContainer";
   document.body.appendChild(container);
 
   container.innerHTML = `
@@ -1266,7 +1828,7 @@ function showImageModal(item) {
       <!-- Viewport -->
       <div id="ivViewport" style="width:100vw;height:100vh;overflow:hidden;display:flex;
                                    align-items:center;justify-content:center;cursor:grab;">
-        <img id="ivImg" src="${escHtml(resolveResourcePath(item.path||'', 'image-modal'))}" alt="${escHtml(item.name)}"
+        <img id="ivImg" src="${escHtml(resolveResourcePath(item.path || "", "image-modal"))}" alt="${escHtml(item.name)}"
              draggable="false" style="
                max-width:88vw;max-height:84vh;object-fit:contain;display:block;
                transform-origin:center center;
@@ -1274,7 +1836,7 @@ function showImageModal(item) {
                box-shadow:0 0 60px rgba(0,0,0,0.9);
                pointer-events:none;will-change:transform;
                transition:transform 0.1s ease;"
-             onerror="console.error('[MMA] Image modal 404:','${escHtml(resolveResourcePath(item.path||'', 'image-modal'))}');this.alt='Image not found';this.style.padding='2rem';this.style.color='#666';" />
+             onerror="console.error('[MMA] Image modal 404:','${escHtml(resolveResourcePath(item.path || "", "image-modal"))}');this.alt='Image not found';this.style.padding='2rem';this.style.color='#666';" />
       </div>
 
       <!-- Hints -->
@@ -1289,140 +1851,177 @@ function showImageModal(item) {
     </div>`;
 
   // ── State ──────────────────────────────────────────────────
-  let scale = 1, panX = 0, panY = 0;
-  let isDragging = false, lastX = 0, lastY = 0;
-  const MIN_SCALE = 0.5, MAX_SCALE = 6;
+  let scale = 1,
+    panX = 0,
+    panY = 0;
+  let isDragging = false,
+    lastX = 0,
+    lastY = 0;
+  const MIN_SCALE = 0.5,
+    MAX_SCALE = 6;
 
-  const overlay  = document.getElementById('imgModalOverlay');
-  const viewport = document.getElementById('ivViewport');
-  const img      = document.getElementById('ivImg');
-  const zoomLbl  = document.getElementById('ivZoomLabel');
+  const overlay = document.getElementById("imgModalOverlay");
+  const viewport = document.getElementById("ivViewport");
+  const img = document.getElementById("ivImg");
+  const zoomLbl = document.getElementById("ivZoomLabel");
 
   function applyTransform() {
     img.style.transform = `translate(${panX}px,${panY}px) scale(${scale})`;
-    zoomLbl.textContent = Math.round(scale * 100) + '%';
+    zoomLbl.textContent = Math.round(scale * 100) + "%";
   }
 
   function setScale(newScale, ox = 0, oy = 0) {
     const clamped = Math.min(MAX_SCALE, Math.max(MIN_SCALE, newScale));
-    const ratio   = clamped / scale;
+    const ratio = clamped / scale;
     panX = ox - ratio * (ox - panX);
     panY = oy - ratio * (oy - panY);
     scale = clamped;
     applyTransform();
   }
 
-  function resetView() { scale = 1; panX = 0; panY = 0; applyTransform(); }
+  function resetView() {
+    scale = 1;
+    panX = 0;
+    panY = 0;
+    applyTransform();
+  }
 
   // ── Toolbar buttons ─────────────────────────────────────────
-  document.getElementById('ivClose').addEventListener('click', closeImageModal);
-  document.getElementById('ivZoomIn').addEventListener('click',    () => setScale(scale * 1.3));
-  document.getElementById('ivZoomOut').addEventListener('click',   () => setScale(scale / 1.3));
-  document.getElementById('ivZoomReset').addEventListener('click', resetView);
-  document.getElementById('ivDownload').addEventListener('click',  () => triggerDownload(item.path, item.name));
+  document.getElementById("ivClose").addEventListener("click", closeImageModal);
+  document
+    .getElementById("ivZoomIn")
+    .addEventListener("click", () => setScale(scale * 1.3));
+  document
+    .getElementById("ivZoomOut")
+    .addEventListener("click", () => setScale(scale / 1.3));
+  document.getElementById("ivZoomReset").addEventListener("click", resetView);
+  document
+    .getElementById("ivDownload")
+    .addEventListener("click", () => triggerDownload(item.path, item.name));
 
   // ── Overlay click to close ──────────────────────────────────
-  function _overlayClick(e) { if (e.target === overlay) closeImageModal(); }
-  overlay.addEventListener('click', _overlayClick);
+  function _overlayClick(e) {
+    if (e.target === overlay) closeImageModal();
+  }
+  overlay.addEventListener("click", _overlayClick);
 
   // ── Scroll zoom ─────────────────────────────────────────────
   function _onWheel(e) {
     e.preventDefault();
     const rect = viewport.getBoundingClientRect();
-    const ox = e.clientX - rect.left - rect.width  / 2;
-    const oy = e.clientY - rect.top  - rect.height / 2;
+    const ox = e.clientX - rect.left - rect.width / 2;
+    const oy = e.clientY - rect.top - rect.height / 2;
     setScale(scale * (e.deltaY < 0 ? 1.12 : 1 / 1.12), ox, oy);
   }
-  viewport.addEventListener('wheel', _onWheel, { passive: false });
+  viewport.addEventListener("wheel", _onWheel, { passive: false });
 
   // ── Mouse drag ──────────────────────────────────────────────
   function _onMouseDown(e) {
     if (e.button !== 0) return;
-    isDragging = true; lastX = e.clientX; lastY = e.clientY;
-    viewport.style.cursor = 'grabbing';
+    isDragging = true;
+    lastX = e.clientX;
+    lastY = e.clientY;
+    viewport.style.cursor = "grabbing";
     e.preventDefault();
   }
   function _onMouseMove(e) {
     if (!isDragging) return;
-    panX += e.clientX - lastX; panY += e.clientY - lastY;
-    lastX = e.clientX; lastY = e.clientY;
+    panX += e.clientX - lastX;
+    panY += e.clientY - lastY;
+    lastX = e.clientX;
+    lastY = e.clientY;
     applyTransform();
   }
-  function _onMouseUp() { isDragging = false; viewport.style.cursor = 'grab'; }
+  function _onMouseUp() {
+    isDragging = false;
+    viewport.style.cursor = "grab";
+  }
 
-  viewport.addEventListener('mousedown', _onMouseDown);
-  window.addEventListener('mousemove',   _onMouseMove);
-  window.addEventListener('mouseup',     _onMouseUp);
+  viewport.addEventListener("mousedown", _onMouseDown);
+  window.addEventListener("mousemove", _onMouseMove);
+  window.addEventListener("mouseup", _onMouseUp);
 
   // ── Double-click to reset ────────────────────────────────────
-  viewport.addEventListener('dblclick', resetView);
+  viewport.addEventListener("dblclick", resetView);
 
   // ── Touch support ───────────────────────────────────────────
-  let lastTouchDist = 0, lastTx = 0, lastTy = 0;
+  let lastTouchDist = 0,
+    lastTx = 0,
+    lastTy = 0;
   function _onTouchStart(e) {
-    if (e.touches.length === 1) { lastTx = e.touches[0].clientX; lastTy = e.touches[0].clientY; }
-    else if (e.touches.length === 2) {
-      lastTouchDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+    if (e.touches.length === 1) {
+      lastTx = e.touches[0].clientX;
+      lastTy = e.touches[0].clientY;
+    } else if (e.touches.length === 2) {
+      lastTouchDist = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY,
+      );
     }
     e.preventDefault();
   }
   function _onTouchMove(e) {
     if (e.touches.length === 1) {
-      panX += e.touches[0].clientX - lastTx; panY += e.touches[0].clientY - lastTy;
-      lastTx = e.touches[0].clientX; lastTy = e.touches[0].clientY;
+      panX += e.touches[0].clientX - lastTx;
+      panY += e.touches[0].clientY - lastTy;
+      lastTx = e.touches[0].clientX;
+      lastTy = e.touches[0].clientY;
       applyTransform();
     } else if (e.touches.length === 2) {
-      const d = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+      const d = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY,
+      );
       setScale(scale * (d / lastTouchDist));
       lastTouchDist = d;
     }
     e.preventDefault();
   }
-  viewport.addEventListener('touchstart', _onTouchStart, { passive: false });
-  viewport.addEventListener('touchmove',  _onTouchMove,  { passive: false });
+  viewport.addEventListener("touchstart", _onTouchStart, { passive: false });
+  viewport.addEventListener("touchmove", _onTouchMove, { passive: false });
 
   // ── Keyboard ─────────────────────────────────────────────────
   function _onKey(e) {
-    if (e.key === 'Escape') closeImageModal();
-    if (e.key === '+' || e.key === '=') setScale(scale * 1.2);
-    if (e.key === '-') setScale(scale / 1.2);
-    if (e.key === '0') resetView();
+    if (e.key === "Escape") closeImageModal();
+    if (e.key === "+" || e.key === "=") setScale(scale * 1.2);
+    if (e.key === "-") setScale(scale / 1.2);
+    if (e.key === "0") resetView();
   }
-  document.addEventListener('keydown', _onKey);
+  document.addEventListener("keydown", _onKey);
 
   // ── Fade hint after 3 s ──────────────────────────────────────
   setTimeout(() => {
-    const hint = document.getElementById('ivHint');
-    if (hint) hint.style.opacity = '0';
+    const hint = document.getElementById("ivHint");
+    if (hint) hint.style.opacity = "0";
   }, 3000);
 
   // Store cleanup on overlay element
   overlay._cleanup = () => {
-    overlay.removeEventListener('click',      _overlayClick);
-    viewport.removeEventListener('wheel',      _onWheel);
-    viewport.removeEventListener('mousedown',  _onMouseDown);
-    viewport.removeEventListener('dblclick',   resetView);
-    viewport.removeEventListener('touchstart', _onTouchStart);
-    viewport.removeEventListener('touchmove',  _onTouchMove);
-    window.removeEventListener('mousemove',    _onMouseMove);
-    window.removeEventListener('mouseup',      _onMouseUp);
-    document.removeEventListener('keydown',    _onKey);
+    overlay.removeEventListener("click", _overlayClick);
+    viewport.removeEventListener("wheel", _onWheel);
+    viewport.removeEventListener("mousedown", _onMouseDown);
+    viewport.removeEventListener("dblclick", resetView);
+    viewport.removeEventListener("touchstart", _onTouchStart);
+    viewport.removeEventListener("touchmove", _onTouchMove);
+    window.removeEventListener("mousemove", _onMouseMove);
+    window.removeEventListener("mouseup", _onMouseUp);
+    document.removeEventListener("keydown", _onKey);
   };
 }
 
 function closeImageModal() {
-  const container = document.getElementById('imageModalContainer');
+  const container = document.getElementById("imageModalContainer");
   if (!container) return;
-  const overlay = document.getElementById('imgModalOverlay');
-  if (overlay && typeof overlay._cleanup === 'function') overlay._cleanup();
+  const overlay = document.getElementById("imgModalOverlay");
+  if (overlay && typeof overlay._cleanup === "function") overlay._cleanup();
   container.remove();
 }
 
 // ──────────────────────────────────────────────
 //  GENERAL MODAL (member cards, easter egg)
 // ──────────────────────────────────────────────
-function showModal(html, extraStyle = '') {
-  const mc = document.getElementById('modalContainer');
+function showModal(html, extraStyle = "") {
+  const mc = document.getElementById("modalContainer");
   mc.innerHTML = `
     <div class="modal-overlay" id="modalOverlay">
       <div class="modal-box" style="${extraStyle}">
@@ -1430,33 +2029,35 @@ function showModal(html, extraStyle = '') {
         ${html}
       </div>
     </div>`;
-  document.getElementById('modalClose').addEventListener('click', closeModal);
-  document.getElementById('modalOverlay').addEventListener('click', e => {
-    if (e.target.id === 'modalOverlay') closeModal();
+  document.getElementById("modalClose").addEventListener("click", closeModal);
+  document.getElementById("modalOverlay").addEventListener("click", (e) => {
+    if (e.target.id === "modalOverlay") closeModal();
   });
-  document.addEventListener('keydown', _modalKey);
+  document.addEventListener("keydown", _modalKey);
 }
 
 function closeModal() {
-  document.getElementById('modalContainer').innerHTML = '';
-  document.removeEventListener('keydown', _modalKey);
+  document.getElementById("modalContainer").innerHTML = "";
+  document.removeEventListener("keydown", _modalKey);
 }
-function _modalKey(e) { if (e.key === 'Escape') closeModal(); }
+function _modalKey(e) {
+  if (e.key === "Escape") closeModal();
+}
 
 // ──────────────────────────────────────────────
 //  TOAST NOTIFICATION
 // ──────────────────────────────────────────────
-function showToast(message, type = 'info') {
-  const existing = document.getElementById('mmaToast');
+function showToast(message, type = "info") {
+  const existing = document.getElementById("mmaToast");
   if (existing) existing.remove();
 
-  const colors = { info: '#C9A84C', error: '#ff6b6b', success: '#6bcb77' };
-  const toast = document.createElement('div');
-  toast.id = 'mmaToast';
+  const colors = { info: "#C9A84C", error: "#ff6b6b", success: "#6bcb77" };
+  const toast = document.createElement("div");
+  toast.id = "mmaToast";
   toast.style.cssText = `
     position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);
-    background:rgba(20,20,20,0.97);border:1px solid ${colors[type]||colors.info};
-    color:${colors[type]||colors.info};padding:0.75rem 1.5rem;
+    background:rgba(20,20,20,0.97);border:1px solid ${colors[type] || colors.info};
+    color:${colors[type] || colors.info};padding:0.75rem 1.5rem;
     font-family:'Rajdhani',sans-serif;font-weight:600;font-size:0.9rem;
     letter-spacing:0.1em;z-index:9998;
     box-shadow:0 4px 24px rgba(0,0,0,0.6);
@@ -1471,17 +2072,16 @@ function showToast(message, type = 'info') {
 //  EASTER EGG
 // ──────────────────────────────────────────────
 function showEasterEgg() {
+  const isMobile = window.innerWidth <= 768;
 
-const isMobile = window.innerWidth <= 768;
-
-const message = isMobile
-? `       WELCOME TO THE INNER CIRCLE ⚙️<br><br>
+  const message = isMobile
+    ? `       WELCOME TO THE INNER CIRCLE ⚙️<br><br>
       Classified access granted.<br>
       Loyalty confirmed.<br><br>
       "The machine never rests."<br><br>
       — MMA Council
     `
-: `       WELCOME TO THE INNER CIRCLE ⚙️<br><br>
+    : `       WELCOME TO THE INNER CIRCLE ⚙️<br><br>
       You have accessed classified Ministry archives.<br>
       Your loyalty has been noted.<br>
       Your dedication — exemplary.<br><br>
@@ -1490,10 +2090,22 @@ const message = isMobile
       — High Council, MMA
     `;
 
-showModal(` <div class="glitch-modal">
+  showModal(
+    ` <div
+  class="glitch-modal"
+  style="
+    width:min(90vw, 520px);
+    max-height:85vh;
+    overflow-y:auto;
+    overflow-x:hidden;
+    padding:1.5rem;
+    box-sizing:border-box;
+  "
+>
 
 
-  <div style="font-size:3rem;margin-bottom:1rem;animation:rotateCW 3s linear infinite;display:inline-block;">
+  <div style="
+  font-size:clamp(2rem,8vw,3rem);margin-bottom:1rem;animation:rotateCW 3s linear infinite;display:inline-block;">
     ⚙️
   </div>
 
@@ -1505,31 +2117,33 @@ showModal(` <div class="glitch-modal">
 
   <div style="margin:1.5rem 0;">
     <img
-      src="whatsapp.jpg"
-      alt="MMA WhatsApp QR"
-      style="
-        width:180px;
-        max-width:100%;
-        border:2px solid rgba(0,255,0,0.35);
-        border-radius:12px;
-        display:block;
-        margin:0 auto 1rem;
-      "
-    >
+  src="/logo.png"
+  alt="MMA Logo"
+  style="
+    width:min(180px, 50vw);
+    max-width:100%;
+    height:auto;
+    display:block;
+    margin:0 auto 1rem;
+    filter:drop-shadow(0 0 15px rgba(0,255,0,0.35));
+  "
+>
 
     <a
-      href="https://chat.whatsapp.com/Ca9U3k0ZNxiJBIQc5jQEC7"
+      href="https://chat.whatsapp.com/E9tFK68NSXv7ap4GnCAFmc"
       target="_blank"
       rel="noopener noreferrer"
       style="
-        display:inline-block;
-        padding:12px 24px;
-        background:#25D366;
-        color:#000;
-        text-decoration:none;
-        font-weight:bold;
-        border-radius:8px;
-      "
+  display:inline-block;
+  width:min(100%,320px);
+  padding:12px 24px;
+  background:#25D366;
+  color:#000;
+  text-decoration:none;
+  font-weight:bold;
+  border-radius:8px;
+  box-sizing:border-box;
+"
     >
       JOIN WHATSAPP BROTHERHOOD
     </a>
@@ -1547,63 +2161,68 @@ showModal(` <div class="glitch-modal">
 </div>
 
 
-`, 'background:rgba(0,20,0,0.98);border-color:rgba(0,255,0,0.4);');
+`,
+    "background:rgba(0,20,0,0.98);border-color:rgba(0,255,0,0.4);",
+  );
 }
-
 
 // ──────────────────────────────────────────────
 //  FOOTER
 // ──────────────────────────────────────────────
 function renderFooter() {
   return `
-    <footer>
-      <div style="display:flex;align-items:center;justify-content:center;gap:2rem;flex-wrap:wrap;margin-bottom:1.5rem;">
-        <svg width="40" height="40" viewBox="0 0 40 40" style="opacity:0.3;">
-          ${buildGearSVG({ cx:20, cy:20, r:16, teeth:10, stroke:'#C9A84C', opacity:1, cls:'gear-slow', strokeW:1 })}
-        </svg>
-        <div style="text-align:center;">
-          <div style="font-family:'Cinzel',serif;font-weight:900;color:var(--gold);font-size:1rem;letter-spacing:0.2em;margin-bottom:0.25rem;">
-            MINISTRY OF MECHANICAL AFFAIRS
-          </div>
-          <div style="font-size:0.7rem;color:#444;letter-spacing:0.15em;text-transform:uppercase;">
-            Engineering · Discipline · Brotherhood
-          </div>
-        </div>
-        <svg width="40" height="40" viewBox="0 0 40 40" style="opacity:0.3;">
-          ${buildGearSVG({ cx:20, cy:20, r:16, teeth:10, stroke:'#C9A84C', opacity:1, cls:'gear-ccw', strokeW:1 })}
-        </svg>
-      </div>
-      <div style="display:flex;align-items:center;justify-content:center;gap:1.5rem;margin-bottom:1.5rem;flex-wrap:wrap;">
-        <a href="https://www.instagram.com/ministry_of_mechanical_affairs?igsh=MXgydW5jb3lvMGFvNA==" target="_blank"
-           style="color:#666;transition:color 0.3s;text-decoration:none;display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;"
-           onmouseover="this.style.color='#E1306C'" onmouseout="this.style.color='#666'">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-            <path d="m16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-          </svg>
-          @mma_official
-        </a>
-        <span style="color:#333;">·</span>
-        
-        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ministryofmechanicalaffairs@gmail.com" target="_blank"
-   style="color:#666;transition:color 0.3s;text-decoration:none;display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;"
-   onmouseover="this.style.color='#D4AF37'"
-   onmouseout="this.style.color='#666'">
-   
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-       stroke="currentColor" stroke-width="2">
-    <path d="M4 4h16v16H4z"/>
-    <path d="M22 6l-10 7L2 6"/>
-  </svg>
+    <div style="display:flex;align-items:center;justify-content:center;gap:1.5rem;margin-bottom:1.5rem;flex-wrap:wrap;">
 
-  ministryofmechanicalaffairs@gmail.com
-</a>
-      </div>
-      <div style="font-size:0.7rem;color:#333;letter-spacing:0.1em;">
-        © 2024 Ministry of Mechanical Affairs · All Rights Reserved
-      </div>
-    </footer>`;
+  <a href="https://www.instagram.com/ministry_of_mechanical_affairs?igsh=MXgydW5jb3lvMGFvNA=="
+     target="_blank"
+     style="color:#666;transition:color 0.3s;text-decoration:none;display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;"
+     onmouseover="this.style.color='#E1306C'"
+     onmouseout="this.style.color='#666'">
+
+    <svg width="16" height="16" viewBox="0 0 24 24"
+         fill="none" stroke="currentColor" stroke-width="2">
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+      <path d="m16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+    </svg>
+
+    @mma_official
+  </a>
+
+  <span style="color:#333;">·</span>
+
+  <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ministryofmechanicalaffairs@gmail.com"
+     target="_blank"
+     style="color:#666;transition:color 0.3s;text-decoration:none;display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;"
+     onmouseover="this.style.color='#D4AF37'"
+     onmouseout="this.style.color='#666'">
+
+    <svg width="16" height="16" viewBox="0 0 24 24"
+         fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M4 4h16v16H4z"/>
+      <path d="M22 6l-10 7L2 6"/>
+    </svg>
+
+    ministryofmechanicalaffairs@gmail.com
+  </a>
+
+  <span style="color:#333;">·</span>
+
+  <a href="https://wa.me/12692864097"
+     target="_blank"
+     style="color:#666;transition:color 0.3s;text-decoration:none;display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;"
+     onmouseover="this.style.color='#25D366'"
+     onmouseout="this.style.color='#666'">
+
+    <svg width="16" height="16" viewBox="0 0 24 24"
+         fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.5L3 21l2.1-5.2A8.5 8.5 0 1 1 21 11.5z"/>
+    </svg>
+
+    +1 (269) 286-4097
+  </a>
+
+</div>`;
 }
 
 // ──────────────────────────────────────────────
@@ -1620,18 +2239,18 @@ function folderIcon() {
 //  UTILITY — HTML escape
 // ──────────────────────────────────────────────
 function escHtml(str) {
-  return String(str ?? '')
-    .replace(/&/g,'&amp;')
-    .replace(/</g,'&lt;')
-    .replace(/>/g,'&gt;')
-    .replace(/"/g,'&quot;')
-    .replace(/'/g,'&#039;');
+  return String(str ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 }
 
 // ──────────────────────────────────────────────
 //  GLOBALS (used by inline onclick in templates)
 // ──────────────────────────────────────────────
-window.navigate        = navigate;
+window.navigate = navigate;
 window.showMemberModal = showMemberModal;
 
 // ──────────────────────────────────────────────
