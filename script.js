@@ -417,9 +417,18 @@ function buildGearSVG({
 }
 
 // ──────────────────────────────────────────────
-//  PERPETUAL MOTION MACHINE  (SVG)
+//  PERPETUAL MOTION MACHINE — THE EVERWHEEL
+//  (Overbalanced Wheel · "Bhaskara configuration")
+//
+//  Replaces the old gear-train + pendulum design. No gear teeth, no belt,
+//  no per-frame JS — a single rotating wheel whose 8 weights slide along
+//  their spokes via one shared CSS keyframe with staggered negative
+//  animation-delays, so descending-side weights always read "heavy" (near
+//  the rim) and ascending-side weights read "light" (near the hub) with
+//  zero runtime calculation. See perpetual-motion-machine-spec.md.
 // ──────────────────────────────────────────────
 function buildPMM() {
+  // Palette — reused from the site's existing gold/steel/blue language.
   const gold = "#C9A84C",
     goldD = "#9A7530",
     goldL = "#E8C96A";
@@ -427,151 +436,121 @@ function buildPMM() {
     steel = "#2C2C2C",
     steelL = "#4A4A4A";
 
-  // Gear outline path builder
-  function gear(cx, cy, r, teeth, animCls, color, sw) {
-    const toothH = r * 0.2,
-      inner = r - toothH;
-    const step = (2 * Math.PI) / teeth;
-    let d = "";
-    for (let i = 0; i < teeth; i++) {
-      const a1 = i * step - step * 0.35,
-        a2 = i * step - step * 0.1;
-      const a3 = i * step + step * 0.1,
-        a4 = i * step + step * 0.35;
-      d += `L ${cx + inner * Math.cos(a1)} ${cy + inner * Math.sin(a1)} `;
-      d += `L ${cx + r * Math.cos(a2)} ${cy + r * Math.sin(a2)} `;
-      d += `L ${cx + r * Math.cos(a3)} ${cy + r * Math.sin(a3)} `;
-      d += `L ${cx + inner * Math.cos(a4)} ${cy + inner * Math.sin(a4)} `;
-    }
-    d = "M" + d.slice(1) + "Z";
-    const spokes = Array.from(
-      { length: Math.max(4, Math.floor(teeth / 3)) },
-      (_, i) => {
-        const a = ((2 * Math.PI) / Math.max(4, Math.floor(teeth / 3))) * i;
-        return `<line x1="${cx}" y1="${cy}" x2="${cx + inner * 0.75 * Math.cos(a)}" y2="${cy + inner * 0.75 * Math.sin(a)}" stroke="${color}" stroke-width="${sw * 0.6}" opacity="0.4"/>`;
-      },
-    ).join("");
-    return `<g class="${animCls}" style="transform-origin:${cx}px ${cy}px;">
-      <path d="${d}" stroke="${color}" stroke-width="${sw}" fill="${color}" fill-opacity="0.06" opacity="0.8"/>
-      ${spokes}
-      <circle cx="${cx}" cy="${cy}" r="${r * 0.22}" stroke="${color}" stroke-width="${sw}" fill="${steelL}" opacity="0.9"/>
-      <circle cx="${cx}" cy="${cy}" r="${r * 0.08}" fill="${color}" opacity="0.9"/>
-    </g>`;
-  }
+  // Tunables (spec §12)
+  const wheelDuration = 22; // seconds, one full wheel rotation
+  const gearRatio = 7; // dial-needle turns this many times slower
+  const spokeCount = 8;
+  const rHub = 28; // weight's translateX when "in" (near hub)
+  const rRim = 82; // weight's translateX when "out" (near rim)
 
-  // Gear layout — meshing radii: G1+G2 must touch, G2+G3 must touch
-  const g1cx = 155,
-    g1cy = 148,
-    g1r = 55,
-    g1t = 16;
-  const g2cx = 265,
-    g2cy = 148,
-    g2r = 35,
-    g2t = 10;
-  const g3cx = 350,
-    g3cy = 148,
-    g3r = 21,
-    g3t = 6;
-  const fwcx = 420,
-    fwcy = 148,
-    fwr = 28;
+  // Wheel + dial layout
+  const hubX = 175,
+    hubY = 155,
+    rimR = 95,
+    hubR = 18;
+  const dialX = 430,
+    dialY = 155,
+    dialR = 38;
+  const baseY = 280;
 
-  // Belt tangent lines from G2 axle to flywheel
-  const beltTop = g2cy - g2r * 0.35,
-    beltBot = g2cy + g2r * 0.35;
+  // 8 spokes, evenly spaced, each with its own negative delay so the
+  // ball-slide keyframe locks into the "heavy on the way down" pattern.
+  // NOTE: if the weights ever bulge on the wrong (ascending) side once
+  // rendered, flip the sign on `delay` below — see spec §5.2 point 4.
+  const spokes = Array.from({ length: spokeCount }, (_, i) => {
+    const angle = (360 / spokeCount) * i;
+    const delay = -((i / spokeCount) * wheelDuration).toFixed(3);
+    return `
+      <g class="pmm-spoke" style="transform:translate(${hubX}px,${hubY}px) rotate(${angle}deg);transform-origin:0 0;">
+        <use href="#pmm-tube" stroke="${gold}" stroke-width="9" stroke-linecap="round" opacity="0.55"/>
+        <g class="pmm-ball" style="animation-delay:${delay}s;">
+          <use href="#pmm-weight" fill="${goldL}" stroke="${goldD}" stroke-width="1" opacity="0.95"/>
+        </g>
+      </g>`;
+  }).join("");
 
   return `
-  <div style="display:flex;flex-direction:column;align-items:center;">
-    <div style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;letter-spacing:0.25em;color:rgba(201,168,76,0.35);margin-bottom:0.6rem;text-transform:uppercase;">
-      ⚙ Perpetual Motion Assembly · da Vinci Class ⚙
+  <div class="pmm-wrapper" aria-hidden="true" role="presentation">
+    <div style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;letter-spacing:0.25em;color:rgba(201,168,76,0.35);margin-bottom:0.6rem;text-transform:uppercase;text-align:center;">
+      ⚙ Overbalance Unit · Bhaskara Configuration ⚙
     </div>
-    <svg viewBox="0 0 520 240" width="min(520px,90vw)" height="auto"
+    <svg viewBox="0 0 520 300" width="min(520px,90vw)" height="auto"
          xmlns="http://www.w3.org/2000/svg" style="overflow:visible;">
       <defs>
+        <line id="pmm-tube" x1="${hubR}" y1="0" x2="${rimR - 7}" y2="0" />
+        <circle id="pmm-weight" r="7" />
         <style>
-          .pmm-cw   { animation: pmm-cw  14s linear infinite; }
-          .pmm-ccw  { animation: pmm-ccw  8.75s linear infinite; }
-          .pmm-fast { animation: pmm-cw   5.25s linear infinite; }
-          .pmm-fw   { animation: pmm-cw   8.75s linear infinite; }
-          .pmm-pend { transform-origin: ${g1cx}px 52px; animation: pmm-swing 3.2s ease-in-out infinite; }
-          @keyframes pmm-cw   { to { transform: rotate(360deg);  } }
-          @keyframes pmm-ccw  { to { transform: rotate(-360deg); } }
-          @keyframes pmm-swing {
-            0%,100% { transform: rotate(-16deg); }
-            50%     { transform: rotate(16deg); }
+          .pmm-wheel {
+            --wheel-duration: ${wheelDuration}s;
+            transform-origin: ${hubX}px ${hubY}px;
+            animation: pmm-spin var(--wheel-duration) linear infinite;
           }
-          .pmm-belt-flow { animation: beltDash 2s linear infinite; }
-          @keyframes beltDash { to { stroke-dashoffset: -20; } }
+          .pmm-ball {
+            --wheel-duration: ${wheelDuration}s;
+            --r-hub: ${rHub}px;
+            --r-rim: ${rRim}px;
+            animation: pmm-ball-slide var(--wheel-duration) ease-in-out infinite;
+          }
+          .pmm-needle {
+            transform-origin: ${dialX}px ${dialY}px;
+            animation: pmm-spin calc(${wheelDuration}s * ${gearRatio}) linear infinite;
+          }
+          @keyframes pmm-spin { to { transform: rotate(360deg); } }
+          @keyframes pmm-ball-slide {
+            0%   { transform: translateX(var(--r-rim)); }
+            50%  { transform: translateX(var(--r-hub)); }
+            100% { transform: translateX(var(--r-rim)); }
+          }
+          @media (prefers-reduced-motion: reduce) {
+            .pmm-wheel, .pmm-ball, .pmm-needle { animation-play-state: paused; }
+          }
+          .pmm-wrapper.pmm-offscreen .pmm-wheel,
+          .pmm-wrapper.pmm-offscreen .pmm-ball,
+          .pmm-wrapper.pmm-offscreen .pmm-needle { animation-play-state: paused; }
         </style>
-        <filter id="pgold" x="-30%" y="-30%" width="160%" height="160%">
-          <feGaussianBlur stdDeviation="3" result="b"/>
-          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-        </filter>
-        <filter id="pblue" x="-30%" y="-30%" width="160%" height="160%">
-          <feGaussianBlur stdDeviation="2" result="b"/>
-          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-        </filter>
       </defs>
 
-      <!-- Base plate -->
-      <rect x="30" y="218" width="455" height="5" rx="2" fill="${steelL}" opacity="0.5"/>
-      <rect x="50" y="223" width="415" height="2" rx="1" fill="${goldD}"  opacity="0.2"/>
+      <!-- Frame (static, never animates) -->
+      <rect x="30" y="${baseY}" width="460" height="5" rx="2" fill="${steelL}" opacity="0.5"/>
+      <rect x="50" y="${baseY + 5}" width="420" height="2" rx="1" fill="${goldD}" opacity="0.2"/>
+      <rect x="${hubX - 4}" y="${hubY + rimR - 4}" width="8" height="${baseY - (hubY + rimR - 4)}" fill="${steelL}" opacity="0.45"/>
+      <rect x="${dialX - 4}" y="${dialY + dialR - 4}" width="8" height="${baseY - (dialY + dialR - 4)}" fill="${steelL}" opacity="0.4"/>
+      <rect x="${hubX - 24}" y="${hubY - 24}" width="48" height="48" rx="8" fill="${steel}" stroke="${goldD}" stroke-width="1" opacity="0.5"/>
 
-      <!-- Support pillars -->
-      <rect x="${g1cx - 3}" y="${g1cy + g1r + 2}" width="6" height="${218 - g1cy - g1r - 2}" fill="${steelL}" opacity="0.45"/>
-      <rect x="${g2cx - 3}" y="${g2cy + g2r + 2}" width="6" height="${218 - g2cy - g2r - 2}" fill="${steelL}" opacity="0.4"/>
-      <rect x="${fwcx - 3}" y="${fwcy + fwr + 2}" width="6" height="${218 - fwcy - fwr - 2}" fill="${steelL}" opacity="0.35"/>
+      <!-- Shaft: static link between wheel and dial — implies the
+           mechanical connection without any belt / zero animation cost -->
+      <line x1="${hubX + rimR}" y1="${hubY}" x2="${dialX - dialR}" y2="${dialY}"
+            stroke="${goldD}" stroke-width="2.5" opacity="0.4"/>
 
-      <!-- Belt: G2 to flywheel -->
-      <line x1="${g2cx + g2r}" y1="${beltTop}" x2="${fwcx - fwr}" y2="${beltTop}"
-            stroke="${goldD}" stroke-width="2" stroke-dasharray="6 3" opacity="0.35"
-            class="pmm-belt-flow"/>
-      <line x1="${g2cx + g2r}" y1="${beltBot}" x2="${fwcx - fwr}" y2="${beltBot}"
-            stroke="${goldD}" stroke-width="2" stroke-dasharray="6 3" opacity="0.25"
-            style="animation: beltDash 2s linear infinite reverse;"/>
+      <!-- The Wheel — everything below rotates together as one rigid body -->
+      <g class="pmm-wheel">
+        <circle class="pmm-rim" cx="${hubX}" cy="${hubY}" r="${rimR}" stroke="${gold}" stroke-width="2" fill="${gold}" fill-opacity="0.05" opacity="0.7"/>
+        ${spokes}
+        <circle class="pmm-hub" cx="${hubX}" cy="${hubY}" r="${hubR}" fill="${steelL}" stroke="${gold}" stroke-width="1.6" opacity="0.9"/>
+        <circle cx="${hubX}" cy="${hubY}" r="${hubR * 0.3}" fill="${gold}" opacity="0.9"/>
+      </g>
 
-      <!-- Flywheel (belt-driven, CW) -->
-      <g class="pmm-fw" style="transform-origin:${fwcx}px ${fwcy}px;">
-        <circle cx="${fwcx}" cy="${fwcy}" r="${fwr}" stroke="${gold}" stroke-width="2.5" fill="none" opacity="0.7" filter="url(#pgold)"/>
-        <circle cx="${fwcx}" cy="${fwcy}" r="${fwr * 0.65}" stroke="${goldD}" stroke-width="1" fill="none" opacity="0.3"/>
-        ${Array.from({ length: 6 }, (_, i) => {
-          const a = (Math.PI / 3) * i;
-          return `<line x1="${fwcx}" y1="${fwcy}" x2="${fwcx + fwr * 0.85 * Math.cos(a)}" y2="${fwcy + fwr * 0.85 * Math.sin(a)}" stroke="${gold}" stroke-width="1.2" opacity="0.45"/>`;
+      <!-- Ledger Dial — slow needle, gear-down readout for the Ministry -->
+      <g class="pmm-dial">
+        <circle class="pmm-dial-face" cx="${dialX}" cy="${dialY}" r="${dialR}" stroke="${gold}" stroke-width="1.6" fill="${steel}" fill-opacity="0.15" opacity="0.75"/>
+        ${Array.from({ length: 12 }, (_, i) => {
+          const a = ((Math.PI * 2) / 12) * i;
+          const r1 = dialR - 5,
+            r2 = dialR - 1;
+          return `<line x1="${dialX + r1 * Math.cos(a)}" y1="${dialY + r1 * Math.sin(a)}" x2="${dialX + r2 * Math.cos(a)}" y2="${dialY + r2 * Math.sin(a)}" stroke="${goldD}" stroke-width="1" opacity="0.4"/>`;
         }).join("")}
-        <circle cx="${fwcx}" cy="${fwcy}" r="${fwr * 0.2}" fill="${steelL}" stroke="${gold}" stroke-width="1.2" opacity="0.9"/>
-        <circle cx="${fwcx}" cy="${fwcy}" r="${fwr * 0.07}" fill="${gold}" opacity="1"/>
+        <line class="pmm-needle" x1="${dialX}" y1="${dialY}" x2="${dialX}" y2="${dialY - dialR + 8}" stroke="${blue}" stroke-width="1.6" opacity="0.85"/>
+        <circle cx="${dialX}" cy="${dialY}" r="3" fill="${blue}" opacity="0.9"/>
       </g>
 
-      <!-- G1: main large gear CW -->
-      ${gear(g1cx, g1cy, g1r, g1t, "pmm-cw", gold, 2.2)}
-
-      <!-- G2: medium gear CCW (meshes with G1) -->
-      ${gear(g2cx, g2cy, g2r, g2t, "pmm-ccw", goldL, 1.8)}
-
-      <!-- G3: small fast gear CW (meshes with G2) -->
-      ${gear(g3cx, g3cy, g3r, g3t, "pmm-fast", blue, 1.4)}
-
-      <!-- Pendulum attached to G1 column -->
-      <g class="pmm-pend">
-        <!-- pivot bar -->
-        <rect x="${g1cx - 7}" y="46" width="14" height="8" rx="2" fill="${steel}" stroke="${goldD}" stroke-width="1" opacity="0.85"/>
-        <!-- rod -->
-        <line x1="${g1cx}" y1="52" x2="${g1cx}" y2="118" stroke="${gold}" stroke-width="1.8" opacity="0.55"/>
-        <!-- mid weight ring -->
-        <circle cx="${g1cx}" cy="80" r="4" fill="none" stroke="${goldD}" stroke-width="1" opacity="0.4"/>
-        <!-- bob -->
-        <circle cx="${g1cx}" cy="122" r="10" fill="${steelL}" stroke="${gold}" stroke-width="2" filter="url(#pgold)" opacity="0.9"/>
-        <circle cx="${g1cx}" cy="122" r="4"  fill="${gold}" opacity="0.95"/>
-      </g>
-
-      <!-- Labels -->
-      <text x="${g1cx}" y="236" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="6" fill="${goldD}" opacity="0.4" letter-spacing="1">DRIVE</text>
-      <text x="${g2cx}" y="236" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="6" fill="${goldD}" opacity="0.4" letter-spacing="1">OUTPUT</text>
-      <text x="${fwcx}" y="236" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="6" fill="${goldD}" opacity="0.35" letter-spacing="1">FLYWHEEL</text>
+      <!-- Labels & plates -->
+      <text x="${hubX}" y="${baseY + 22}" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="6" fill="${goldD}" opacity="0.35" letter-spacing="1">SERIAL: MMA-Ω</text>
+      <text x="${dialX}" y="${dialY + dialR + 16}" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="6" fill="${goldD}" opacity="0.4" letter-spacing="1">LEDGER</text>
     </svg>
-    <div style="font-family:'Share Tech Mono',monospace;font-size:0.55rem;letter-spacing:0.2em;color:rgba(201,168,76,0.22);margin-top:0.5rem;text-transform:uppercase;">
-      [ The machine does not rest. Neither do we. ]
+    <div style="font-family:'Share Tech Mono',monospace;font-size:0.55rem;letter-spacing:0.2em;color:rgba(201,168,76,0.22);margin-top:0.5rem;text-transform:uppercase;text-align:center;">
+      [ It should not turn. And yet — it does. ]
     </div>
+    <span class="sr-only">Illustration of a perpetual motion wheel — a nod to centuries of engineers chasing something that can't quite work.</span>
   </div>`;
 }
 
@@ -637,6 +616,21 @@ function renderHome(container) {
     
     ${renderFooter()}
   `;
+
+  // Pause the Everwheel's CSS animations when it scrolls out of view —
+  // no point spinning a wheel nobody's looking at (spec §8.8).
+  const pmmEl = container.querySelector(".pmm-wrapper");
+  if (pmmEl && "IntersectionObserver" in window) {
+    const pmmIo = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          entry.target.classList.toggle("pmm-offscreen", !entry.isIntersecting);
+        });
+      },
+      { threshold: 0 },
+    );
+    pmmIo.observe(pmmEl);
+  }
 }
 
 // ──────────────────────────────────────────────

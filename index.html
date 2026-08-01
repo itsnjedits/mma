@@ -230,13 +230,19 @@
       }
     }
 
-    /* ===== PERPETUAL MOTION MACHINE ===== */
+    /* ===== PERPETUAL MOTION MACHINE — THE EVERWHEEL ===== */
+    /* Wheel/needle/ball keyframes are self-contained inside buildPMM()'s
+       own <style> block (script.js), matching how the machine has always
+       been generated. This wrapper just handles sizing + a11y. */
     .pmm-wrapper {
       width: 100%;
       max-width: 520px;
       margin: 2.5rem auto 0;
       position: relative;
       z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .pmm-wrapper svg {
@@ -245,125 +251,17 @@
       display: block;
     }
 
-    /* pendulum arm */
-    @keyframes swing {
-      0% {
-        transform: rotate(-28deg);
-      }
-
-      50% {
-        transform: rotate(28deg);
-      }
-
-      100% {
-        transform: rotate(-28deg);
-      }
-    }
-
-    /* flywheel spokes */
-    @keyframes flywheel {
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    /* piston up/down */
-    @keyframes pistonY {
-
-      0%,
-      100% {
-        transform: translateY(0px);
-      }
-
-      50% {
-        transform: translateY(18px);
-      }
-    }
-
-    /* connecting rod tilt */
-    @keyframes rodTilt {
-
-      0%,
-      100% {
-        transform: rotate(-12deg);
-      }
-
-      50% {
-        transform: rotate(12deg);
-      }
-    }
-
-    /* belt loop */
-    @keyframes beltFlow {
-      to {
-        stroke-dashoffset: -200;
-      }
-    }
-
-    /* spark pulse */
-    @keyframes sparkPulse {
-
-      0%,
-      100% {
-        opacity: 0;
-        r: 2;
-      }
-
-      50% {
-        opacity: 1;
-        r: 4;
-      }
-    }
-
-    .pmm-gear-cw {
-      transform-origin: center;
-      animation: rotateCW 14s linear infinite;
-    }
-
-    .pmm-gear-ccw {
-      transform-origin: center;
-      animation: rotateCCW 8.75s linear infinite;
-    }
-
-    .pmm-gear-fast {
-      transform-origin: center;
-      animation: rotateCW 5.25s linear infinite;
-    }
-
-    .pmm-gear-med {
-      transform-origin: center;
-      animation: rotateCW 8.75s linear infinite;
-    }
-
-    .pmm-flywheel {
-      transform-origin: 260px 130px;
-      animation: flywheel 3s linear infinite;
-    }
-
-    .pmm-pendulum {
-      transform-origin: 260px 60px;
-      animation: swing 2s ease-in-out infinite;
-    }
-
-    .pmm-piston {
-      animation: pistonY 1s ease-in-out infinite;
-    }
-
-    .pmm-rod {
-      transform-origin: 340px 155px;
-      animation: rodTilt 1s ease-in-out infinite;
-    }
-
-    .pmm-belt {
-      animation: beltFlow 2s linear infinite;
-    }
-
-    .pmm-spark {
-      animation: sparkPulse 0.8s ease-in-out infinite;
-    }
-
-    .pmm-spark2 {
-      animation: sparkPulse 0.8s ease-in-out infinite 0.4s;
+    /* Visually-hidden screen-reader text (used by decorative SVGs) */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
 
     /* ===== HERO ===== */
