@@ -634,36 +634,7 @@ function renderHome(container) {
       </div>
     </section>
 
-    <div class="gold-divider" style="max-width:1100px;margin:0 auto;"></div>
-
-    <!-- MEMBERS -->
-    <section style="padding:4rem 2rem;max-width:1100px;margin:0 auto;">
-      <div style="margin-bottom:3rem;">
-        <div class="section-tag">[ BROTHERHOOD ROSTER ]</div>
-        <h2 class="section-title">The <span>Members</span></h2>
-        <div class="section-line"></div>
-        <p style="color:#666;font-size:1rem;line-height:1.7;max-width:520px;">
-          Each member is handpicked — screened not just for technical prowess,
-          but for character, discipline, and the will to build.
-        </p>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1.25rem;">
-        ${MEMBERS.map(
-          (m) => `
-          <div class="member-card" onclick="showMemberModal(${m.id})">
-            <div class="member-avatar">${m.initials}</div>
-            <div class="member-name">${m.name}</div>
-            <div class="member-role">${m.role}</div>
-            <div style="margin-top:0.75rem;display:flex;align-items:center;justify-content:center;gap:0.5rem;">
-              <span class="pulse-dot" style="width:5px;height:5px;"></span>
-              <span style="font-size:0.65rem;color:#444;letter-spacing:0.15em;text-transform:uppercase;">Active</span>
-            </div>
-          </div>
-        `,
-        ).join("")}
-      </div>
-    </section>
-
+    
     ${renderFooter()}
   `;
 }
@@ -937,114 +908,6 @@ Or arrive with absolutely nothing except curiosity.
   <div class="join-grid">
 
 
-<a href="https://wa.me/12692864097?text=Greetings%20MMA.%20I%20would%20like%20to%20play%20UNO."
-   target="_blank"
-   class="path-card">
-
-  <div class="path-icon">🔄</div>
-
-  <div class="path-title">
-    UNO Challenge
-  </div>
-
-  <div class="path-desc">
-    Challenge existing members to a legendary UNO battle.
-    Victory is optional.
-    Chaos is guaranteed.
-  </div>
-
-  <div class="path-footer">
-    INITIATE MATCH →
-  </div>
-
-</a>
-
-<a href="https://wa.me/12692864097?text=Greetings%20MMA.%20I%20have%20a%20Mechanical%20Engineering%20meme%20to%20share."
-   target="_blank"
-   class="path-card">
-
-  <div class="path-icon">😂</div>
-
-  <div class="path-title">
-    Engineering Meme
-  </div>
-
-  <div class="path-desc">
-    The Brotherhood respects intelligence.
-    It also respects top-tier mechanical memes.
-  </div>
-
-  <div class="path-footer">
-    TRANSMIT MEME →
-  </div>
-
-</a>
-
-<a href="https://wa.me/12692864097?text=Greetings%20MMA.%20I%20would%20like%20to%20showcase%20a%20hidden%20talent."
-   target="_blank"
-   class="path-card">
-
-  <div class="path-icon">🎭</div>
-
-  <div class="path-title">
-    Hidden Talent
-  </div>
-
-  <div class="path-desc">
-    Music, speaking, editing, coding,
-    photography, magic tricks—
-    surprise us.
-  </div>
-
-  <div class="path-footer">
-    REVEAL TALENT →
-  </div>
-
-</a>
-
-<a href="https://wa.me/12692864097?text=Greetings%20MMA.%20I%20would%20like%20to%20share%20my%20collection%20or%20hobby."
-   target="_blank"
-   class="path-card">
-
-  <div class="path-icon">📚</div>
-
-  <div class="path-title">
-    Collection / Hobby
-  </div>
-
-  <div class="path-desc">
-    Collect something unusual?
-    Obsessed with a hobby?
-    We want to see it.
-  </div>
-
-  <div class="path-footer">
-    OPEN ARCHIVES →
-  </div>
-
-</a>
-
-<a href="https://wa.me/12692864097?text=Greetings%20MMA.%20I%20would%20like%20to%20share%20my%20artwork%20or%20creative%20work."
-   target="_blank"
-   class="path-card">
-
-  <div class="path-icon">🎨</div>
-
-  <div class="path-title">
-    Art & Creativity
-  </div>
-
-  <div class="path-desc">
-    Drawings, writing,
-    designs, editing,
-    crafts and creative projects.
-  </div>
-
-  <div class="path-footer">
-    SHOW CREATION →
-  </div>
-
-</a>
 
 <a href="https://wa.me/12692864097?text=Greetings%20MMA.%20I%20would%20like%20to%20share%20an%20engineering%20project."
    target="_blank"
@@ -1087,32 +950,6 @@ Or arrive with absolutely nothing except curiosity.
 
   <div class="path-footer">
     OPEN CHANNEL →
-  </div>
-
-</a>
-
-<a href="https://wa.me/12692864097?text=Greetings%20MMA.%20I%20am%20not%20sure%20which%20path%20to%20choose%20but%20I%20would%20still%20like%20to%20join."
-   target="_blank"
-   class="path-card">
-
-  <div class="path-icon">🤔</div>
-
-  <div class="path-title">
-    Nothing Special... Yet
-  </div>
-
-  <div class="path-desc">
-    No project.
-    No meme.
-    No talent ready.
-
-    That's okay.
-
-    Curiosity alone is enough to start.
-  </div>
-
-  <div class="path-footer">
-    REQUEST ENTRY →
   </div>
 
 </a>
